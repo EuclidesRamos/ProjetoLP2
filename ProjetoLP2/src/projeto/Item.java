@@ -1,10 +1,11 @@
 package projeto;
 
-import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 public abstract class Item {
 
-	protected List<Preco> mapadeprecos;
+	protected Map<String, Double> mapaDePrecos;
 	protected int id;
 	protected String nome;
 	protected String categoria;
@@ -29,19 +30,29 @@ public abstract class Item {
 		this.categoria = categoria;
 	}
 
-	public void adicionaPreco(String mercado, double valor) {
-		Preco preco = new Preco(mercado, valor);
-		this.mapadeprecos.add(preco);
+	public void cadastraPreco(String mercado, double valor) {
+		
+		if(mercado.trim().isEmpty() || mercado == null) {
+			throw new IllegalArgumentException("Erro no cadastro de preco: local de compra nao pode ser vazio ou nulo.");
+		}
+		if(valor<0) {
+			throw new IllegalArgumentException("Erro no cadastro de preco: preco de item invalido.");
+		}
+	
+
+		this.mapaDePrecos.put(mercado, valor);
 
 	}
 
 	public String precos() {
+		int controle = 0;
 		String precos = "";
-		for (int i = 0; i < this.mapadeprecos.size(); i++) {
-			if (i == 0) {
-				precos += this.mapadeprecos.get(i).toString();
+		for (Entry<String, Double> preco : this.mapaDePrecos.entrySet()) {
+			controle++;
+			if (controle == 1) {
+				precos += preco.getKey() + ", R$ " + String.format("%.2f", preco.getValue());
 			} else {
-				precos += "; " + this.mapadeprecos.get(i).toString();
+				precos += "; " + preco.getKey() + ", R$ " + String.format("%.2f", preco.getValue());
 			}
 		}
 
@@ -49,14 +60,37 @@ public abstract class Item {
 	}
 
 	public double menorPreco() {
-		double menorPreco = this.mapadeprecos.get(0).getPreco();
-		for (Preco preco : this.mapadeprecos) {
-			if (preco.getPreco() < menorPreco) {
-				menorPreco = preco.getPreco();
+		double menorPreco = Double.POSITIVE_INFINITY;
+		for (Double preco : this.mapaDePrecos.values()) {
+			if (preco < menorPreco) {
+				menorPreco = preco;
 			}
 		}
 
 		return menorPreco;
+
+	}
+
+	public void valida(String nome, String categoria, String mercado, double preco) {
+
+		if (categoria.trim().isEmpty() || categoria == null) {
+			throw new IllegalArgumentException("Erro no cadastro de item: categoria nao pode ser vazia ou nula.");
+		}
+
+		if (!(categoria.equals("alimentos industrializados") || categoria.equals("alimentos nao industrializados")
+				|| categoria.equals("limpeza") || categoria.equals("higiene pessoal"))) {
+			throw new IllegalArgumentException("Erro no cadastro de item: categoria nao existe.");
+		}
+		if (nome.trim().isEmpty() || nome == null) {
+			throw new IllegalArgumentException("Erro no cadastro do item: nome nao pode ser vazio ou nulo.");
+		}
+
+		if (mercado.trim().isEmpty() || mercado == null) {
+			throw new IllegalArgumentException("Erro no cadastro do item: local de compra nao pode ser vazio ou nulo.");
+		}
+		if (preco < 0) {
+			throw new IllegalArgumentException("Erro no cadastro do item: preco de item invalido.");
+		}
 
 	}
 
