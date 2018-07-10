@@ -17,53 +17,53 @@ id10=adicionaItemPorUnidade nome="Iogurte Lactivia" categoria="alimento industri
 
 ## Criar Lista de Compra ##
 
-expect "feira 23/05/2017" adicionaListaDeCompras descritorLista="feira 23/05/2017"
+expect "feira semana" adicionaListaDeCompras descritorLista="feira semana"
 
 ## Pesquisar lista de compras ##
 
-expect "feira 23/05/2017" pesquisaListaDeCompras descritorLista="feira 23/05/2017"
+expect "feira semana" pesquisaListaDeCompras descritorLista="feira semana"
 
 ## Adicionar Itens a Lista ##
 
-adicionaCompraALista descritorLista="feira 23/05/2017" quantidade=3 itemId=${id1}
-adicionaCompraALista descritorLista="feira 23/05/2017" quantidade=1 itemId=${id2}
-adicionaCompraALista descritorLista="feira 23/05/2017" quantidade=2 itemId=${id3}
-adicionaCompraALista descritorLista="feira 23/05/2017" quantidade=1 itemId=${id4}
-adicionaCompraALista descritorLista="feira 23/05/2017" quantidade=1 itemId=${id5}
-adicionaCompraALista descritorLista="feira 23/05/2017" quantidade=1.5 itemId=${id6}
-adicionaCompraALista descritorLista="feira 23/05/2017" quantidade=2 itemId=${id7}
-adicionaCompraALista descritorLista="feira 23/05/2017" quantidade=2.0 itemId=${id8}
-adicionaCompraALista descritorLista="feira 23/05/2017" quantidade=0.5 itemId=${id9}
-adicionaCompraALista descritorLista="feira 23/05/2017" quantidade=2 itemId=${id10}
+adicionaCompraALista descritorLista="feira semana" quantidade=3 itemId=${id1}
+adicionaCompraALista descritorLista="feira semana" quantidade=1 itemId=${id2}
+adicionaCompraALista descritorLista="feira semana" quantidade=2 itemId=${id3}
+adicionaCompraALista descritorLista="feira semana" quantidade=1 itemId=${id4}
+adicionaCompraALista descritorLista="feira semana" quantidade=1 itemId=${id5}
+adicionaCompraALista descritorLista="feira semana" quantidade=1.5 itemId=${id6}
+adicionaCompraALista descritorLista="feira semana" quantidade=2 itemId=${id7}
+adicionaCompraALista descritorLista="feira semana" quantidade=2.0 itemId=${id8}
+adicionaCompraALista descritorLista="feira semana" quantidade=0.5 itemId=${id9}
+adicionaCompraALista descritorLista="feira semana" quantidade=2 itemId=${id10}
 
 ## Finalizar Lista ##
 
-finalizarListaDeCompras descritorLista="feira 23/05/2017" localDaCompra="Shopping Boulevard" valorFinalDaCompra=1000
+finalizarListaDeCompras descritorLista="feira semana" localDaCompra="Shopping Boulevard" valorFinalDaCompra=1000
 
 ## Pesquisa Item na Lista ##
 
-expect "3 Sabonete de aveia Dorene, higiene pessoal, 80 gramas" pesquisaCompraEmLista descritorLista="feira 23/05/2017" itemId=${id1}
+expect "3 Sabonete de aveia Dorene, higiene pessoal, 80 gramas" pesquisaCompraEmLista descritorLista="feira semana" itemId=${id1}
 
 ## Atualiza Item na lista ##
 
-atualizaCompraDeLista descritorLista="feira 23/05/2017" itemId=${id1} quantidade=2
+atualizaCompraDeLista descritorLista="feira semana" itemId=${id1} quantidade=2
 
 ## Pesquisa Item na Lista ##
 
-expect "1 Sabonete de aveia Dorene, higiene pessoal, 80 gramas" pesquisaCompraEmLista descritorLista="feira 23/05/2017" itemId=${id1}
+expect "1 Sabonete de aveia Dorene, higiene pessoal, 80 gramas" pesquisaCompraEmLista descritorLista="feira semana" itemId=${id1}
 
 ## Imprimir Lista Itens ## Usando metodo auxiliar para pegar itens da lista
 
-expect "1 Algodao Clemer, higiene pessoal, 300 gramas" getItemLista descritorLista="feira 23/05/2017" posicaoItem=0
-expect "2 Pasta dental DDS, higiene pessoal, 120 gramas" getItemLista descritorLista="feira 23/05/2017" posicaoItem=1
-expect "1 Sabonete de aveia Dorene, higiene pessoal, 80 gramas" getItemLista descritorLista="feira 23/05/2017" posicaoItem=2
-expect "2 Sabao liquido Pomo, limpeza, 1 l" getItemLista descritorLista="feira 23/05/2017" posicaoItem=3
-expect "1 Creme de ricota Rocota, alimento industrializado" getItemLista descritorLista="feira 23/05/2017" posicaoItem=4
-expect "2 Iogurte Lactivia, alimento industrializado" getItemLista descritorLista="feira 23/05/2017" posicaoItem=5
-expect "1 Queijo minas Dali, alimento industrializado" getItemLista descritorLista="feira 23/05/2017" posicaoItem=6
-expect "2,0 kg Carne moida extra light, alimento nao industrializado" getItemLista descritorLista="feira 23/05/2017" posicaoItem=7
-expect "0,5 kg Chuchu, alimento nao industrializado" getItemLista descritorLista="feira 23/05/2017" posicaoItem=8
-expect "1,5 kg Tomate, alimento nao industrializado" getItemLista descritorLista="feira 23/05/2017" posicaoItem=9
+expect "1 Algodao Clemer, higiene pessoal, 300 gramas" getItemLista descritorLista="feira semana" posicaoItem=0
+expect "2 Pasta dental DDS, higiene pessoal, 120 gramas" getItemLista descritorLista="feira semana" posicaoItem=1
+expect "1 Sabonete de aveia Dorene, higiene pessoal, 80 gramas" getItemLista descritorLista="feira semana" posicaoItem=2
+expect "2 Sabao liquido Pomo, limpeza, 1 l" getItemLista descritorLista="feira semana" posicaoItem=3
+expect "1 Creme de ricota Rocota, alimento industrializado" getItemLista descritorLista="feira semana" posicaoItem=4
+expect "2 Iogurte Lactivia, alimento industrializado" getItemLista descritorLista="feira semana" posicaoItem=5
+expect "1 Queijo minas Dali, alimento industrializado" getItemLista descritorLista="feira semana" posicaoItem=6
+expect "2,0 kg Carne moida extra light, alimento nao industrializado" getItemLista descritorLista="feira semana" posicaoItem=7
+expect "0,5 kg Chuchu, alimento nao industrializado" getItemLista descritorLista="feira semana" posicaoItem=8
+expect "1,5 kg Tomate, alimento nao industrializado" getItemLista descritorLista="feira semana" posicaoItem=9
 
 ######################################
 ## Teste de Delete de item da lista ##
@@ -71,21 +71,22 @@ expect "1,5 kg Tomate, alimento nao industrializado" getItemLista descritorLista
 
 ## Criar Lista de Compra ##
 
-adicionaListaDeCompras descritorLista="outra feira 01/06/2017"
+adicionaListaDeCompras descritorLista="outra feira"
 
 ## Adicionar Itens a Lista ##
 
-adicionaCompraALista descritorLista="outra feira 01/06/2017" quantidade=3 itemId=${id1}
-adicionaCompraALista descritorLista="outra feira 01/06/2017" quantidade=1 itemId=${id2}
+adicionaCompraALista descritorLista="outra feira" quantidade=3 itemId=${id1}
+adicionaCompraALista descritorLista="outra feira" quantidade=1 itemId=${id2}
 
-expect "3 Sabonete de aveia Dorene, higiene pessoal, 80 gramas" getItemLista descritorLista="outra feira 01/06/2017" posicaoItem=0
-expect "1 Queijo minas Dali, alimento industrializado" getItemLista descritorLista="outra feira 01/06/2017" posicaoItem=1
+expect "3 Sabonete de aveia Dorene, higiene pessoal, 80 gramas" getItemLista descritorLista="outra feira" posicaoItem=0
+expect "1 Queijo minas Dali, alimento industrializado" getItemLista descritorLista="outra feira" posicaoItem=1
 
-deletaCompraDeLista escritorLista="outra feira 01/06/2017" itemId=${id1}
+deletaCompraDeLista descritorLista="outra feira" itemId=${id1}
 
 ## Finalizar Lista ##
 
-finalizarListaDeCompras descritorLista="outra feira 01/06/2017" localDaCompra="Shopping Boulevard" valorFinalDaCompra=10
+finalizarListaDeCompras descritorLista="outra feira" localDaCompra="Shopping Boulevard" valorFinalDaCompra=10
 
-## Lista de compras feira 01/05/2017 ##
-expect "1 Queijo minas Dali, alimento industrializado" imprimeListaDeCompras descritorLista="outra feira 01/06/2017"
+## Lista de compras feira frutas ##
+expect "1 Queijo minas Dali, alimento industrializado" getItemLista descritorLista="outra feira" posicaoItem=0
+expect "" getItemLista descritorLista="outra feira" posicaoItem=1

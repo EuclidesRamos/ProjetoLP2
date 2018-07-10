@@ -6,13 +6,16 @@ import java.util.Map;
 public class ItemController {
 
 	private Map<Integer, Item> itens;
+	private int id;
 	
 	private int identificador() {
-		return this.itens.size() + 1;
+		this.id += 1;
+		return this.id;
 	}
 	
 	public ItemController() {
 		this.itens = new HashMap<>();
+		this.id = 0;
 	}
 	
 	public int adicionaItemPorQtd(String nome, String categoria, int quantidade, String unidadeDeMedida, String localDeCompra, double preco) {
@@ -43,35 +46,47 @@ public class ItemController {
 	}
 
 	public void atualizaItem(int id, String atributo, String novoValor) {
-		if (!this.itens.containsKey(id)) {
-			throw new IllegalArgumentException("Erro na atualizacao de item: item nao existe.");
-		} else if (atributo.trim().isEmpty() || atributo == null) {
+		if (atributo.trim().isEmpty() || atributo == null) {
 			throw new IllegalArgumentException("Erro na atualizacao de item: atributo nao pode ser vazio ou nulo.");
 		} else if (novoValor.trim().isEmpty() || novoValor == null) {
-			throw new IllegalArgumentException("Erro na atualizacao de item: novo valor nao pode ser vazio ou nulo.");
+			throw new IllegalArgumentException("Erro na atualizacao de item: novo valor de atributo nao pode ser vazio ou nulo.");
 		}
+		if (!this.itens.containsKey(id)) {
+			throw new IllegalArgumentException("Erro na atualizacao de item: item nao existe.");
+		} 
 		switch (atributo) {
 		case "nome":
 			this.itens.get(id).setNome(novoValor);
+			break;
 		case "categoria":
 			if (!(novoValor.equals("alimentos industrializados") || novoValor.equals("alimentos nao industrializados") || novoValor.equals("limpeza") || novoValor.equals("higiene pessoal"))) {
 				throw new IllegalArgumentException("Erro na atualizacao de item: categoria nao existe.");
 			}
 			this.itens.get(id).setCategoria(novoValor);
+			break;
 		case "quantidade":
 			int novoValorInteiro = Integer.parseInt(novoValor);
 			if( novoValorInteiro < 0) {
-				 throw  new IllegalArgumentException("Erro no cadastro de item: valor de quantidade nao pode ser menor que zero.");
+				 throw new IllegalArgumentException("Erro na atualizacao de item: valor de quantidade nao pode ser menor que zero.");                                  
 			}
 			this.itens.get(id).setQuantidade(novoValorInteiro);
+			break;
 		case "unidade de medida":
 			this.itens.get(id).setUnidadeDeMedida(novoValor);
+			break;
 		case "kg":
 			double novoValorDouble = Double.parseDouble(novoValor);
 			if (novoValorDouble < 0) {
-				throw new IllegalArgumentException("Erro no cadastro de item: valor de quilos nao pode ser menor que zero.");
+				throw new IllegalArgumentException("Erro na atualizacao de item: valor de quilos nao pode ser menor que zero.");
 			}
 			this.itens.get(id).setKg(novoValorDouble);
+			break;
+		case "unidades":
+			int novoValorInt = Integer.parseInt(novoValor);
+			if (novoValorInt <= 0) {
+				throw new IllegalArgumentException("Erro na atualizacao de item: valor de quantidade nao pode ser menor que zero.");
+			}
+			break;
 		default:
 			throw new IllegalArgumentException("Erro na atualizacao de item: atributo nao existe.");
 		}

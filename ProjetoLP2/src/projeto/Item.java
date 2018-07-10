@@ -11,6 +11,26 @@ public abstract class Item {
 	protected String nome;
 	protected String categoria;
 
+	public Item(int id, String nome, String categoria, String mercado, double preco) {
+		if (categoria.trim().isEmpty() || categoria == null) {
+			throw new IllegalArgumentException("Erro no cadastro de item: categoria nao pode ser vazia ou nula.");
+		} else if (!(categoria.equals("alimento industrializado") || categoria.equals("alimento nao industrializado")
+				|| categoria.equals("limpeza") || categoria.equals("higiene pessoal"))) {
+			throw new IllegalArgumentException("Erro no cadastro de item: categoria nao existe.");
+		} else if (nome.trim().isEmpty() || nome == null) {
+			throw new IllegalArgumentException("Erro no cadastro de item: nome nao pode ser vazio ou nulo.");
+		} else if (mercado.trim().isEmpty() || mercado == null) {
+			throw new IllegalArgumentException("Erro no cadastro de item: local de compra nao pode ser vazio ou nulo.");
+		} else if (preco < 0) {
+			throw new IllegalArgumentException("Erro no cadastro de item: preco de item invalido.");
+		}
+		this.mapaDePrecos = new HashMap<>();
+		this.mapaDePrecos.put(mercado, preco);
+		this.id = id;
+		this.nome = nome;
+		this.categoria = categoria;
+	}
+	
 	public int getId() {
 		return this.id;
 	}
@@ -19,32 +39,14 @@ public abstract class Item {
 		return this.nome;
 	}
 
-	public Item(int id, String nome, String categoria, String mercado, double preco) {
-		valida(nome, categoria, mercado, preco);
-
-		this.mapaDePrecos = new HashMap<>();
-		this.id = id;
-		this.nome = nome;
-		this.categoria = categoria;
-	}
-
 	public String getCategoria() {
 		return this.categoria;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
 	}
 
 	public void cadastraPreco(String mercado, double valor) {
 
 		if (mercado.trim().isEmpty() || mercado == null) {
-			throw new IllegalArgumentException(
-					"Erro no cadastro de preco: local de compra nao pode ser vazio ou nulo.");
+			throw new IllegalArgumentException("Erro no cadastro de preco: local de compra nao pode ser vazio ou nulo.");
 		}
 		if (valor < 0) {
 			throw new IllegalArgumentException("Erro no cadastro de preco: preco de item invalido.");
@@ -55,17 +57,10 @@ public abstract class Item {
 	}
 
 	public String precos() {
-		int controle = 0;
 		String precos = "";
 		for (Entry<String, Double> preco : this.mapaDePrecos.entrySet()) {
-			controle++;
-			if (controle == 1) {
-				precos += preco.getKey() + ", R$ " + String.format("%.2f", preco.getValue());
-			} else {
-				precos += "; " + preco.getKey() + ", R$ " + String.format("%.2f", preco.getValue());
-			}
+			precos += preco.getKey() + ", R$ " + String.format("%.2f", preco.getValue()) + ";";
 		}
-
 		return precos;
 	}
 
@@ -80,32 +75,23 @@ public abstract class Item {
 		return menorPreco;
 
 	}
-
-	public void valida(String nome, String categoria, String mercado, double preco) {
-
-		if (categoria.trim().isEmpty() || categoria == null) {
-			throw new IllegalArgumentException("Erro no cadastro de item: categoria nao pode ser vazia ou nula.");
-		}
-
-		if (!(categoria.equals("alimento industrializado") || categoria.equals("alimento nao industrializado")
-				|| categoria.equals("limpeza") || categoria.equals("higiene pessoal"))) {
-			throw new IllegalArgumentException("Erro no cadastro de item: categoria nao existe.");
-		}
-		if (nome.trim().isEmpty() || nome == null) {
-			throw new IllegalArgumentException("Erro no cadastro do item: nome nao pode ser vazio ou nulo.");
-		}
-
-		if (mercado.trim().isEmpty() || mercado == null) {
-			throw new IllegalArgumentException("Erro no cadastro do item: local de compra nao pode ser vazio ou nulo.");
-		}
-		if (preco < 0) {
-			throw new IllegalArgumentException("Erro no cadastro do item: preco de item invalido.");
-		}
-
+	
+	public void adicionaPrecoItem(String localDeCompra, double preco) {
+		this.mapaDePrecos.put(localDeCompra, preco);
 	}
 
-	public abstract String toString();
+	public String toString() {
+		return this.id + ". " + this.nome + ", " +  this.categoria + ", ";
+	}
 
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+	
 	public void setQuantidade(int quantidade) {	
 		
 	}
@@ -118,7 +104,34 @@ public abstract class Item {
 		
 	}
 
-	public void adicionaPrecoItem(String localDeCompra, double preco) {
-		this.mapaDePrecos.put(localDeCompra, preco);
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((categoria == null) ? 0 : categoria.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Item other = (Item) obj;
+		if (categoria == null) {
+			if (other.categoria != null)
+				return false;
+		} else if (!categoria.equals(other.categoria))
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		return true;
 	}
 }
