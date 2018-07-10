@@ -1,5 +1,6 @@
 package projeto;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -18,6 +19,15 @@ public abstract class Item {
 		return this.nome;
 	}
 
+	public Item(int id, String nome, String categoria, String mercado, double preco) {
+		valida(nome, categoria, mercado, preco);
+
+		this.mapaDePrecos = new HashMap<>();
+		this.id = id;
+		this.nome = nome;
+		this.categoria = categoria;
+	}
+
 	public String getCategoria() {
 		return this.categoria;
 	}
@@ -31,14 +41,14 @@ public abstract class Item {
 	}
 
 	public void cadastraPreco(String mercado, double valor) {
-		
-		if(mercado.trim().isEmpty() || mercado == null) {
-			throw new IllegalArgumentException("Erro no cadastro de preco: local de compra nao pode ser vazio ou nulo.");
+
+		if (mercado.trim().isEmpty() || mercado == null) {
+			throw new IllegalArgumentException(
+					"Erro no cadastro de preco: local de compra nao pode ser vazio ou nulo.");
 		}
-		if(valor<0) {
+		if (valor < 0) {
 			throw new IllegalArgumentException("Erro no cadastro de preco: preco de item invalido.");
 		}
-	
 
 		this.mapaDePrecos.put(mercado, valor);
 
