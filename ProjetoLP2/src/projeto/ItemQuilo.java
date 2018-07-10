@@ -10,8 +10,7 @@ public class ItemQuilo extends Item {
 
 		super.valida(nome, categoria, mercado, preco);
 		if (kg < 0) {
-			throw new IllegalArgumentException(
-					"Erro no cadastro de item: valor de quilos nao pode ser menor que zero.");
+			throw new IllegalArgumentException("Erro no cadastro de item: valor de quilos nao pode ser menor que zero.");
 		}
 		this.kg = kg;
 		this.mapaDePrecos = new HashMap<>();

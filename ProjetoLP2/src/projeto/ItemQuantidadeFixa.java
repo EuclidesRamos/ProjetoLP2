@@ -5,7 +5,6 @@ import java.util.HashMap;
 
 public class ItemQuantidadeFixa extends Item {
 	
-	
 	private int quantidade;
 	private  String unidadeMedida;
 
@@ -29,9 +28,9 @@ public class ItemQuantidadeFixa extends Item {
 			throw new IllegalArgumentException("Erro no cadastro de item: unidade de medida nao pode vazia ou nula.");
 			
 		}
-		 if(quantidade < 0) {
+		if(quantidade < 0) {
 			 throw  new IllegalArgumentException("Erro no cadastro de item: valor de quantidade nao pode ser menor que zero.");
-		 }
+		}
 		this.mapaDePrecos = new HashMap<>();
 		this.categoria = categoria;
 		this.id = id;
@@ -40,5 +39,4 @@ public class ItemQuantidadeFixa extends Item {
 		this.unidadeMedida = unidadeMedida;
 		this.mapaDePrecos.put(mercado, preco);
 	}
-
 }

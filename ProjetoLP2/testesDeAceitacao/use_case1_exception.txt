@@ -1,0 +1,43 @@
+######################
+# Caso de Uso 1 Exception #
+#####################
+
+###############################
+#  Cadastro de itens  #
+###############################
+
+expectError "Erro no cadastro de item: nome nao pode ser vazio ou nulo." adicionaItemPorQtd nome="" categoria="limpeza" qtd=100 unidadeDeMedida="gramas" localDeCompra="Supermercado Essencial" preco=1.00
+expectError "Erro no cadastro de item: categoria nao pode ser vazia ou nula." adicionaItemPorUnidade nome="Detergente" categoria="" unidade=1 localDeCompra="Supermercado Essencial" preco=1.50
+expectError "Erro no cadastro de item: categoria nao existe." adicionaItemPorQuilo nome="Banana" categoria="fruta" kg=1 localDeCompra="Supermercado Essencial" preco=5.50
+expectError "Erro no cadastro de item: valor de quilos nao pode ser menor que zero." adicionaItemPorQuilo nome="Biscoito" categoria="alimento industrializado" kg=-4.3 localDeCompra="Supermercado Essencial" preco=2.29
+expectError "Erro no cadastro de item: valor de quantidade nao pode ser menor que zero." adicionaItemPorQtd nome="Molho de tomate" categoria="alimento industrializado" qnt=-300 unidadeDeMedida="gramas" localDeCompra="Supermercado Essencial" preco=1.79
+expectError "Erro no cadastro de item: unidade de medida nao pode ser vazia ou nula." adicionaItemPorQtd nome="Molho de tomate" categoria="alimento industrializado" qnt=300 unidadeDeMedida="" localDeCompra="Supermercado Essencial" preco=1.79
+expectError "Erro no cadastro de item: valor de unidade nao pode ser menor que zero." adicionaItemPorUnidade nome="Abacaxi" categoria="alimento nao industrializado" unidade=-4 localDeCompra="Supermercado Essencial" preco=3.49
+expectError "Erro no cadastro de item: local de compra nao pode ser vazio ou nulo." adicionaItemPorUnidade nome="Batata britanica" categoria="alimento nao industrializado" unidade=4 localDeCompra="" preco=2.49
+expectError "Erro no cadastro de item: preco de item invalido." adicionaItemPorUnidade nome="Tompero do Jacquin" categoria="alimento nao industrializado" unidade=-4 localDeCompra="Supermercado Essencial" preco=-1.99
+
+### Listando itens pelo id ###
+
+expectError "Erro na listagem de item: id invalido." exibeItem id=-1
+expectError "Erro na listagem de item: item nao existe." exibeItem id=19
+
+###############################
+#  Atualizando itens  #
+###############################
+
+expectError "Erro na atualizacao de item: item nao existe." atualizaItem id=98 atributo="categoria" novoValor="limpeza"
+expectError "Erro na atualizacao de item: atributo nao existe." atualizaItem id=1 atributo="cor" novoValor="verde"
+expectError "Erro na atualizacao de item: atributo nao pode ser vazio ou nulo." atualizaItem id=3 atributo="" novoValor="limpeza"
+expectError "Erro na atualizacao de item: novo valor de atributo nao pode ser vazio ou nulo." atualizaItem id=8 atributo="categoria" novoValor=""
+expectError "Erro na atualizacao de item: categoria nao existe." atualizaItem id=10 atributo="categoria" novoValor="batata"
+expectError "Erro na atualizacao de item: valor de quantidade nao pode ser menor que zero." atualizaItem id=10 atributo="unidades" novoValor="-1"
+expectError "Erro na atualizacao de item: valor de quilos nao pode ser menor que zero." atualizaItem id=10 atributo="kg" novoValor="-1"
+
+###############################
+#  Adicionando novos precos  #
+###############################
+
+expectError "Erro no cadastro de preco: id de item invalido." adicionaPrecoItem id=-10 localDeCompra="Mercadinho Bem Barato" preco=3.99
+expectError "Erro no cadastro de preco: local de compra nao pode ser vazio ou nulo." adicionaPrecoItem id=10 localDeCompra="" preco=3.99
+expectError "Erro no cadastro de preco: preco de item invalido." adicionaPrecoItem id=10 localDeCompra="Mercadinho Bem Barato" preco=-3.99
+expectError "Erro no cadastro de preco: item nao existe." adicionaPrecoItem id=98 localDeCompra="Mercadinho Bem Barato" preco=3.99

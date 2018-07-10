@@ -77,7 +77,7 @@ public abstract class Item {
 			throw new IllegalArgumentException("Erro no cadastro de item: categoria nao pode ser vazia ou nula.");
 		}
 
-		if (!(categoria.equals("alimentos industrializados") || categoria.equals("alimentos nao industrializados")
+		if (!(categoria.equals("alimento industrializado") || categoria.equals("alimento nao industrializado")
 				|| categoria.equals("limpeza") || categoria.equals("higiene pessoal"))) {
 			throw new IllegalArgumentException("Erro no cadastro de item: categoria nao existe.");
 		}
@@ -96,4 +96,19 @@ public abstract class Item {
 
 	public abstract String toString();
 
+	public void setQuantidade(int quantidade) {	
+		
+	}
+	
+	public void setUnidadeDeMedida(String unidadeMedida) {
+		
+	}
+
+	public void setKg(double kg) {
+		
+	}
+
+	public void adicionaPrecoItem(String localDeCompra, double preco) {
+		this.mapaDePrecos.put(localDeCompra, preco);
+	}
 }
