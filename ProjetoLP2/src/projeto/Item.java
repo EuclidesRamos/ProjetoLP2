@@ -6,26 +6,16 @@ import java.util.Map.Entry;
 
 public abstract class Item {
 
-	protected Map<String, Double> mapaDePrecos;
-	protected int id;
-	protected String nome;
-	protected String categoria;
+	private Map<String, Double> mapaDePrecos;
+	private int id;
+	private String nome;
+	private String categoria;
+	protected Validador validador;
 
-	public Item(int id, String nome, String categoria, String mercado, double preco) {
-		if (categoria.trim().isEmpty() || categoria == null) {
-			throw new IllegalArgumentException("Erro no cadastro de item: categoria nao pode ser vazia ou nula.");
-		} else if (!(categoria.equals("alimento industrializado") || categoria.equals("alimento nao industrializado")
-				|| categoria.equals("limpeza") || categoria.equals("higiene pessoal"))) {
-			throw new IllegalArgumentException("Erro no cadastro de item: categoria nao existe.");
-		} else if (nome.trim().isEmpty() || nome == null) {
-			throw new IllegalArgumentException("Erro no cadastro de item: nome nao pode ser vazio ou nulo.");
-		} else if (mercado.trim().isEmpty() || mercado == null) {
-			throw new IllegalArgumentException("Erro no cadastro de item: local de compra nao pode ser vazio ou nulo.");
-		} else if (preco < 0) {
-			throw new IllegalArgumentException("Erro no cadastro de item: preco de item invalido.");
-		}
+	public Item(int id, String nome, String categoria, String localDeCompra, double preco) {
+		this.validador = new Validador();
 		this.mapaDePrecos = new HashMap<>();
-		this.mapaDePrecos.put(mercado, preco);
+		this.mapaDePrecos.put(localDeCompra, preco);
 		this.id = id;
 		this.nome = nome;
 		this.categoria = categoria;
@@ -43,17 +33,14 @@ public abstract class Item {
 		return this.categoria;
 	}
 
-	public void cadastraPreco(String mercado, double valor) {
-
-		if (mercado.trim().isEmpty() || mercado == null) {
+	public void cadastraPreco(String localDeCompra, double valor) {
+		if (localDeCompra.trim().isEmpty() || localDeCompra == null) {
 			throw new IllegalArgumentException("Erro no cadastro de preco: local de compra nao pode ser vazio ou nulo.");
 		}
 		if (valor < 0) {
 			throw new IllegalArgumentException("Erro no cadastro de preco: preco de item invalido.");
 		}
-
-		this.mapaDePrecos.put(mercado, valor);
-
+		this.mapaDePrecos.put(localDeCompra, valor);
 	}
 
 	public String precos() {
@@ -71,9 +58,7 @@ public abstract class Item {
 				menorPreco = preco;
 			}
 		}
-
 		return menorPreco;
-
 	}
 	
 	public void adicionaPrecoItem(String localDeCompra, double preco) {
@@ -103,7 +88,11 @@ public abstract class Item {
 	public void setKg(double kg) {
 		
 	}
-
+	
+	public void setUnidade(int unidade) {
+		
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

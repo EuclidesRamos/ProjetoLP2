@@ -38,4 +38,8 @@ public class Facade {
 	public void deletaItem(int id) {
 		this.controller.deletaItem(id);
 	}
+	
+	public String getItem(int posicao) {
+		return this.controller.getItem(posicao);
+	}
 }

@@ -6,10 +6,15 @@ public class ItemUnidade extends Item {
 
 	public ItemUnidade(int id, String nome, String categoria, int unidade, String mercado, double preco) {
 		super(id,nome,categoria,mercado,preco);
+		super.validador.validaItemUnidade(nome, categoria, unidade, mercado, preco);
+		this.unidade = unidade;
+	}
+	
+	public int getUnidade() {
+		return unidade;
+	}
 
-		if (unidade < 0) {
-			throw new IllegalArgumentException("Erro no cadastro de item: valor de unidade nao pode ser menor que zero.");
-		}
+	public void setUnidade(int unidade) {
 		this.unidade = unidade;
 	}
 
@@ -17,13 +22,4 @@ public class ItemUnidade extends Item {
 	public String toString() {
 		return super.toString() + "Preco: " + "<" + super.precos() + ">";
 	}
-	
-	public int getUnidade() {
-		return unidade;
-	}
-
-	public void setUnidadeDeMedida(int unidade) {
-		this.unidade = unidade;
-	}
-
 }

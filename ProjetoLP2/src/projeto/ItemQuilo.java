@@ -4,11 +4,9 @@ public class ItemQuilo extends Item {
 
 	private double kg;
 
-	public ItemQuilo(int id, String nome, String categoria, double kg, String mercado, double preco) {
-		super(id, nome, categoria, mercado, preco);
-		if (kg < 0) {
-			throw new IllegalArgumentException("Erro no cadastro de item: valor de quilos nao pode ser menor que zero.");
-		}
+	public ItemQuilo(int id, String nome, String categoria, double kg, String localDeCompra, double preco) {
+		super(id, nome, categoria, localDeCompra, preco);
+		super.validador.validaItemQuilo(nome, categoria, kg, localDeCompra, preco);
 		this.kg = kg;
 	}
 
