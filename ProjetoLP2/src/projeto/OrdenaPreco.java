@@ -2,6 +2,10 @@ package projeto;
 
 import java.util.Comparator;
 
+/**
+ * Sobrescrita do Comparator de ordem crescente do preço.
+ *
+ */
 public class OrdenaPreco implements Comparator <Item> {
 	
 	@Override

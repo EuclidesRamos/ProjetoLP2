@@ -2,6 +2,10 @@ package projeto;
 
 import java.util.Comparator;
 
+/**
+ * Sobrescrita do Comparator de Ordem Alfabetica.
+ * 
+ */
 public class OrdenaAlfabetica implements Comparator <Item> {
 	
 	@Override
