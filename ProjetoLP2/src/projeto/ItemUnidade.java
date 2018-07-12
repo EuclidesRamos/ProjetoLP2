@@ -5,11 +5,11 @@ public class ItemUnidade extends Item {
 	private int unidade;
 
 	public ItemUnidade(int id, String nome, String categoria, int unidade, String mercado, double preco) {
-		super(id,nome,categoria,mercado,preco);
+		super(id, nome, categoria, mercado, preco);
 		super.validador.validaItemUnidade(nome, categoria, unidade, mercado, preco);
 		this.unidade = unidade;
 	}
-	
+
 	public int getUnidade() {
 		return unidade;
 	}
@@ -21,5 +21,19 @@ public class ItemUnidade extends Item {
 	@Override
 	public String toString() {
 		return super.toString() + "Preco: " + "<" + super.precos() + ">";
+	}
+
+	@Override
+	public void atualizaItem(String atributo, String novoValor) {
+		super.atualizaItem(atributo, novoValor);
+
+		switch (atributo) {
+
+		case "unidades":
+			int novoValorInteiro = Integer.parseInt(novoValor);
+			this.unidade = novoValorInteiro;
+			break;
+		}
+
 	}
 }

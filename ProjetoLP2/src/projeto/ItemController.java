@@ -1,5 +1,4 @@
 package projeto;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -79,30 +78,9 @@ public class ItemController {
 		this.validador.validaAtualizaItem(atributo, novoValor);
 		if (!this.itens.containsKey(id)) {
 			throw new IllegalArgumentException("Erro na atualizacao de item: item nao existe.");
-		} 
-		switch (atributo) {
-		case "nome":
-			this.itens.get(id).setNome(novoValor);
-			break;
-		case "categoria":
-			this.itens.get(id).setCategoria(novoValor);
-			break;
-		case "quantidade":
-			int novoValorInteiro = Integer.parseInt(novoValor);
-			this.itens.get(id).setQuantidade(novoValorInteiro);
-			break;
-		case "unidade de medida":
-			this.itens.get(id).setUnidadeDeMedida(novoValor);
-			break;
-		case "kg":
-			double novoValorDouble = Double.parseDouble(novoValor);
-			this.itens.get(id).setKg(novoValorDouble);
-			break;
-		case "unidades":
-			novoValorInteiro = Integer.parseInt(novoValor);
-			this.itens.get(id).setUnidade(novoValorInteiro);
-			break;
 		}
+		this.itens.get(id).atualizaItem(atributo, novoValor);
+
 	}
 
 	public void adicionaPrecoItem(int id, String localDeCompra, double preco) {

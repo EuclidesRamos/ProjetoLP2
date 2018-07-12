@@ -14,13 +14,21 @@ public class ItemQuilo extends Item {
 		return kg;
 	}
 
-	public void setKg(double kg) {
-		this.kg = kg;
-	}
-
 	@Override
 	public String toString() {
 		return super.toString() + "Preco por quilo: " + "<" + super.precos() + ">";
 	}
+	@Override
+	public void atualizaItem(String atributo, String novoValor) {
+		super.atualizaItem(atributo, novoValor);
+		switch (atributo) {
+		case "kg":
+			double novoValorDouble = Double.parseDouble(novoValor);
+			this.kg = novoValorDouble;
+			break;
+		
+		}
+	}
+
 
 }
