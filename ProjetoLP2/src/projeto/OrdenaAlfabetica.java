@@ -6,9 +6,10 @@ import java.util.Comparator;
  * Sobrescrita do Comparator de Ordem Alfabetica.
  * 
  */
-public class OrdenaAlfabetica implements Comparator <Item> {
+public class OrdenaAlfabetica implements Comparator<Item> {
 	/**
 	 * Compara o nome de dois itens distintos.
+	 * 
 	 * @return um inteiro
 	 */
 	@Override
