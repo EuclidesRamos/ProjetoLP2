@@ -7,6 +7,10 @@ import java.util.Comparator;
  *
  */
 public class OrdenaPreco implements Comparator <Item> {
+	/**
+	 * Compara o preço de dois itens distintos.
+	 * @return Retorna um inteiro.
+	 */
 	
 	@Override
 	public int compare(Item arg0, Item arg1) {
