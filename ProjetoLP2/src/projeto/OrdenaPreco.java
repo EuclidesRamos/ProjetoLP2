@@ -9,12 +9,12 @@ import java.util.Comparator;
 public class OrdenaPreco implements Comparator <Item> {
 	/**
 	 * Compara o preço de dois itens distintos.
-	 * @return Retorna um inteiro.
+	 * @return um inteiro.
 	 */
 	
 	@Override
-	public int compare(Item arg0, Item arg1) {
-		return (int) (arg0.menorPreco() - arg1.menorPreco());
+	public int compare(Item item1, Item item2) {
+		return (int) (item1.menorPreco() - item2.menorPreco());
 			
 		}
 }
