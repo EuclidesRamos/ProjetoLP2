@@ -1,28 +1,63 @@
 package projeto;
 
-public class ItemUnidade extends Item {
+/**
+ * Representa um item por unidade no sistema.
+ * 
+ * @author Eduardo Pereira dos Santos - 117210342
+ *
+ */
 
+public class ItemUnidade extends Item {
+	/**
+	 * Quantidade de unidades de um item.
+	 */
 	private int unidade;
 
-	public ItemUnidade(int id, String nome, String categoria, int unidade, String mercado, double preco) {
-		super(id, nome, categoria, mercado, preco);
-		super.validador.validaItemUnidade(nome, categoria, unidade, mercado, preco);
+	/**
+	 * Constroi um item por unidade a partir de seu id, nome, categoria, quantidade
+	 * de unidades, local de compra e preco.
+	 * 
+	 * @param id
+	 *            Identificacao do item
+	 * @param nome
+	 *            Nome do item
+	 * @param categoria
+	 *            Categoria do item
+	 * @param unidade
+	 *            Quantidade de Unidades
+	 * @param localDeCompra
+	 *            Local de compra
+	 * @param preco
+	 *            Preco do item
+	 */
+	public ItemUnidade(int id, String nome, String categoria, int unidade, String localDeCompra, double preco) {
+		super(id, nome, categoria, localDeCompra, preco);
+		super.validador.validaItemUnidade(nome, categoria, unidade, localDeCompra, preco);
 		this.unidade = unidade;
 	}
 
+	/**
+	 * Retorna a quantidade de unidades de um item por unidade.
+	 * 
+	 * @return um inteiro representando a quantidade de unidades
+	 */
 	public int getUnidade() {
 		return unidade;
 	}
 
-	public void setUnidade(int unidade) {
-		this.unidade = unidade;
-	}
-
+	/**
+	 * Retorna uma representacao textual do item.
+	 * 
+	 * @return uma String representado o item
+	 */
 	@Override
 	public String toString() {
 		return super.toString() + "Preco: " + "<" + super.precos() + ">";
 	}
 
+	/**
+	 * Atualiza o item a partir do nome do atrinuto e o valor a ser atualizado.
+	 */
 	@Override
 	public void atualizaItem(String atributo, String novoValor) {
 		super.atualizaItem(atributo, novoValor);
