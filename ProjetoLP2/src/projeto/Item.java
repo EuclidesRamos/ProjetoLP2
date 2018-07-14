@@ -88,7 +88,7 @@ public abstract class Item {
 	}
 
 	/**
-	 * Cadatra um novo preco para o item. A partir do local de compra e o valor do
+	 * Cadastra um novo preco para o item. A partir do local de compra e o valor do
 	 * item.
 	 * 
 	 * @param localDeCompra
@@ -98,6 +98,18 @@ public abstract class Item {
 	 */
 	public void adicionaPrecoItem(String localDeCompra, double valor) {
 		this.validador.validaAdicionaPrecoItem(localDeCompra, valor);
+		if (localDeCompra == null) {
+			throw new NullPointerException("Erro no cadastro de preco: local de compra nao pode ser vazio ou nulo.");
+		}
+
+		if (localDeCompra.trim().isEmpty()) {
+			throw new IllegalArgumentException(
+					"Erro no cadastro de preco: local de compra nao pode ser vazio ou nulo.");
+		}
+
+		if (valor < 0) {
+			throw new IllegalArgumentException("Erro no cadastro de preco: preco de item invalido.");
+		}
 		this.mapaDePrecos.put(localDeCompra, valor);
 	}
 
@@ -178,13 +190,15 @@ public abstract class Item {
 			return false;
 		return true;
 	}
-	
+
 	/**
 	 * 
 	 * Atualiza os atributos de um item.
 	 * 
-	 * @param atributo Nome do atributo a ser alterado
-	 * @param novoValor Novo valor que sera atualizado
+	 * @param atributo
+	 *            Nome do atributo a ser alterado
+	 * @param novoValor
+	 *            Novo valor que sera atualizado
 	 */
 	public void atualizaItem(String atributo, String novoValor) {
 
