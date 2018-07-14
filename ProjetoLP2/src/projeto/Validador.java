@@ -56,6 +56,10 @@ public class Validador {
 		parametroDoubleInvalido(preco, mensagem + "preco de item invalido.");
 	}
 
+	public void validaGetItemPorCategoria(String categoria) {
+		String mensagem = "Erro na listagem de item: ";
+		validaCategoria(categoria, mensagem);
+	}
 	private static void validaParametrosCadastro(String nome, String categoria, String localDeCompra, double preco, String mensagem) {
 		parametroInvalido(nome, mensagem + "nome nao pode ser vazio ou nulo.");
 		validaCategoria(categoria, mensagem);

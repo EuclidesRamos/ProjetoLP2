@@ -6,11 +6,14 @@ import java.util.Comparator;
  * Sobrescrita do Comparator de ordem crescente do preço.
  *
  */
-public class OrdenaPreco implements Comparator <Item> {
+public class OrdenaPreco implements Comparator<Item> {
 	
 	@Override
-	public int compare(Item arg0, Item arg1) {
-		return (int) (arg0.menorPreco() - arg1.menorPreco());
-			
+	public int compare(Item item1, Item item2) {
+		if (item1.menorPreco() < item2.menorPreco()) {
+			return -1;
+		} else {
+			return 1;			
 		}
+	}
 }

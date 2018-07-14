@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 /**
  * Classe Abstrata que representa um item no sistema.
  * 
+ * @author Euclides Ramos de Araujo Filho - 117210377
  * @author Eduardo Pereira dos Santos - 117210342
  * 
  */
@@ -96,13 +97,7 @@ public abstract class Item {
 	 *            Valor do item
 	 */
 	public void adicionaPrecoItem(String localDeCompra, double valor) {
-		if (localDeCompra.trim().isEmpty() || localDeCompra == null) {
-			throw new IllegalArgumentException(
-					"Erro no cadastro de preco: local de compra nao pode ser vazio ou nulo.");
-		}
-		if (valor < 0) {
-			throw new IllegalArgumentException("Erro no cadastro de preco: preco de item invalido.");
-		}
+		this.validador.validaAdicionaPrecoItem(localDeCompra, valor);
 		this.mapaDePrecos.put(localDeCompra, valor);
 	}
 
