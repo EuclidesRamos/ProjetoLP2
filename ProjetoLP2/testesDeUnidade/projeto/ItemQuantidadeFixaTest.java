@@ -5,12 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * Responsavel pelos testes da classe ItemQuantidadeFixa.
- * 
- * @author Eduardo Pereira dos Santos - 117210342
- *
- */
 public class ItemQuantidadeFixaTest {
 
 	private ItemQuantidadeFixa item;

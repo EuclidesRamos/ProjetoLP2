@@ -4,6 +4,11 @@ import java.util.Comparator;
 
 /**
  * Sobrescrita do Comparator de ordem crescente do preco.
+ * 
+ * @author Euclides Ramos - 117210377
+ * @author Edson Weslley - 117211348
+ * @author Eduardo Pereira - 117210342
+ * @author Joao Antonio Bandeira -
  *
  */
 public class OrdenaPreco implements Comparator<Item> {

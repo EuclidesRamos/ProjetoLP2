@@ -5,8 +5,14 @@ import java.util.Comparator;
 /**
  * Sobrescrita do Comparator de Ordem Alfabetica.
  * 
+ * @author Euclides Ramos - 117210377
+ * @author Edson Weslley - 117211348
+ * @author Eduardo Pereira - 117210342
+ * @author Joao Antonio Bandeira -
+ * 
  */
 public class OrdenaAlfabetica implements Comparator<Item> {
+	
 	/**
 	 * Compara o nome de dois itens distintos.
 	 * 

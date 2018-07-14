@@ -4,12 +4,6 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * Responsavel pelos testes da classe ItemUnidade.
- * 
- * @author Eduardo Pereira dos Santos - 117210342
- *
- */
 public class ItemUnidadeTest {
 
 	private ItemUnidade item;

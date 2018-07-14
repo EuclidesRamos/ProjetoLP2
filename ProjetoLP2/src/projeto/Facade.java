@@ -6,8 +6,8 @@ import easyaccept.EasyAccept;
  * Classe de fachada. Responsavel pela "comunicacao" entre a interface e o codigo em si.
  * 
  * @author Euclides Ramos - 117210377
- * @author Edson Weslley -
- * @author Eduardo Pereira -
+ * @author Edson Weslley - 117211348
+ * @author Eduardo Pereira - 117210342
  * @author Joao Antonio Bandeira -
  *
  */
@@ -130,7 +130,7 @@ public class Facade {
 	 * @return -> Retorna o toString() do item.
 	 */
 	public String getItemPorCategoria(String categoria, int posicao) {
-		return this.controller.getItemPorcategoria(categoria, posicao);
+		return this.controller.getItemPorCategoria(categoria, posicao);
 	}
 	
 	/**

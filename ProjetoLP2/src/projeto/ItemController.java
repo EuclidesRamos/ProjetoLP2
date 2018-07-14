@@ -10,8 +10,8 @@ import java.util.Map;
  * Classe responsavel por controlar a classe Item.
  * 
  * @author Euclides Ramos - 117210377
- * @author Edson Weslley -
- * @author Eduardo Pereira -
+ * @author Edson Weslley - 117211348
+ * @author Eduardo Pereira - 117210342
  * @author Joao Antonio Bandeira -
  *
  */
@@ -146,9 +146,9 @@ public class ItemController {
 	 */
 	public String exibeItem(int id) {
 		if (id <= 0) {
-			throw new IllegalArgumentException("Erro na listagem de item: id invalido.");
+			throw new ArrayIndexOutOfBoundsException("Erro na listagem de item: id invalido.");
 		} else if (!this.itens.containsKey(id)) {
-			throw new IllegalArgumentException("Erro na listagem de item: item nao existe.");
+			throw new ArrayIndexOutOfBoundsException("Erro na listagem de item: item nao existe.");
 		}
 		return this.itens.get(id).toString();
 	}
@@ -163,7 +163,7 @@ public class ItemController {
 	public void atualizaItem(int id, String atributo, String novoValor) {
 		this.validador.validaAtualizaItem(atributo, novoValor);
 		if (!this.itens.containsKey(id)) {
-			throw new IllegalArgumentException("Erro na atualizacao de item: item nao existe.");
+			throw new ArrayIndexOutOfBoundsException("Erro na atualizacao de item: item nao existe.");
 		}
 		this.itens.get(id).atualizaItem(atributo, novoValor);
 
@@ -178,9 +178,9 @@ public class ItemController {
 	 */
 	public void adicionaPrecoItem(int id, String localDeCompra, double preco) {
 		if (id <= 0) {
-			throw new IllegalArgumentException("Erro no cadastro de preco: id de item invalido.");	
+			throw new ArrayIndexOutOfBoundsException("Erro no cadastro de preco: id de item invalido.");	
 		} else if (!this.itens.containsKey(id)) {
-			throw new IllegalArgumentException("Erro no cadastro de preco: item nao existe.");
+			throw new ArrayIndexOutOfBoundsException("Erro no cadastro de preco: item nao existe.");
 		}
 		this.validador.validaAdicionaPrecoItem(localDeCompra, preco);
 		this.itens.get(id).adicionaPrecoItem(localDeCompra, preco);
@@ -217,7 +217,7 @@ public class ItemController {
 	 * @param posicao -> Id do item a se exibido.
 	 * @return -> Retorna o toString() do item.
 	 */
-	public String getItemPorcategoria(String categoria, int posicao) {
+	public String getItemPorCategoria(String categoria, int posicao) {
 		this.validador.validaGetItemPorCategoria(categoria);
 		List<Item> listaItens = new ArrayList<>();
 		for (Item item : this.itens.values()) {

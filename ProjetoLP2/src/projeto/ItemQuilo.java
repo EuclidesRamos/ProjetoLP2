@@ -3,7 +3,10 @@ package projeto;
 /**
  * Representa um item por quilo no sistema.
  * 
- * @author Eduardo Pereira dos Santos - 117210342
+ * @author Euclides Ramos - 117210377
+ * @author Edson Weslley - 117211348
+ * @author Eduardo Pereira - 117210342
+ * @author Joao Antonio Bandeira -
  *
  */
 

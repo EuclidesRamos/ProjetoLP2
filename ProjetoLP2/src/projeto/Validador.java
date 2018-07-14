@@ -1,5 +1,14 @@
 package projeto;
 
+/**
+ * Classe responsavel por validar parametros de entrada.
+ * 
+ * @author Euclides Ramos - 117210377
+ * @author Edson Weslley - 117211348
+ * @author Eduardo Pereira - 117210342
+ * @author Joao Antonio Bandeira -
+ *
+ */
 public class Validador {
 	/**
 	 * Construtor de validador, onde não e setado nada.
