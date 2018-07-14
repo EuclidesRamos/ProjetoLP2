@@ -1,4 +1,5 @@
 package projeto;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -13,12 +14,12 @@ public class ItemController {
 	private Item item;
 	private Validador validador;
 	private Comparator<Item> estrategiaDeOrdenacao;
-	
+
 	private int identificador() {
 		this.id += 1;
 		return this.id;
 	}
-	
+
 	private boolean verificaIgualdade(Item item) {
 		for (Item itemSistema : this.itens.values()) {
 			if (itemSistema.equals(item)) {
@@ -27,15 +28,16 @@ public class ItemController {
 		}
 		return false;
 	}
-	
+
 	public ItemController() {
 		this.itens = new HashMap<>();
 		this.id = 0;
 		this.validador = new Validador();
 		this.estrategiaDeOrdenacao = new OrdenaAlfabetica();
 	}
-	
-	public int adicionaItemPorQtd(String nome, String categoria, int quantidade, String unidadeDeMedida, String localDeCompra, double preco) {
+
+	public int adicionaItemPorQtd(String nome, String categoria, int quantidade, String unidadeDeMedida,
+			String localDeCompra, double preco) {
 		int id = identificador();
 		this.item = new ItemQuantidadeFixa(id, nome, categoria, quantidade, unidadeDeMedida, localDeCompra, preco);
 		this.validador.validaItemQuantidadeFixa(nome, categoria, quantidade, unidadeDeMedida, localDeCompra, preco);
@@ -44,7 +46,7 @@ public class ItemController {
 		}
 		return id;
 	}
-	
+
 	public int adicionaItemPorQuilo(String nome, String categoria, double kg, String localDeCompra, double preco) {
 		int id = identificador();
 		this.item = new ItemQuilo(id, nome, categoria, kg, localDeCompra, preco);
@@ -54,7 +56,7 @@ public class ItemController {
 		}
 		return id;
 	}
-	
+
 	public int adicionaItemPorUnidade(String nome, String categoria, int unidade, String localDeCompra, double preco) {
 		int id = identificador();
 		this.item = new ItemUnidade(id, nome, categoria, unidade, localDeCompra, preco);
@@ -85,7 +87,7 @@ public class ItemController {
 
 	public void adicionaPrecoItem(int id, String localDeCompra, double preco) {
 		if (id <= 0) {
-			throw new IllegalArgumentException("Erro no cadastro de preco: id de item invalido.");	
+			throw new IllegalArgumentException("Erro no cadastro de preco: id de item invalido.");
 		} else if (!this.itens.containsKey(id)) {
 			throw new IllegalArgumentException("Erro no cadastro de preco: item nao existe.");
 		}
@@ -96,7 +98,7 @@ public class ItemController {
 	public void deletaItem(int id) {
 		this.itens.remove(id);
 	}
-	
+
 	public String getItem(int posicao) {
 		List<Item> listaItens = new ArrayList<>(itens.values());
 		Collections.sort(listaItens, this.estrategiaDeOrdenacao);
