@@ -1,0 +1,96 @@
+﻿#################
+# Caso de Uso 1 #
+#################
+
+
+###############################
+#  Cadastro de itens  #
+###############################
+
+
+id1=adicionaItemPorQtd nome="Agua Sanitaria Drogon" categoria="limpeza" qnt=1 unidadeDeMedida="l" localDeCompra="Supermercado Excepcional" preco=2.19
+id2=adicionaItemPorQuilo nome="Peito de peru Saara" categoria="alimento industrializado" kg=1.0 localDeCompra="Mercadinho Bem Barato" preco=34.49
+id3=adicionaItemPorQtd nome="Queijo ralado Lebron" categoria="alimento industrializado" qnt=50 unidadeDeMedida="grama" localDeCompra="Supermercado UauMart" preco=1.59
+id4=adicionaItemPorUnidade nome="Creme dental Oral-C" categoria="higiene pessoal" unidade=3 localDeCompra="Mercadinho Bem Barato" preco=3.79
+id5=adicionaItemPorUnidade nome="Esponja de Aco Assolange" categoria="limpeza" unidade=1 localDeCompra="Supermercado BuyMore" preco=3.50
+id6=adicionaItemPorQuilo nome="Limao" categoria="alimento nao industrializado" kg=1.0 localDeCompra="Supermercado Excepcional" preco=4.19
+id7=adicionaItemPorUnidade nome="Coentro" categoria="alimento nao industrializado" unidade=1 localDeCompra="Mercadinho Bem Barato" preco=1.39
+id8=adicionaItemPorQtd nome="Capsula Dois Coracoes" categoria="alimento industrializado" qnt=8 unidadeDeMedida="capsulas" localDeCompra="Supermercado BuyMore" preco=10.89
+id9=adicionaItemPorQuilo nome="Costela suina Saara" categoria="alimento industrializado" kg=1.0 localDeCompra="Supermercado UauMart" preco=23.49
+id10=adicionaItemPorUnidade nome="Batata Tentacoes" categoria="alimento industrializado" unidade=1 localDeCompra="Supermercado Excepcional" preco=3.79
+
+
+### Listando itens pelo id ###
+
+
+expect ${id1}". Agua Sanitaria Drogon, limpeza, 1 l, Preco: <Supermercado Excepcional, R$ 2,19;>" exibeItem id=${id1}
+expect ${id2}". Peito de peru Saara, alimento industrializado, Preco por quilo: <Mercadinho Bem Barato, R$ 34,49;>" exibeItem id=${id2}
+expect ${id3}". Queijo ralado Lebron, alimento industrializado, 50 grama, Preco: <Supermercado UauMart, R$ 1,59;>" exibeItem id=${id3}
+expect ${id4}". Creme dental Oral-C, higiene pessoal, Preco: <Mercadinho Bem Barato, R$ 3,79;>" exibeItem id=${id4}
+expect ${id5}". Esponja de Aco Assolange, limpeza, Preco: <Supermercado BuyMore, R$ 3,50;>" exibeItem id=${id5}
+expect ${id6}". Limao, alimento nao industrializado, Preco por quilo: <Supermercado Excepcional, R$ 4,19;>" exibeItem id=${id6}
+expect ${id7}". Coentro, alimento nao industrializado, Preco: <Mercadinho Bem Barato, R$ 1,39;>" exibeItem id=${id7}
+expect ${id8}". Capsula Dois Coracoes, alimento industrializado, 8 capsulas, Preco: <Supermercado BuyMore, R$ 10,89;>" exibeItem id=${id8}
+expect ${id9}". Costela suina Saara, alimento industrializado, Preco por quilo: <Supermercado UauMart, R$ 23,49;>" exibeItem id=${id9}
+expect ${id10}". Batata Tentacoes, alimento industrializado, Preco: <Supermercado Excepcional, R$ 3,79;>" exibeItem id=${id10}
+
+
+###############################
+#  Atualizando itens  #
+###############################
+
+
+atualizaItem id=${id1} atributo="nome" novoValor="Agua Sanitaria Viserion"
+atualizaItem id=${id1} atributo="unidade de medida" novoValor="ml"
+atualizaItem id=${id1} atributo="quantidade" novoValor="500"
+expect ${id1}". Agua Sanitaria Viserion, limpeza, 500 ml, Preco: <Supermercado Excepcional, R$ 2,19;>" exibeItem id=${id1}
+
+
+atualizaItem id=${id9} atributo="nome" novoValor="Costela suina Sabia"
+atualizaItem id=${id9} atributo="kg" novoValor="0.8"
+expect ${id9}". Costela suina Sabia, alimento industrializado, Preco por quilo: <Supermercado UauMart, R$ 23,49;>" exibeItem id=${id9}
+
+
+atualizaItem id=${id3} atributo="nome" novoValor="listerine"
+atualizaItem id=${id3} atributo="categoria" novoValor="higiene pessoal"
+atualizaItem id=${id3} atributo="quantidade" novoValor="1"
+atualizaItem id=${id3} atributo="unidade de medida" novoValor="l"
+expect ${id3}". listerine, higiene pessoal, 1 l, Preco: <Supermercado UauMart, R$ 1,59;>" exibeItem id=${id3}
+
+
+atualizaItem id=${id4} atributo="nome" novoValor="Creme Dental Oral-D"
+expect "4. Creme Dental Oral-D, higiene pessoal, Preco: <Mercadinho Bem Barato, R$ 3,79;>" exibeItem id=${id4}
+
+
+###############################
+#  Adicionando novos preços  #
+###############################
+
+
+adicionaPrecoItem id=${id10} localDeCompra="Supermercado UauMart" preco=3.69
+adicionaPrecoItem id=${id10} localDeCompra="Mercadinho Bem Barato" preco=3.99
+adicionaPrecoItem id=${id10} localDeCompra="Supermercado BuyMore" preco=4.09
+
+
+adicionaPrecoItem id=${id8} localDeCompra="Supermercado Excepcional" preco=9.49
+adicionaPrecoItem id=${id8} localDeCompra="Mercadinho Bem Barato" preco=11.69
+adicionaPrecoItem id=${id8} localDeCompra="Supermercado UauMart" preco=10.89
+
+
+expect ${id10}". Batata Tentacoes, alimento industrializado, Preco: <Supermercado UauMart, R$ 3,69;Mercadinho Bem Barato, R$ 3,99;Supermercado BuyMore, R$ 4,09;Supermercado Excepcional, R$ 3,79;>" exibeItem id=${id10}
+expect ${id8}". Capsula Dois Coracoes, alimento industrializado, 8 capsulas, Preco: <Mercadinho Bem Barato, R$ 11,69;Supermercado UauMart, R$ 10,89;Supermercado BuyMore, R$ 10,89;Supermercado Excepcional, R$ 9,49;>" exibeItem id=${id8}
+
+
+###############################
+#  Removendo itens  #
+###############################
+
+
+deletaItem id=${id4}
+expectError "Erro na listagem de item: item nao existe." exibeItem id=${id4}
+expectError "Erro na atualizacao de item: item nao existe." atualizaItem id=${id4} atributo="nome" novoValor="Creme dental Oral-D"
+
+
+deletaItem id=${id3}
+expectError "Erro na listagem de item: item nao existe." exibeItem id=${id3}
+expectError "Erro na atualizacao de item: item nao existe." atualizaItem id=${id3} atributo="nome" novoValor="colgate"

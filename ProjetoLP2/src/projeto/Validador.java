@@ -11,7 +11,7 @@ package projeto;
  */
 public class Validador {
 	/**
-	 * Construtor de validador, onde não e setado nada.
+	 * Construtor de validador, onde nao e setado nada.
 	 */
 	public Validador() {
 	}
@@ -195,7 +195,7 @@ public class Validador {
 	}
 
 	/**
-	 * Metodo onde verifica se o parametro é negativo.
+	 * Metodo onde verifica se o parametro for negativo.
 	 * 
 	 * @param parametro
 	 *            Numero flutuante a ser comparado.
@@ -209,7 +209,7 @@ public class Validador {
 	}
 
 	/**
-	 * Metodo onde verifica se o parametro é negativo.
+	 * Metodo onde verifica se o parametro for negativo.
 	 * 
 	 * @param paramentro
 	 *            Numero int a ser comparado.

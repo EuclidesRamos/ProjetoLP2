@@ -1,0 +1,89 @@
+#################
+# Caso de Uso 2 #
+#################
+
+###############################
+# 	 Listagem de itens  	  #
+###############################
+
+expect "1. Agua Sanitaria Viserion, limpeza, 500 ml, Preco: <Supermercado Excepcional, R$ 2,19;>" getItem posicao=0
+expect "10. Batata Tentacoes, alimento industrializado, Preco: <Supermercado UauMart, R$ 3,69;Mercadinho Bem Barato, R$ 3,99;Supermercado BuyMore, R$ 4,09;Supermercado Excepcional, R$ 3,79;>" getItem posicao=1
+expect "8. Capsula Dois Coracoes, alimento industrializado, 8 capsulas, Preco: <Mercadinho Bem Barato, R$ 11,69;Supermercado UauMart, R$ 10,89;Supermercado BuyMore, R$ 10,89;Supermercado Excepcional, R$ 9,49;>" getItem posicao=2
+expect "7. Coentro, alimento nao industrializado, Preco: <Mercadinho Bem Barato, R$ 1,39;>" getItem posicao=3
+expect "9. Costela suina Sabia, alimento industrializado, Preco por quilo: <Supermercado UauMart, R$ 23,49;>" getItem posicao=4
+expect "5. Esponja de Aco Assolange, limpeza, Preco: <Supermercado BuyMore, R$ 3,50;>" getItem posicao=5
+expect "6. Limao, alimento nao industrializado, Preco por quilo: <Supermercado Excepcional, R$ 4,19;>" getItem posicao=6
+expect "2. Peito de peru Saara, alimento industrializado, Preco por quilo: <Mercadinho Bem Barato, R$ 34,49;>" getItem posicao=7
+
+id11=adicionaItemPorUnidade nome="Iogurte Lactivia" categoria="alimento industrializado" unidade=2 localDeCompra="Supermercado UauMart" preco="5.59"
+id12=adicionaItemPorUnidade nome="Agua Mineral" categoria="alimento nao industrializado" unidade=5 localDeCompra="Mercadinho Bem Barato" preco="0.89"
+id13=adicionaItemPorQuilo nome="Tomate" categoria="alimento nao industrializado" kg=1.5 localDeCompra="Mercadinho Bem Barato" preco="3.49"
+
+expect ${id12}". Agua Mineral, alimento nao industrializado, Preco: <Mercadinho Bem Barato, R$ 0,89;>" getItem posicao=0
+expect "1. Agua Sanitaria Viserion, limpeza, 500 ml, Preco: <Supermercado Excepcional, R$ 2,19;>" getItem posicao=1
+expect "10. Batata Tentacoes, alimento industrializado, Preco: <Supermercado UauMart, R$ 3,69;Mercadinho Bem Barato, R$ 3,99;Supermercado BuyMore, R$ 4,09;Supermercado Excepcional, R$ 3,79;>" getItem posicao=2
+expect "8. Capsula Dois Coracoes, alimento industrializado, 8 capsulas, Preco: <Mercadinho Bem Barato, R$ 11,69;Supermercado UauMart, R$ 10,89;Supermercado BuyMore, R$ 10,89;Supermercado Excepcional, R$ 9,49;>" getItem posicao=3
+expect "7. Coentro, alimento nao industrializado, Preco: <Mercadinho Bem Barato, R$ 1,39;>" getItem posicao=4
+expect "9. Costela suina Sabia, alimento industrializado, Preco por quilo: <Supermercado UauMart, R$ 23,49;>" getItem posicao=5
+expect "5. Esponja de Aco Assolange, limpeza, Preco: <Supermercado BuyMore, R$ 3,50;>" getItem posicao=6
+expect ${id11}". Iogurte Lactivia, alimento industrializado, Preco: <Supermercado UauMart, R$ 5,59;>" getItem posicao=7
+expect "6. Limao, alimento nao industrializado, Preco por quilo: <Supermercado Excepcional, R$ 4,19;>" getItem posicao=8
+expect "2. Peito de peru Saara, alimento industrializado, Preco por quilo: <Mercadinho Bem Barato, R$ 34,49;>" getItem posicao=9
+expect ${id13}". Tomate, alimento nao industrializado, Preco por quilo: <Mercadinho Bem Barato, R$ 3,49;>" getItem posicao=10
+
+
+####################################
+#  Listagem de itens por categoria #
+####################################
+
+#Alimento industrializado
+expect "10. Batata Tentacoes, alimento industrializado, Preco: <Supermercado UauMart, R$ 3,69;Mercadinho Bem Barato, R$ 3,99;Supermercado BuyMore, R$ 4,09;Supermercado Excepcional, R$ 3,79;>" getItemPorCategoria categoria="alimento industrializado" posicao=0
+expect "8. Capsula Dois Coracoes, alimento industrializado, 8 capsulas, Preco: <Mercadinho Bem Barato, R$ 11,69;Supermercado UauMart, R$ 10,89;Supermercado BuyMore, R$ 10,89;Supermercado Excepcional, R$ 9,49;>" getItemPorCategoria categoria="alimento industrializado" posicao=1
+expect "9. Costela suina Sabia, alimento industrializado, Preco por quilo: <Supermercado UauMart, R$ 23,49;>" getItemPorCategoria categoria="alimento industrializado" posicao=2
+expect ${id11}". Iogurte Lactivia, alimento industrializado, Preco: <Supermercado UauMart, R$ 5,59;>" getItemPorCategoria categoria="alimento industrializado" posicao=3
+expect "2. Peito de peru Saara, alimento industrializado, Preco por quilo: <Mercadinho Bem Barato, R$ 34,49;>" getItemPorCategoria categoria="alimento industrializado" posicao=4
+
+#Alimento nao industrializado
+expect ${id12}". Agua Mineral, alimento nao industrializado, Preco: <Mercadinho Bem Barato, R$ 0,89;>" getItemPorCategoria categoria="alimento nao industrializado" posicao=0
+expect "7. Coentro, alimento nao industrializado, Preco: <Mercadinho Bem Barato, R$ 1,39;>" getItemPorCategoria categoria="alimento nao industrializado" posicao=1
+expect "6. Limao, alimento nao industrializado, Preco por quilo: <Supermercado Excepcional, R$ 4,19;>" getItemPorCategoria categoria="alimento nao industrializado" posicao=2
+expect ${id13}". Tomate, alimento nao industrializado, Preco por quilo: <Mercadinho Bem Barato, R$ 3,49;>" getItemPorCategoria categoria="alimento nao industrializado" posicao=3
+
+#Limpeza
+expect "1. Agua Sanitaria Viserion, limpeza, 500 ml, Preco: <Supermercado Excepcional, R$ 2,19;>" getItemPorCategoria categoria="limpeza" posicao=0
+expect "5. Esponja de Aco Assolange, limpeza, Preco: <Supermercado BuyMore, R$ 3,50;>" getItemPorCategoria categoria="limpeza" posicao=1
+
+#Higiene pessoal
+expect "" getItemPorCategoria categoria="higiene pessoal" posicao=0
+id14=adicionaItemPorUnidade nome="Pasta Dental Coljate" categoria="higiene pessoal" unidade=1 localDeCompra="Supermercado UauMart" preco="6.39"
+expect ${id14}". Pasta Dental Coljate, higiene pessoal, Preco: <Supermercado UauMart, R$ 6,39;>" getItemPorCategoria categoria="higiene pessoal" posicao=0
+
+
+######################################
+#  Listagem de itens por menor preco #
+######################################
+
+expect ${id12}". Agua Mineral, alimento nao industrializado, Preco: <Mercadinho Bem Barato, R$ 0,89;>" getItemPorMenorPreco posicao=0
+expect "7. Coentro, alimento nao industrializado, Preco: <Mercadinho Bem Barato, R$ 1,39;>" getItemPorMenorPreco posicao=1
+expect "1. Agua Sanitaria Viserion, limpeza, 500 ml, Preco: <Supermercado Excepcional, R$ 2,19;>" getItemPorMenorPreco posicao=2
+expect ${id13}". Tomate, alimento nao industrializado, Preco por quilo: <Mercadinho Bem Barato, R$ 3,49;>" getItemPorMenorPreco posicao=3
+expect "5. Esponja de Aco Assolange, limpeza, Preco: <Supermercado BuyMore, R$ 3,50;>" getItemPorMenorPreco posicao=4
+expect "10. Batata Tentacoes, alimento industrializado, Preco: <Supermercado UauMart, R$ 3,69;Mercadinho Bem Barato, R$ 3,99;Supermercado BuyMore, R$ 4,09;Supermercado Excepcional, R$ 3,79;>" getItemPorMenorPreco posicao=5
+expect "6. Limao, alimento nao industrializado, Preco por quilo: <Supermercado Excepcional, R$ 4,19;>" getItemPorMenorPreco posicao=6
+expect ${id11}". Iogurte Lactivia, alimento industrializado, Preco: <Supermercado UauMart, R$ 5,59;>" getItemPorMenorPreco posicao=7
+expect ${id14}". Pasta Dental Coljate, higiene pessoal, Preco: <Supermercado UauMart, R$ 6,39;>" getItemPorMenorPreco posicao=8
+expect "8. Capsula Dois Coracoes, alimento industrializado, 8 capsulas, Preco: <Mercadinho Bem Barato, R$ 11,69;Supermercado UauMart, R$ 10,89;Supermercado BuyMore, R$ 10,89;Supermercado Excepcional, R$ 9,49;>" getItemPorMenorPreco posicao=9
+expect "9. Costela suina Sabia, alimento industrializado, Preco por quilo: <Supermercado UauMart, R$ 23,49;>" getItemPorMenorPreco posicao=10
+expect "2. Peito de peru Saara, alimento industrializado, Preco por quilo: <Mercadinho Bem Barato, R$ 34,49;>" getItemPorMenorPreco posicao=11
+
+
+###################################
+#  Listagem de itens por pesquisa #
+###################################
+
+expect ${id12}". Agua Mineral, alimento nao industrializado, Preco: <Mercadinho Bem Barato, R$ 0,89;>" getItemPorPesquisa strPesquisada="agua" posicao=0
+expect "1. Agua Sanitaria Viserion, limpeza, 500 ml, Preco: <Supermercado Excepcional, R$ 2,19;>" getItemPorPesquisa strPesquisada="agua" posicao=1
+
+expect "5. Esponja de Aco Assolange, limpeza, Preco: <Supermercado BuyMore, R$ 3,50;>" getItemPorPesquisa strPesquisada="esponja" posicao=0
+
+expect ${id14}". Pasta Dental Coljate, higiene pessoal, Preco: <Supermercado UauMart, R$ 6,39;>" getItemPorPesquisa strPesquisada="coljate" posicao=0
