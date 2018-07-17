@@ -112,6 +112,7 @@ public class Facade {
 		this.controller.deletaItem(id);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	
 	/**
@@ -156,4 +157,10 @@ public class Facade {
 		return this.controller.getItemPorPesquisa(strPesquisa, posicao);
 	}
 >>>>>>> parent of 7b6d2dd... encontrei alguns acentos e removi e estou testando se meu commit esta aparecendo
+=======
+	
+	public String getItem(int posicao) {
+		return this.controller.getItem(posicao);
+	}
+>>>>>>> 7b6d2dd16ca2107af33ea8f3ae7efb917f7ea217
 }

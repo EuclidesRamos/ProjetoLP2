@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="src" path="src"/>
+<<<<<<< HEAD
 <<<<<<< HEAD
 	<classpathentry kind="lib" path="/home/euclidesraf/Downloads/easyaccept.jar"/>
 =======
 	<classpathentry kind="src" path="testesDeUnidade"/>
 	<classpathentry kind="lib" path="C:/Users/eraff/Downloads/easyaccept.jar"/>
 >>>>>>> parent of 7b6d2dd... encontrei alguns acentos e removi e estou testando se meu commit esta aparecendo
+=======
+	<classpathentry kind="src" path="testesDeUnidade"/>
+	<classpathentry kind="lib" path="/home/eduardo/Downloads/easyaccept.jar"/>
+>>>>>>> 7b6d2dd16ca2107af33ea8f3ae7efb917f7ea217
 	<classpathentry kind="output" path="bin"/>
 </classpath>
