@@ -1,36 +1,93 @@
 package projeto;
 
+/**
+ * Classe responsavel por validar parametros de entrada.
+ * 
+ * @author Euclides Ramos - 117210377
+ * @author Edson Weslley - 117211348
+ * @author Eduardo Pereira - 117210342
+ * @author Joao Antonio Bandeira -
+ *
+ */
 public class Validador {
-<<<<<<< HEAD
-
-=======
 	/**
 	 * Construtor de validador, onde não e setado nada.
 	 */
->>>>>>> parent of 7b6d2dd... encontrei alguns acentos e removi e estou testando se meu commit esta aparecendo
 	public Validador() {
-		
 	}
-	
-	public void validaItemQuantidadeFixa(String nome, String categoria, int quantidade, String unidadeDeMedida, String localDeCompra, double preco) {
+
+	/**
+	 * Metodo onde valida a quantidade fixa de item.
+	 * 
+	 * @param nome
+	 *            Nome do item.
+	 * @param categoria
+	 *            Categoria do item.
+	 * @param quantidade
+	 *            Quantidade do item.
+	 * @param unidadeDeMedida
+	 *            Unidade do item.
+	 * @param localDeCompra
+	 *            Local onde foi comprado.
+	 * @param preco
+	 *            Preco do item.
+	 */
+	public void validaItemQuantidadeFixa(String nome, String categoria, int quantidade, String unidadeDeMedida,
+			String localDeCompra, double preco) {
 		String mensagem = "Erro no cadastro de item: ";
 		validaParametrosCadastro(nome, categoria, localDeCompra, preco, mensagem);
 		parametroInteiroInvalido(quantidade, mensagem + "valor de quantidade nao pode ser menor que zero.");
 		parametroInvalido(unidadeDeMedida, mensagem + "unidade de medida nao pode ser vazia ou nula.");
 	}
-	
+
+	/**
+	 * Metodo onde valida o item quando ele e por quilo.
+	 * 
+	 * @param nome
+	 *            Nome do item.
+	 * @param categoria
+	 *            Categoria do item.
+	 * @param kg
+	 *            Total de quilogramas do item.
+	 * @param localDeCompra
+	 *            Local onde foi comprado.
+	 * @param preco
+	 *            Preco do item.
+	 */
 	public void validaItemQuilo(String nome, String categoria, double kg, String localDeCompra, double preco) {
 		String mensagem = "Erro no cadastro de item: ";
 		validaParametrosCadastro(nome, categoria, localDeCompra, preco, mensagem);
 		parametroDoubleInvalido(kg, mensagem + "valor de quilos nao pode ser menor que zero.");
 	}
-	
+
+	/**
+	 * Metodo onde valida o item quando ele e vendido por unidade.
+	 * 
+	 * @param nome
+	 *            Nome do item.
+	 * @param categoria
+	 *            Categoria do item.
+	 * @param unidade
+	 *            Total de unidades do item.
+	 * @param localDeCompra
+	 *            Local onde foi comprado.
+	 * @param preco
+	 *            Preco do item.
+	 */
 	public void validaItemUnidade(String nome, String categoria, int unidade, String localDeCompra, double preco) {
 		String mensagem = "Erro no cadastro de item: ";
 		validaParametrosCadastro(nome, categoria, localDeCompra, preco, mensagem);
 		parametroInteiroInvalido(unidade, mensagem + "valor de unidade nao pode ser menor que zero.");
 	}
-	
+
+	/**
+	 * Metodo onde faz a validacao, para poder atualizar o item.
+	 * 
+	 * @param atributo
+	 *            Atributo do item.
+	 * @param novoValor
+	 *            Novo valor do item.
+	 */
 	public void validaAtualizaItem(String atributo, String novoValor) {
 		String mensagem = "Erro na atualizacao de item: ";
 		parametroInvalido(atributo, mensagem + "atributo nao pode ser vazio ou nulo.");
@@ -42,33 +99,74 @@ public class Validador {
 			validaCategoria(novoValor, mensagem);
 			break;
 		case "quantidade":
-			parametroInteiroInvalido(Integer.parseInt(novoValor), mensagem + "valor de quantidade nao pode ser menor que zero.");
+			parametroInteiroInvalido(Integer.parseInt(novoValor),
+					mensagem + "valor de quantidade nao pode ser menor que zero.");
 			break;
 		case "unidade de medida":
 			break;
 		case "kg":
-			parametroDoubleInvalido(Double.parseDouble(novoValor), mensagem + "valor de quilos nao pode ser menor que zero.");
+			parametroDoubleInvalido(Double.parseDouble(novoValor),
+					mensagem + "valor de quilos nao pode ser menor que zero.");
 			break;
 		case "unidades":
-			parametroInteiroInvalido(Integer.parseInt(novoValor), mensagem + "valor de quantidade nao pode ser menor que zero.");
+			parametroInteiroInvalido(Integer.parseInt(novoValor),
+					mensagem + "valor de quantidade nao pode ser menor que zero.");
 		default:
 			throw new IllegalArgumentException(mensagem + "atributo nao existe.");
 		}
 	}
-	
+
+	/**
+	 * Metodo onde faz a validacao para a adicao do preco.
+	 * 
+	 * @param localDeCompra
+	 *            Local onde o item foi comprado.
+	 * @param preco
+	 *            Preco a ser adicionado ao item.
+	 */
 	public void validaAdicionaPrecoItem(String localDeCompra, double preco) {
 		String mensagem = "Erro no cadastro de preco: ";
 		parametroInvalido(localDeCompra, mensagem + "local de compra nao pode ser vazio ou nulo.");
 		parametroDoubleInvalido(preco, mensagem + "preco de item invalido.");
 	}
 
-	private static void validaParametrosCadastro(String nome, String categoria, String localDeCompra, double preco, String mensagem) {
+	public void validaGetItemPorCategoria(String categoria) {
+		String mensagem = "Erro na listagem de item: ";
+		validaCategoria(categoria, mensagem);
+	}
+
+	/**
+	 * Metodo onde faz a validacao dos parametros, para cadastrar um novo item.
+	 * 
+	 * @param nome
+	 *            Nome do item,
+	 * @param categoria
+	 *            Categoria do item.
+	 * @param localDeCompra
+	 *            Local onde o item foi comprado.
+	 * @param preco
+	 *            Preco do item.
+	 * @param mensagem
+	 *            Mensagem de checagem.
+	 */
+	private static void validaParametrosCadastro(String nome, String categoria, String localDeCompra, double preco,
+			String mensagem) {
 		parametroInvalido(nome, mensagem + "nome nao pode ser vazio ou nulo.");
 		validaCategoria(categoria, mensagem);
 		parametroInvalido(localDeCompra, mensagem + "local de compra nao pode ser vazio ou nulo.");
 		parametroDoubleInvalido(preco, mensagem + "preco de item invalido.");
 	}
-	
+
+	/**
+	 * Metodo onde verfica se o parametro e ou nao permitido.
+	 * 
+	 * @param parametro
+	 *            Que pode ser, nome, local, categoria, preco, mensagem, ou seja, as
+	 *            caracteristicas do item.
+	 * 
+	 * @param mensagem
+	 *            Mensagem de checagem.
+	 */
 	private static void parametroInvalido(String parametro, String mensagem) {
 		if (parametro == null) {
 			throw new NullPointerException(mensagem);
@@ -76,19 +174,25 @@ public class Validador {
 			throw new IllegalArgumentException(mensagem);
 		}
 	}
-	
+
+	/**
+	 * Metodo onde verica a Categoria.
+	 * 
+	 * @param categoria
+	 *            Categoria do item.
+	 * @param mensagem
+	 *            Mensagem de checagem.
+	 */
 	private static void validaCategoria(String categoria, String mensagem) {
 		if (categoria == null) {
 			throw new NullPointerException(mensagem + "categoria nao pode ser vazia ou nula.");
 		} else if ("".equals(categoria.trim())) {
 			throw new IllegalArgumentException(mensagem + "categoria nao pode ser vazia ou nula.");
-		} else if (!(categoria.equals("alimento industrializado") || categoria.equals("alimento nao industrializado") || categoria.equals("limpeza") || categoria.equals("higiene pessoal"))) {
+		} else if (!(categoria.equals("alimento industrializado") || categoria.equals("alimento nao industrializado")
+				|| categoria.equals("limpeza") || categoria.equals("higiene pessoal"))) {
 			throw new IllegalArgumentException(mensagem + "categoria nao existe.");
 		}
 	}
-<<<<<<< HEAD
-	
-=======
 
 	/**
 	 * Metodo onde verifica se o parametro é negativo.
@@ -98,15 +202,11 @@ public class Validador {
 	 * @param mensagem
 	 *            Mensagem de checagem.
 	 */
->>>>>>> parent of 7b6d2dd... encontrei alguns acentos e removi e estou testando se meu commit esta aparecendo
 	private static void parametroDoubleInvalido(double parametro, String mensagem) {
 		if (parametro < 0) {
 			throw new IllegalArgumentException(mensagem);
 		}
 	}
-<<<<<<< HEAD
-	
-=======
 
 	/**
 	 * Metodo onde verifica se o parametro é negativo.
@@ -116,7 +216,6 @@ public class Validador {
 	 * @param mensagem
 	 *            Mensagem de checagem.
 	 */
->>>>>>> parent of 7b6d2dd... encontrei alguns acentos e removi e estou testando se meu commit esta aparecendo
 	private static void parametroInteiroInvalido(int paramentro, String mensagem) {
 		if (paramentro < 0) {
 			throw new IllegalArgumentException(mensagem);

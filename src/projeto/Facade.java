@@ -111,8 +111,6 @@ public class Facade {
 	public void deletaItem(int id) {
 		this.controller.deletaItem(id);
 	}
-<<<<<<< HEAD
-=======
 	
 	/**
 	 * Exibe um Item ordenado em ordem alfabetica.
@@ -155,5 +153,4 @@ public class Facade {
 	public String getItemPorPesquisa(String strPesquisa, int posicao) {
 		return this.controller.getItemPorPesquisa(strPesquisa, posicao);
 	}
->>>>>>> parent of 7b6d2dd... encontrei alguns acentos e removi e estou testando se meu commit esta aparecendo
 }
