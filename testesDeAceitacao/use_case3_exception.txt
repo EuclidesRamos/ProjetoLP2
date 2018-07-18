@@ -2,12 +2,6 @@
 # Caso de Uso 3  Exception#
 ###########################
 
-##  Cadastro de itens  ##
-
-id1=adicionaItemPorQtd nome="Sabonete de aveia Dorene" categoria="higiene pessoal" qnt=80 unidadeDeMedida="gramas" localDeCompra="Hiper" precoItem=5.50
-id2=adicionaItemPorUnidade nome="Queijo minas Dali" categoria="alimento industrializado" unidade=1 localDeCompra="Hiper" precoItem=15
-
-
 ## Criar Lista de Compra com atributos invalidos ##
 
 expectError "Erro na criacao de lista de compras: descritor nao pode ser vazio ou nulo." adicionaListaDeCompras descritorLista=""
@@ -17,14 +11,18 @@ expectError "Erro na criacao de lista de compras: descritor nao pode ser vazio o
 
 adicionaListaDeCompras descritorLista="feira quinzenal"
 
-## Pesuisa Itens nao adicionados ##
+## Pesquisa Itens nao adicionados ##
 
-expectError "Erro na pesquisa de compra: compra nao encontrada na lista." pesquisaCompraEmLista descritorLista="feira quinzenal" itemId=${id1}
+expectError "Erro na pesquisa de compra: compra nao encontrada na lista." pesquisaCompraEmLista descritorLista="feira quinzenal" itemId=15
 
 ## Atualizacao item nao cadastrado ##
 
-expectError "Erro na atualizacao de compra: compra nao encontrada na lista." atualizaCompraDeLista descritorLista="feira quinzenal" itemId=${id1} quantidade=5
-expectError "Erro na atualizacao de compra: compra nao encontrada na lista." atualizaCompraDeLista descritorLista="feira quinzenal" itemId=5 quantidade=2
+expectError "Erro na atualizacao de compra: compra nao encontrada na lista." atualizaCompraDeLista descritorLista="feira quinzenal" itemId=5 operacao="adiciona" novaQuantidade=2
+
+## Atualizacao com operacao invalida ##
+
+expectError "Erro na atualizacao de compra: operacao invalida para atualizacao." atualizaCompraDeLista descritorLista="feira quinzenal" itemId=15 operacao="multiplica" novaQuantidade=5
+
 
 ## Adicionar a lista de compras Itens nao cadastrados ##
 
@@ -33,23 +31,23 @@ expectError "Erro na compra de item: item nao existe no sistema." adicionaCompra
 
 ## Cadastrar Itens ##
 
-adicionaCompraALista descritorLista="feira quinzenal" quantidade=3 itemId=${id1}
-adicionaCompraALista descritorLista="feira quinzenal" quantidade=1 itemId=${id2}
+adicionaCompraALista descritorLista="feira quinzenal" quantidade=3 itemId=15
+adicionaCompraALista descritorLista="feira quinzenal" quantidade=1 itemId=16
 
 ## Valores invalidos na pesquisa ##
 
 expectError "Erro na pesquisa de compra: item id invalido." pesquisaCompraEmLista descritorLista="feira quizenal" itemId=-1
-expectError "Erro na pesquisa de compra: descritor nao pode ser vazio ou nulo." pesquisaCompraEmLista descritorLista="" itemId=${id1}
-expectError "Erro na pesquisa de compra: descritor nao pode ser vazio ou nulo." pesquisaCompraEmLista descritorLista=" " itemId=${id1}
+expectError "Erro na pesquisa de compra: descritor nao pode ser vazio ou nulo." pesquisaCompraEmLista descritorLista="" itemId=15
+expectError "Erro na pesquisa de compra: descritor nao pode ser vazio ou nulo." pesquisaCompraEmLista descritorLista=" " itemId=15
 
 ## Deletar valido ##
-deletaCompraDeLista escritorLista="feira quinzenal" itemId=${id2}
+deletaCompraDeLista escritorLista="feira quinzenal" itemId=16
 
 ## Deletar atributo e item invalido ##
 
-expectError "Erro na exclusao de compra: descritor nao pode ser vazio ou nulo." deletaCompraDeLista escritorLista="" itemId=${id1}
-expectError "Erro na exclusao de compra: descritor nao pode ser vazio ou nulo." deletaCompraDeLista escritorLista=" " itemId=${id1}
-expectError "Erro na exclusao de compra: compra nao encontrada na lista." deletaCompraDeLista descritorLista="feira quinzenal" itemId=${id2}
+expectError "Erro na exclusao de compra: descritor nao pode ser vazio ou nulo." deletaCompraDeLista escritorLista="" itemId=15
+expectError "Erro na exclusao de compra: descritor nao pode ser vazio ou nulo." deletaCompraDeLista escritorLista=" " itemId=15
+expectError "Erro na exclusao de compra: compra nao encontrada na lista." deletaCompraDeLista descritorLista="feira quinzenal" itemId=16
 expectError "Erro na exclusao de compra: item nao existe no sistema." deletaCompraDeLista descritorLista="feira quinzenal" itemId=56
 
 ## Finalizar Lista parametros invalidos##

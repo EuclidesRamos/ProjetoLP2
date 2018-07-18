@@ -4,16 +4,17 @@
 
 ##  Cadastro de itens  ##
 
-id1=adicionaItemPorQtd nome="Sabonete de aveia Dorene" categoria="higiene pessoal" qnt=80 unidadeDeMedida="gramas" localDeCompra="Hiper" precoItem=5.50
-id2=adicionaItemPorUnidade nome="Queijo minas Dali" categoria="alimento industrializado" unidade=1 localDeCompra="Hiper" precoItem=15
-id3=adicionaItemPorQtd nome="Pasta dental DDS" categoria="higiene pessoal" qnt=120 unidadeDeMedida="gramas" localDeCompra="Hiper" precoItem=2.50
-id4=adicionaItemPorQtd nome="Algodao Clemer" categoria="higiene pessoal" qnt=300 unidadeDeMedida="gramas" localDeCompra="Hiper" precoItem=5
-id5=adicionaItemPorUnidade nome="Creme de ricota Rocota" categoria="alimento industrializado" unidade=1 localDeCompra="Hiper" precoItem=8.30
-id6=adicionaItemPorQuilo nome="Tomate" categoria="alimento nao industrializado" kg=1.5 localDeCompra="Hiper" precoItem=6.40
-id7=adicionaItemPorQtd nome="Sabao liquido Pomo" categoria="limpeza" qnt=1 unidadeDeMedida="l" localDeCompra="Hiper" precoItem=7.50
-id8=adicionaItemPorQuilo nome="Carne moida extra light" categoria="alimento nao industrializado" kg=2.0 localDeCompra="Hiper" precoItem=25.85
-id9=adicionaItemPorQuilo nome="Chuchu" categoria="alimento nao industrializado" kg=0.5 localDeCompra="Hiper" precoItem=4
-id10=adicionaItemPorUnidade nome="Iogurte Lactivia" categoria="alimento industrializado" unidade=2 localDeCompra="Hiper" precoItem=2.99
+id15=adicionaItemPorQtd nome="Sabonete de aveia Dorene" categoria="higiene pessoal" qnt=80 unidadeDeMedida="gramas" localDeCompra="Hiper" precoItem=5.50
+id16=adicionaItemPorUnidade nome="Queijo minas Dali" categoria="alimento industrializado" unidade=1 localDeCompra="Hiper" precoItem=15
+id17=adicionaItemPorQtd nome="Pasta dental DDS" categoria="higiene pessoal" qnt=120 unidadeDeMedida="gramas" localDeCompra="Hiper" precoItem=2.50
+id18=adicionaItemPorQtd nome="Algodao Clemer" categoria="higiene pessoal" qnt=300 unidadeDeMedida="gramas" localDeCompra="Hiper" precoItem=5
+id19=adicionaItemPorUnidade nome="Creme de ricota Rocota" categoria="alimento industrializado" unidade=1 localDeCompra="Hiper" precoItem=8.30
+id20=adicionaItemPorQuilo nome="Batata doce" categoria="alimento nao industrializado" kg=2 localDeCompra="Hiper" precoItem=6.40
+id21=adicionaItemPorQtd nome="Sabao liquido Pomo" categoria="limpeza" qnt=1 unidadeDeMedida="l" localDeCompra="Hiper" precoItem=7.50
+id22=adicionaItemPorQuilo nome="Carne moida extra light" categoria="alimento nao industrializado" kg=2 localDeCompra="Hiper" precoItem=25.85
+id23=adicionaItemPorQuilo nome="Chuchu" categoria="alimento nao industrializado" kg=1 localDeCompra="Hiper" precoItem=4
+id24=adicionaItemPorUnidade nome="Requeijao rerequeijon" categoria="alimento industrializado" unidade=2 localDeCompra="Hiper" precoItem=2.99
+id25=adicionaItemPorQtd nome="Caixa de Suco" categoria="alimento industrializado" qnt=1 unidadeDeMedida="l" localDeCompra="Hiper" precoItem=5.99
 
 ## Criar Lista de Compra ##
 
@@ -25,32 +26,45 @@ expect "feira semana" pesquisaListaDeCompras descritorLista="feira semana"
 
 ## Adicionar Itens a Lista ##
 
-adicionaCompraALista descritorLista="feira semana" quantidade=3 itemId=${id1}
-adicionaCompraALista descritorLista="feira semana" quantidade=1 itemId=${id2}
-adicionaCompraALista descritorLista="feira semana" quantidade=2 itemId=${id3}
-adicionaCompraALista descritorLista="feira semana" quantidade=1 itemId=${id4}
-adicionaCompraALista descritorLista="feira semana" quantidade=1 itemId=${id5}
-adicionaCompraALista descritorLista="feira semana" quantidade=1.5 itemId=${id6}
-adicionaCompraALista descritorLista="feira semana" quantidade=2 itemId=${id7}
-adicionaCompraALista descritorLista="feira semana" quantidade=2.0 itemId=${id8}
-adicionaCompraALista descritorLista="feira semana" quantidade=0.5 itemId=${id9}
-adicionaCompraALista descritorLista="feira semana" quantidade=2 itemId=${id10}
+adicionaCompraALista descritorLista="feira semana" quantidade=3 itemId=${id15}
+adicionaCompraALista descritorLista="feira semana" quantidade=1 itemId=${id16}
+adicionaCompraALista descritorLista="feira semana" quantidade=2 itemId=${id17}
+adicionaCompraALista descritorLista="feira semana" quantidade=1 itemId=${id18}
+adicionaCompraALista descritorLista="feira semana" quantidade=1 itemId=${id19}
+adicionaCompraALista descritorLista="feira semana" quantidade=2 itemId=${id20}
+adicionaCompraALista descritorLista="feira semana" quantidade=2 itemId=${id21}
+adicionaCompraALista descritorLista="feira semana" quantidade=2 itemId=${id22}
+adicionaCompraALista descritorLista="feira semana" quantidade=1 itemId=${id23}
+adicionaCompraALista descritorLista="feira semana" quantidade=2 itemId=${id24}
+adicionaCompraALista descritorLista="feira semana" quantidade=2 itemId=${id25}
+
+## Teste atualizacao ##
+
+#quantidade atual item
+expect "3 Sabonete de aveia Dorene, higiene pessoal, 80 gramas" pesquisaCompraEmLista descritorLista="feira semana" itemId=${id15}
+expect "2 Caixa de Suco, alimento industrializado, 1 l" pesquisaCompraEmLista descritorLista="feira semana" itemId=${id25}
+
+# Adicioando quantidade
+atualizaCompraDeLista descritorLista="feira semana" itemId=${id15} operacao="adiciona" quantidade=2
+atualizaCompraDeLista descritorLista="feira semana" itemId=${id25} operacao="adiciona" quantidade=2
+
+# Verificandao atualizacao
+expect "5 Sabonete de aveia Dorene, higiene pessoal, 80 gramas" pesquisaCompraEmLista descritorLista="feira semana" itemId=${id15}
+expect "4 Caixa de Suco, alimento industrializado, 1 l" pesquisaCompraEmLista descritorLista="feira semana" itemId=${id25}
+
+# Diminuindo quantidade
+atualizaCompraDeLista descritorLista="feira semana" itemId=${id15} operacao="diminui" quantidade=4
+atualizaCompraDeLista descritorLista="feira semana" itemId=${id25} operacao="diminui" quantidade=4
+
+# Verificanado atualizacao
+expect "1 Sabonete de aveia Dorene, higiene pessoal, 80 gramas" pesquisaCompraEmLista descritorLista="feira semana" itemId=${id15}
+
+# Item com quantidade zero eh removido da lista
+expectError "Erro na pesquisa de compra: compra nao encontrada na lista." pesquisaCompraEmLista descritorLista="feira semana" itemId=${id25}
 
 ## Finalizar Lista ##
 
 finalizarListaDeCompras descritorLista="feira semana" localDaCompra="Shopping Boulevard" valorFinalDaCompra=1000
-
-## Pesquisa Item na Lista ##
-
-expect "3 Sabonete de aveia Dorene, higiene pessoal, 80 gramas" pesquisaCompraEmLista descritorLista="feira semana" itemId=${id1}
-
-## Atualiza Item na lista ##
-
-atualizaCompraDeLista descritorLista="feira semana" itemId=${id1} quantidade=2
-
-## Pesquisa Item na Lista ##
-
-expect "1 Sabonete de aveia Dorene, higiene pessoal, 80 gramas" pesquisaCompraEmLista descritorLista="feira semana" itemId=${id1}
 
 ## Imprimir Lista Itens ## Usando metodo auxiliar para pegar itens da lista
 
@@ -59,11 +73,12 @@ expect "2 Pasta dental DDS, higiene pessoal, 120 gramas" getItemLista descritorL
 expect "1 Sabonete de aveia Dorene, higiene pessoal, 80 gramas" getItemLista descritorLista="feira semana" posicaoItem=2
 expect "2 Sabao liquido Pomo, limpeza, 1 l" getItemLista descritorLista="feira semana" posicaoItem=3
 expect "1 Creme de ricota Rocota, alimento industrializado" getItemLista descritorLista="feira semana" posicaoItem=4
-expect "2 Iogurte Lactivia, alimento industrializado" getItemLista descritorLista="feira semana" posicaoItem=5
-expect "1 Queijo minas Dali, alimento industrializado" getItemLista descritorLista="feira semana" posicaoItem=6
-expect "2,0 kg Carne moida extra light, alimento nao industrializado" getItemLista descritorLista="feira semana" posicaoItem=7
-expect "0,5 kg Chuchu, alimento nao industrializado" getItemLista descritorLista="feira semana" posicaoItem=8
-expect "1,5 kg Tomate, alimento nao industrializado" getItemLista descritorLista="feira semana" posicaoItem=9
+expect "1 Queijo minas Dali, alimento industrializado" getItemLista descritorLista="feira semana" posicaoItem=5
+expect "2 Requeijao rerequeijon, alimento industrializado" getItemLista descritorLista="feira semana" posicaoItem=6
+expect "2 Batata doce, alimento nao industrializado" getItemLista descritorLista="feira semana" posicaoItem=7
+expect "2 Carne moida extra light, alimento nao industrializado" getItemLista descritorLista="feira semana" posicaoItem=8
+expect "1 Chuchu, alimento nao industrializado" getItemLista descritorLista="feira semana" posicaoItem=9
+
 
 ######################################
 ## Teste de Delete de item da lista ##
@@ -75,13 +90,13 @@ adicionaListaDeCompras descritorLista="outra feira"
 
 ## Adicionar Itens a Lista ##
 
-adicionaCompraALista descritorLista="outra feira" quantidade=3 itemId=${id1}
-adicionaCompraALista descritorLista="outra feira" quantidade=1 itemId=${id2}
+adicionaCompraALista descritorLista="outra feira" quantidade=3 itemId=${id15}
+adicionaCompraALista descritorLista="outra feira" quantidade=1 itemId=${id16}
 
 expect "3 Sabonete de aveia Dorene, higiene pessoal, 80 gramas" getItemLista descritorLista="outra feira" posicaoItem=0
 expect "1 Queijo minas Dali, alimento industrializado" getItemLista descritorLista="outra feira" posicaoItem=1
 
-deletaCompraDeLista descritorLista="outra feira" itemId=${id1}
+deletaCompraDeLista descritorLista="outra feira" itemId=${id15}
 
 ## Finalizar Lista ##
 

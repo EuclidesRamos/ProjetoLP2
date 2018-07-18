@@ -2,21 +2,6 @@
 # Caso de Uso 4  Exception#
 ###########################
 
-##  Cadastro de itens  ##
-
-id1=adicionaItemPorQtd nome="Sabonete de aveia Dorene" categoria="higiene pessoal" qnt=80 unidadeDeMedida="gramas" localDeCompra="Hiper shopping" precoItem=5.50
-id2=adicionaItemPorUnidade nome="Queijo minas Dali" categoria="alimento industrializado" unidade=1 localDeCompra="Hiper shopping" precoItem=15
-id3=adicionaItemPorQtd nome="Pasta dental DDS" categoria="higiene pessoal" qnt=120 unidadeDeMedida="gramas" localDeCompra="Hiper shopping" precoItem=2.50
-id4=adicionaItemPorQtd nome="Algodao Clemer" categoria="higiene pessoal" qnt=300 unidadeDeMedida="gramas" localDeCompra="Hiper shopping" precoItem=5
-id5=adicionaItemPorUnidade nome="Creme de ricota Rocota" categoria="alimento industrializado" unidade=1 localDeCompra="Hiper shopping" precoItem=8.30
-id6=adicionaItemPorQuilo nome="Tomate" categoria="alimento nao industrializado" kg=1.5 localDeCompra="Extra" precoItem=6.40
-id7=adicionaItemPorQtd nome="Sabao liquido Pomo" categoria="limpeza" qnt=1 unidadeDeMedida="l" localDeCompra="Extra" precoItem=7.50
-id8=adicionaItemPorQuilo nome="Carne moida extra light" categoria="alimento nao industrializado" kg=2.0 localDeCompra="Extra" precoItem=25.85
-id9=adicionaItemPorQuilo nome="Chuchu" categoria="alimento nao industrializado" kg=0.5 localDeCompra="Extra" precoItem=4
-id10=adicionaItemPorUnidade nome="Iogurte Lactivia" categoria="alimento industrializado" unidade=2 localDeCompra="Extra" precoItem=2.99
-
-id20=adicionaItemPorUnidade nome="Leite em po" categoria="alimento industrializado" unidade=1 localDeCompra="Mercadinho" precoItem=10
-
 ## Criar Lista de Compra ##
 
 expect "Hiper shopping" adicionaListaDeCompras descritorLista="Hiper shopping"
@@ -25,13 +10,13 @@ expect "Extra" adicionaListaDeCompras descritorLista="Extra"
 ## Adicionar Itens a Lista ##
 
 #Descricao: Hiper shopping
-adicionaCompraALista descritorLista="Hiper shopping" quantidade=3 itemId=${id1}
-adicionaCompraALista descritorLista="Hiper shopping" quantidade=1 itemId=${id2}
+adicionaCompraALista descritorLista="Hiper shopping" quantidade=3 itemId=15
+adicionaCompraALista descritorLista="Hiper shopping" quantidade=1 itemId=16
 
 #Descricao: Extra
-adicionaCompraALista descritorLista="Extra" quantidade=3 itemId=${id1}
-adicionaCompraALista descritorLista="Extra" quantidade=1.5 itemId=${id6}
-adicionaCompraALista descritorLista="Extra" quantidade=2 itemId=${id7}
+adicionaCompraALista descritorLista="Extra" quantidade=3 itemId=15
+adicionaCompraALista descritorLista="Extra" quantidade=1.5 itemId=20
+adicionaCompraALista descritorLista="Extra" quantidade=2 itemId=21
 
 ## Finalizar Lista ##
 

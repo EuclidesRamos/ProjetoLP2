@@ -6,7 +6,7 @@ package projeto;
  * @author Euclides Ramos - 117210377
  * @author Edson Weslley - 117211348
  * @author Eduardo Pereira - 117210342
- * @author Joao Antonio Bandeira -
+ * @author Joao Antonio Bandeira - 117210692
  *
  */
 
@@ -26,20 +26,13 @@ public class ItemQuantidadeFixa extends Item {
 	 * Constroi um item por quantidade fixa a partir de seu id, nome, categoria,
 	 * quantidade, unidade de medida, local de compra e preco.
 	 * 
-	 * @param id
-	 *            Identificacao do item
-	 * @param nome
-	 *            Nome do item
-	 * @param categoria
-	 *            Categoria do item
-	 * @param quantidade
-	 *            Quantidade de itens
-	 * @param unidadeDeMedida
-	 *            Unidade de medida
-	 * @param localDeCompra
-	 *            Local de compra
-	 * @param preco
-	 *            Preco do item
+	 * @param id Identificacao do item
+	 * @param nome Nome do item
+	 * @param categoria Categoria do item
+	 * @param quantidade Quantidade de itens
+	 * @param unidadeDeMedida Unidade de medida
+	 * @param localDeCompra Local de compra
+	 * @param preco Preco do item
 	 */
 	public ItemQuantidadeFixa(int id, String nome, String categoria, int quantidade, String unidadeDeMedida,
 			String localDeCompra, double preco) {

@@ -10,7 +10,7 @@ import java.util.Map.Entry;
  * @author Euclides Ramos - 117210377
  * @author Edson Weslley - 117211348
  * @author Eduardo Pereira - 117210342
- * @author Joao Antonio Bandeira -
+ * @author Joao Antonio Bandeira - 117210692
  * 
  */
 public abstract class Item {

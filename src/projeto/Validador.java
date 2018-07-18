@@ -6,12 +6,12 @@ package projeto;
  * @author Euclides Ramos - 117210377
  * @author Edson Weslley - 117211348
  * @author Eduardo Pereira - 117210342
- * @author Joao Antonio Bandeira -
+ * @author Joao Antonio Bandeira - 117210692
  *
  */
 public class Validador {
 	/**
-	 * Construtor de validador, onde não e setado nada.
+	 * Construtor de validador, onde nao e setado nada.
 	 */
 	public Validador() {
 	}
@@ -108,9 +108,10 @@ public class Validador {
 			parametroDoubleInvalido(Double.parseDouble(novoValor),
 					mensagem + "valor de quilos nao pode ser menor que zero.");
 			break;
-		case "unidades":
+		case "unidade":
 			parametroInteiroInvalido(Integer.parseInt(novoValor),
-					mensagem + "valor de quantidade nao pode ser menor que zero.");
+					mensagem + "valor de unidade nao pode ser menor que zero.");
+			break;
 		default:
 			throw new IllegalArgumentException(mensagem + "atributo nao existe.");
 		}
@@ -195,7 +196,7 @@ public class Validador {
 	}
 
 	/**
-	 * Metodo onde verifica se o parametro é negativo.
+	 * Metodo onde verifica se o parametro e negativo.
 	 * 
 	 * @param parametro
 	 *            Numero flutuante a ser comparado.
@@ -209,7 +210,7 @@ public class Validador {
 	}
 
 	/**
-	 * Metodo onde verifica se o parametro é negativo.
+	 * Metodo onde verifica se o parametro e negativo.
 	 * 
 	 * @param paramentro
 	 *            Numero int a ser comparado.
