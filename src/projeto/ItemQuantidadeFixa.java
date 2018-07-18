@@ -71,6 +71,12 @@ public class ItemQuantidadeFixa extends Item {
 		return super.toString() + this.quantidade + " " + this.unidadeDeMedida + ", Preco: " + "<" + super.precos()
 				+ ">";
 	}
+	
+	@Override
+	public String representacaoLista() {
+		return super.representacaoLista() + ", " + this.quantidade + " " + this.unidadeDeMedida;
+		
+	}
 
 	/**
 	 * Atualiza o item a partir do nome do atrinuto e o valor a ser atualizado.

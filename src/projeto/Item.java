@@ -214,4 +214,15 @@ public abstract class Item {
 		}
 
 	}
+	
+	public String representacaoLista() {
+		return this.nome + ", " + categoria;
+	}
+	
+	
+	
+	
+	
+	
+	
 }
