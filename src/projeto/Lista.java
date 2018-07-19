@@ -43,7 +43,13 @@ public class Lista {
 		
 	}
 	
-	
+	public String getDescritor() {
+		return descritor;
+	}
+
+	public String getDataHora() {
+		return null;
+	}
 	
 	
 
