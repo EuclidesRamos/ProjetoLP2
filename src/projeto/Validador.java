@@ -234,4 +234,9 @@ public class Validador {
 	public void validaAtualizaCompraDeLista(String descritorLista) {
 		
 	}
+
+	public void validaListaDeCompras(String descritor) {
+		String mensagem = "Erro na criacao de lista de compras: ";
+		parametroInvalido(descritor, mensagem + "descritor nao pode ser vazio ou nulo.");
+	}
 }
