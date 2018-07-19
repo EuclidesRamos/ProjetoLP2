@@ -1,6 +1,8 @@
 package projeto;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -139,4 +141,18 @@ public class ListaController {
 		this.listas.get(descritorLista).deletaCompraDeLista(this.controllerItem.pegaItem(idItem));
 	}
 
+	public String pesquisaPorDescritor(String descritor) {
+		return this.listas.get(descritor).toString();
+	}
+	
+	public String pesquisaPorData(String data) {
+		List<lista> feiras = new ArrayList<>();
+		for  (Lista lista : this.listas.values()) {
+			if (lista.getDataHora().contains(data)) {
+				
+			}
+		}
+		
+	}
+	
 }

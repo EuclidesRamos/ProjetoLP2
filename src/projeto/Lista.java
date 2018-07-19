@@ -17,13 +17,13 @@ public class Lista {
 		this.compras = new HashSet<>();
 		this.dataHora = LocalDateTime.now();
 	}
-	
-//	private Compra procuraCompra(Item pegaItem) {
-//		for (int i = 0; i < compras.length; i++) {
-//			
-//		}
-//		return null;
-//	}
+
+	// private Compra procuraCompra(Item pegaItem) {
+	// for (int i = 0; i < compras.length; i++) {
+	//
+	// }
+	// return null;
+	// }
 
 	public void adicionaCompraALista(int quantidade, Item item) {
 		compras.add(new Compra(quantidade, item));
@@ -48,6 +48,14 @@ public class Lista {
 	@Override
 	public String toString() {
 		// Data e o descritor.
+		return null;
+	}
+
+	public String getDescritor() {
+		return descritor;
+	}
+
+	public String getDataHora() {
 		return null;
 	}
 
