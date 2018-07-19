@@ -270,4 +270,14 @@ public class ItemController {
 		}
 		return listaItens.get(posicao).toString();		
 	}
+	
+	/**
+	 * Metodo responsavel por capturar e retornar um objeto do tipo Item no Map.
+	 * 
+	 * @param id Id do item a ser capturado
+	 * @return Retorna o objeto do tipo Item.
+	 */
+	public Item pegaItem(int id) {
+		return this.itens.get(id);
+	}
 }

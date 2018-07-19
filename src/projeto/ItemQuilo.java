@@ -9,8 +9,8 @@ package projeto;
  * @author Joao Antonio Bandeira - 117210692
  *
  */
-
 public class ItemQuilo extends Item {
+	
 	/**
 	 * Quantidade de quilos de um item.
 	 */
@@ -44,7 +44,6 @@ public class ItemQuilo extends Item {
 	 * 
 	 * @return um inteiro representando a quantidade de unidades
 	 */
-
 	public double getKg() {
 		return kg;
 	}

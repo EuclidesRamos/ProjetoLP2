@@ -19,14 +19,17 @@ public abstract class Item {
 	 * Mapa de precos de um item.
 	 */
 	private Map<String, Double> mapaDePrecos;
+	
 	/**
 	 * Identificacao do item.
 	 */
 	private int id;
+	
 	/**
 	 * Nome do item.
 	 */
 	private String nome;
+	
 	/**
 	 * Categoria do item
 	 */
@@ -218,11 +221,5 @@ public abstract class Item {
 	public String representacaoLista() {
 		return this.nome + ", " + categoria;
 	}
-	
-	
-	
-	
-	
-	
 	
 }

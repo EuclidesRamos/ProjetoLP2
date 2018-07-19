@@ -222,4 +222,16 @@ public class Validador {
 			throw new IllegalArgumentException(mensagem);
 		}
 	}
+
+	public void validaCompra(String descritorLista, int quantidade) {
+		
+	}
+
+	public void validaPesquisaCompraEmLista(String descritorLista) {
+		
+	}
+
+	public void validaAtualizaCompraDeLista(String descritorLista) {
+		
+	}
 }
