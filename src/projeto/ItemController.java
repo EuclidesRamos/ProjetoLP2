@@ -1,4 +1,5 @@
 package projeto;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -56,7 +57,7 @@ public class ItemController {
 	 * Metodo responsavel por verificar se um item ja foi adicionado ao Sistema.
 	 * 
 	 * @param item objeto a ser verificado.
-	 * @return Retorna true, quando o item existir, ou false, quando o item não existir.
+	 * @return Retorna true, quando o item existir, ou false, quando o item nï¿½o existir.
 	 */
 	private boolean verificaIgualdade(Item item) {
 		for (Item itemSistema : this.itens.values()) {
