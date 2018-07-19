@@ -1,35 +1,39 @@
 package projeto;
 
 public class Compra {
-	
+
 	private int quantidade;
 	private Item item;
+	private Validador valida;
 
 	public Compra(int quantidade, Item item) {
-		if (quantidade <= 0) {
-			throw new IllegalArgumentException("Quantidade nao pode ser menor ou igual a zero.");
-
-		}
-		if(item == null) {
-			throw new NullPointerException("Item nao pode ser nulo.");
-		}
+		this.valida = new Validador();
+		valida.validaCompra(quantidade, item);
 		this.quantidade = quantidade;
 		this.item = item;
 	}
-	
-	public void adicionaQuantidade(int quantidade) {
-		this.quantidade += quantidade;
+
+	public void atualizaQuantidade(String operacao, int quantidade) {
+
+		switch (operacao) {
+		case "diminui":
+			this.quantidade -= quantidade;
+			break;
+		case "aumenta":
+			this.quantidade += quantidade;
+			break;
+		default:
+			throw new IllegalArgumentException("Erro na atualizacao de compra: operacao invalida para atualizacao.");
+
+		}
+
 	}
-	
-	public void removeQuantidade(int quantidade) {
-		this.quantidade -= quantidade;
-		
-	}
-	
+
+
 	public Item getItem() {
 		return item;
 	}
-	
+
 	public int getQuantidade() {
 		return quantidade;
 	}
@@ -37,15 +41,6 @@ public class Compra {
 	@Override
 	public String toString() {
 		return this.quantidade + " " + this.item.representacaoLista();
-	} 
-	
-	
-
-	
-	
-	
-	
-	
-	
+	}
 
 }

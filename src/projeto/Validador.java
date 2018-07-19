@@ -223,8 +223,14 @@ public class Validador {
 		}
 	}
 
-	public void validaCompra(String descritorLista, int quantidade) {
-		
+	public void validaCompra(int quantidade, Item item) {
+		if (quantidade <= 0) {
+			throw new IllegalArgumentException("Quantidade nao pode ser menor ou igual a zero.");
+
+		}
+		if(item == null) {
+			throw new NullPointerException("Item nao pode ser nulo.");
+		}
 	}
 
 	public void validaPesquisaCompraEmLista(String descritorLista) {
