@@ -5,46 +5,50 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Lista {
-	
+
 	private String descritor;
 	private Set<Compra> compras;
 	private LocalDateTime dataHora;
 	private String LocalDeCompra;
 	private int valorFinalDaCompra;
-	
+
 	public Lista(String descritor) {
 		this.descritor = descritor;
 		this.compras = new HashSet<>();
 		this.dataHora = LocalDateTime.now();
 	}
-
-	public void adicionaCompra(int quantidade, Item item) {
-		
-	}
 	
-	@Override
-	public String toString() {
-		return null;
+//	private Compra procuraCompra(Item pegaItem) {
+//		for (int i = 0; i < compras.length; i++) {
+//			
+//		}
+//		return null;
+//	}
+
+	public void adicionaCompraALista(int quantidade, Item item) {
+		compras.add(new Compra(quantidade, item));
 	}
 
 	public String pegaItemLista(Item pegaItem) {
 		return null;
 	}
 
-	public void atualizaCompra(Item pegaItem, int quantidade, String operacao) {
-		
+	public void atualizaCompraDeLista(Item pegaItem, int quantidade, String operacao) {
+		// pegaCompra.get(pegaCompra).atualizaCompra();
 	}
 
-	public void finalizaLista(String localDeCompra, int valorFinalDaCompra) {
-		
+	public void finalizarListaDeCompras(String localDeCompra, int valorFinalDaCompra) {
+
 	}
 
-	public void deletaCompra(Item pegaItem) {
-		
+	public void deletaCompraDeLista(Item pegaItem) {
+
 	}
-	
-	
-	
-	
+
+	@Override
+	public String toString() {
+		// Data e o descritor.
+		return null;
+	}
 
 }
