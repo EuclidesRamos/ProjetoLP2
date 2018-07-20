@@ -31,7 +31,7 @@ public class Lista {
 		compras.add(new Compra(quantidade, item));
 	}
 
-	public String pegaItemLista(Item pegaItem) {
+	public String pegaItemLista(int id) {
 		return null;
 	}
 

@@ -1,6 +1,8 @@
 package projeto;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +37,9 @@ public class ListaController {
 	 * Contrutor responsavel por contruir o objeto do tipo ListaController, criando
 	 * tambem um HashMap e um ItemController.
 	 */
+	
+	private Comparator<Lista> estrategiaDeOrdenacao;
+	
 	public ListaController() {
 		this.listas = new HashMap<>();
 		this.controllerItem = new ItemController();
@@ -141,18 +146,55 @@ public class ListaController {
 		this.listas.get(descritorLista).deletaCompraDeLista(this.controllerItem.pegaItem(idItem));
 	}
 
-	public String pesquisaPorDescritor(String descritor) {
+	/**
+	 * Método responsável por pesquisar uma lista de compras pelo descritor.
+	 * @param descritor
+	 * @return A representação em String da lista de compras.
+	 */
+	public String getItemLista(String descritor) {
 		return this.listas.get(descritor).toString();
 	}
 	
-	public String pesquisaPorData(String data) {
-		List<lista> feiras = new ArrayList<>();
-		for  (Lista lista : this.listas.values()) {
+	/**
+	 * Método responsável por pesquisar uma lista de compras pela sua data de criação.
+	 * @param data
+	 * @return Uma representação em String de todas as listas de compras criadas na Data inserida.
+	 */
+	public String getItemListaPorData(String data) {
+		List<Lista> feiras = new ArrayList<>();
+		String str = "";
+		this.estrategiaDeOrdenacao = new OrdenaListaAlfabetica();
+		for (Lista lista : this.listas.values()) {
 			if (lista.getDataHora().contains(data)) {
-				
+				feiras.add(lista);
 			}
 		}
-		
+		Collections.sort(feiras, this.estrategiaDeOrdenacao);
+		for (Lista lista : feiras) {
+			str += lista.getDescritor() + System.lineSeparator();
+		}
+		return str;
 	}
 	
+	/**
+	 * Método responsável por pesquisar as listas de compras que contém o item a ser inserido.
+	 * @param id do item.
+	 * @return Uma representação em String de todas as listas que contem o item inserido.
+	 */
+	public String getItemListaPorItem(int id) {
+		List<Lista> feiras2 = new ArrayList<>();
+		String str = "";
+		this.estrategiaDeOrdenacao = new OrdenaListaData();
+		for (Lista lista : this.listas.values()) {
+			Item found = lista.pegaItemLista(id);
+			if (found.getId() == id) {
+				feiras2.add(lista);
+		}
+	}
+		Collections.sort(feiras2, this.estrategiaDeOrdenacao);
+		for (Lista lista : feiras2) {
+			str += lista.getDataHora() + " - " + lista.getDescritor() + System.lineSeparator();
+		}
+		return str;
+	}	
 }

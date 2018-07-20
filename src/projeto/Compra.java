@@ -18,17 +18,15 @@ public class Compra {
 	private Item item;
 
 	/**
-	 * Validador
+	 * Validador de entradas
 	 */
 	private Validador valida;
 
 	/**
 	 * Constroi uma compra a partir do item e a quantidade de itens.
 	 * 
-	 * @param quantidade
-	 *            Quantidade de itens
-	 * @param item
-	 *            Item
+	 * @param quantidade Quantidade de itens
+	 * @param item       Item
 	 */
 	public Compra(int quantidade, Item item) {
 		this.valida = new Validador();
@@ -37,9 +35,11 @@ public class Compra {
 		this.item = item;
 
 	}
+
 	/**
 	 * Atualiza a quantidade de itens em uma compra.
-	 * @param operacao Operacao "aumenta" ou "diminui"
+	 * 
+	 * @param operacao   Operacao "aumenta" ou "diminui"
 	 * @param quantidade Quantidade a ser aumentada ou diminuida
 	 */
 	public void atualizaCompra(String operacao, int quantidade) {
@@ -76,6 +76,11 @@ public class Compra {
 		return quantidade;
 	}
 
+	/**
+	 * Retorna a representacao textual da compra
+	 * 
+	 * @return uma String
+	 */
 	@Override
 	public String toString() {
 		return this.quantidade + " " + this.item.representacaoLista();

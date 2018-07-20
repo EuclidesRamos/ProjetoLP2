@@ -148,4 +148,9 @@ public class ItemQuiloTest {
 
 	}
 
+	@Test
+	public void testRepresentacaoLista() {
+		assertEquals(this.item.representacaoLista(), "Bife, alimento industrializado");
+	}
+
 }

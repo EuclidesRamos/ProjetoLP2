@@ -19,17 +19,17 @@ public abstract class Item {
 	 * Mapa de precos de um item.
 	 */
 	private Map<String, Double> mapaDePrecos;
-	
+
 	/**
 	 * Identificacao do item.
 	 */
 	private int id;
-	
+
 	/**
 	 * Nome do item.
 	 */
 	private String nome;
-	
+
 	/**
 	 * Categoria do item
 	 */
@@ -45,16 +45,11 @@ public abstract class Item {
 	 * Constroi um item a partir do seu id, nome, categoria, local de compra e
 	 * preco.
 	 *
-	 * @param id
-	 *            Identificacao do item
-	 * @param nome
-	 *            Nome do item
-	 * @param categoria
-	 *            Categoria do item
-	 * @param localDeCompra
-	 *            Local onde foi comprado o item
-	 * @param preco
-	 *            Preco do item
+	 * @param id            Identificacao do item
+	 * @param nome          Nome do item
+	 * @param categoria     Categoria do item
+	 * @param localDeCompra Local onde foi comprado o item
+	 * @param preco         Preco do item
 	 */
 	public Item(int id, String nome, String categoria, String localDeCompra, double preco) {
 		this.validador = new Validador();
@@ -96,10 +91,8 @@ public abstract class Item {
 	 * Cadastra um novo preco para o item. A partir do local de compra e o valor do
 	 * item.
 	 * 
-	 * @param localDeCompra
-	 *            Local de compra
-	 * @param valor
-	 *            Valor do item
+	 * @param localDeCompra Local de compra
+	 * @param valor         Valor do item
 	 */
 	public void adicionaPrecoItem(String localDeCompra, double valor) {
 		this.validador.validaAdicionaPrecoItem(localDeCompra, valor);
@@ -200,10 +193,8 @@ public abstract class Item {
 	 * 
 	 * Atualiza os atributos de um item.
 	 * 
-	 * @param atributo
-	 *            Nome do atributo a ser alterado
-	 * @param novoValor
-	 *            Novo valor que sera atualizado
+	 * @param atributo  Nome do atributo a ser alterado
+	 * @param novoValor Novo valor que sera atualizado
 	 */
 	public void atualizaItem(String atributo, String novoValor) {
 
@@ -217,9 +208,14 @@ public abstract class Item {
 		}
 
 	}
-	
+
+	/**
+	 * Retorna a representacao do Item na lista
+	 * 
+	 * @return Uma String
+	 */
 	public String representacaoLista() {
 		return this.nome + ", " + categoria;
 	}
-	
+
 }
