@@ -11,6 +11,8 @@ public class Lista {
 	private LocalDateTime dataHora;
 	private String LocalDeCompra;
 	private int valorFinalDaCompra;
+	private String estado;
+	private boolean ocorreu;
 
 	public Lista(String descritor) {
 		this.descritor = descritor;
@@ -38,7 +40,13 @@ public class Lista {
 	}
 
 	public void finalizarListaDeCompras(String localDeCompra, int valorFinalDaCompra) {
-
+		if (this.estado.startsWith("Finalizado"))
+			throw new UnsupportedOperationException("Mensagem de erro a ser dada.");
+		this.ocorreu = ocorreu;
+		if (ocorreu)
+			this.estado = "Finalizado (ocorreu)";
+		else
+			this.estado = "Finalizado (n ocorreu)";
 	}
 
 	public void deletaCompraDeLista(Item pegaItem) {
@@ -47,16 +55,15 @@ public class Lista {
 
 	@Override
 	public String toString() {
-		// Data e o descritor.
-		return null;
+		return this.descritor + dataHora;
 	}
 
 	public String getDescritor() {
 		return descritor;
 	}
 
-	public String getDataHora() {
-		return null;
+	public LocalDateTime getDataHora() {
+		return dataHora;
 	}
 
 }
