@@ -19,18 +19,12 @@ public class Validador {
 	/**
 	 * Metodo onde valida a quantidade fixa de item.
 	 * 
-	 * @param nome
-	 *            Nome do item.
-	 * @param categoria
-	 *            Categoria do item.
-	 * @param quantidade
-	 *            Quantidade do item.
-	 * @param unidadeDeMedida
-	 *            Unidade do item.
-	 * @param localDeCompra
-	 *            Local onde foi comprado.
-	 * @param preco
-	 *            Preco do item.
+	 * @param nome            Nome do item.
+	 * @param categoria       Categoria do item.
+	 * @param quantidade      Quantidade do item.
+	 * @param unidadeDeMedida Unidade do item.
+	 * @param localDeCompra   Local onde foi comprado.
+	 * @param preco           Preco do item.
 	 */
 	public void validaItemQuantidadeFixa(String nome, String categoria, int quantidade, String unidadeDeMedida,
 			String localDeCompra, double preco) {
@@ -43,16 +37,11 @@ public class Validador {
 	/**
 	 * Metodo onde valida o item quando ele e por quilo.
 	 * 
-	 * @param nome
-	 *            Nome do item.
-	 * @param categoria
-	 *            Categoria do item.
-	 * @param kg
-	 *            Total de quilogramas do item.
-	 * @param localDeCompra
-	 *            Local onde foi comprado.
-	 * @param preco
-	 *            Preco do item.
+	 * @param nome          Nome do item.
+	 * @param categoria     Categoria do item.
+	 * @param kg            Total de quilogramas do item.
+	 * @param localDeCompra Local onde foi comprado.
+	 * @param preco         Preco do item.
 	 */
 	public void validaItemQuilo(String nome, String categoria, double kg, String localDeCompra, double preco) {
 		String mensagem = "Erro no cadastro de item: ";
@@ -63,16 +52,11 @@ public class Validador {
 	/**
 	 * Metodo onde valida o item quando ele e vendido por unidade.
 	 * 
-	 * @param nome
-	 *            Nome do item.
-	 * @param categoria
-	 *            Categoria do item.
-	 * @param unidade
-	 *            Total de unidades do item.
-	 * @param localDeCompra
-	 *            Local onde foi comprado.
-	 * @param preco
-	 *            Preco do item.
+	 * @param nome          Nome do item.
+	 * @param categoria     Categoria do item.
+	 * @param unidade       Total de unidades do item.
+	 * @param localDeCompra Local onde foi comprado.
+	 * @param preco         Preco do item.
 	 */
 	public void validaItemUnidade(String nome, String categoria, int unidade, String localDeCompra, double preco) {
 		String mensagem = "Erro no cadastro de item: ";
@@ -83,10 +67,8 @@ public class Validador {
 	/**
 	 * Metodo onde faz a validacao, para poder atualizar o item.
 	 * 
-	 * @param atributo
-	 *            Atributo do item.
-	 * @param novoValor
-	 *            Novo valor do item.
+	 * @param atributo  Atributo do item.
+	 * @param novoValor Novo valor do item.
 	 */
 	public void validaAtualizaItem(String atributo, String novoValor) {
 		String mensagem = "Erro na atualizacao de item: ";
@@ -120,10 +102,8 @@ public class Validador {
 	/**
 	 * Metodo onde faz a validacao para a adicao do preco.
 	 * 
-	 * @param localDeCompra
-	 *            Local onde o item foi comprado.
-	 * @param preco
-	 *            Preco a ser adicionado ao item.
+	 * @param localDeCompra Local onde o item foi comprado.
+	 * @param preco         Preco a ser adicionado ao item.
 	 */
 	public void validaAdicionaPrecoItem(String localDeCompra, double preco) {
 		String mensagem = "Erro no cadastro de preco: ";
@@ -139,16 +119,11 @@ public class Validador {
 	/**
 	 * Metodo onde faz a validacao dos parametros, para cadastrar um novo item.
 	 * 
-	 * @param nome
-	 *            Nome do item,
-	 * @param categoria
-	 *            Categoria do item.
-	 * @param localDeCompra
-	 *            Local onde o item foi comprado.
-	 * @param preco
-	 *            Preco do item.
-	 * @param mensagem
-	 *            Mensagem de checagem.
+	 * @param nome          Nome do item,
+	 * @param categoria     Categoria do item.
+	 * @param localDeCompra Local onde o item foi comprado.
+	 * @param preco         Preco do item.
+	 * @param mensagem      Mensagem de checagem.
 	 */
 	private static void validaParametrosCadastro(String nome, String categoria, String localDeCompra, double preco,
 			String mensagem) {
@@ -161,12 +136,10 @@ public class Validador {
 	/**
 	 * Metodo onde verfica se o parametro e ou nao permitido.
 	 * 
-	 * @param parametro
-	 *            Que pode ser, nome, local, categoria, preco, mensagem, ou seja, as
-	 *            caracteristicas do item.
+	 * @param parametro Que pode ser, nome, local, categoria, preco, mensagem, ou
+	 *                  seja, as caracteristicas do item.
 	 * 
-	 * @param mensagem
-	 *            Mensagem de checagem.
+	 * @param mensagem  Mensagem de checagem.
 	 */
 	private static void parametroInvalido(String parametro, String mensagem) {
 		if (parametro == null) {
@@ -179,10 +152,8 @@ public class Validador {
 	/**
 	 * Metodo onde verica a Categoria.
 	 * 
-	 * @param categoria
-	 *            Categoria do item.
-	 * @param mensagem
-	 *            Mensagem de checagem.
+	 * @param categoria Categoria do item.
+	 * @param mensagem  Mensagem de checagem.
 	 */
 	private static void validaCategoria(String categoria, String mensagem) {
 		if (categoria == null) {
@@ -198,10 +169,8 @@ public class Validador {
 	/**
 	 * Metodo onde verifica se o parametro e negativo.
 	 * 
-	 * @param parametro
-	 *            Numero flutuante a ser comparado.
-	 * @param mensagem
-	 *            Mensagem de checagem.
+	 * @param parametro Numero flutuante a ser comparado.
+	 * @param mensagem  Mensagem de checagem.
 	 */
 	private static void parametroDoubleInvalido(double parametro, String mensagem) {
 		if (parametro < 0) {
@@ -212,10 +181,8 @@ public class Validador {
 	/**
 	 * Metodo onde verifica se o parametro e negativo.
 	 * 
-	 * @param paramentro
-	 *            Numero int a ser comparado.
-	 * @param mensagem
-	 *            Mensagem de checagem.
+	 * @param paramentro Numero int a ser comparado.
+	 * @param mensagem   Mensagem de checagem.
 	 */
 	private static void parametroInteiroInvalido(int paramentro, String mensagem) {
 		if (paramentro < 0) {
@@ -223,22 +190,28 @@ public class Validador {
 		}
 	}
 
+	/**
+	 * Metodo que verifica se os parametros ao construir um compra sao validos.
+	 * 
+	 * @param quantidade Quantidade de itens
+	 * @param item       Item
+	 */
 	public void validaCompra(int quantidade, Item item) {
 		if (quantidade <= 0) {
 			throw new IllegalArgumentException("Quantidade nao pode ser menor ou igual a zero.");
 
 		}
-		if(item == null) {
+		if (item == null) {
 			throw new NullPointerException("Item nao pode ser nulo.");
 		}
 	}
 
 	public void validaPesquisaCompraEmLista(String descritorLista) {
-		
+
 	}
 
 	public void validaAtualizaCompraDeLista(String descritorLista) {
-		
+
 	}
 
 	public void validaListaDeCompras(String descritor) {

@@ -148,4 +148,9 @@ public class ItemUnidadeTest {
 
 	}
 
+	@Test
+	public void testRepresentacaoLista() {
+		assertEquals(this.item.representacaoLista(), "Sabao, limpeza");
+	}
+
 }

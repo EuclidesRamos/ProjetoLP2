@@ -163,4 +163,10 @@ public class ItemQuantidadeFixaTest {
 		assertEquals(this.item.getQuantidade(), 5);
 
 	}
+
+	@Test
+	public void testRepresentacaoLista() {
+		assertEquals(this.item.representacaoLista(), "Agua sanitaria, limpeza, 2 l");
+	}
+
 }
