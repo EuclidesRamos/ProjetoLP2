@@ -35,6 +35,7 @@ public abstract class Item {
 	 */
 	private String categoria;
 
+	private int precedencia;
 	/**
 	 * Validador de entradas.
 	 */
@@ -50,6 +51,7 @@ public abstract class Item {
 	 * @param categoria     Categoria do item
 	 * @param localDeCompra Local onde foi comprado o item
 	 * @param preco         Preco do item
+	 * @param precedencia   Precedencia para ordenacao ()
 	 */
 	public Item(int id, String nome, String categoria, String localDeCompra, double preco) {
 		this.validador = new Validador();
@@ -58,6 +60,19 @@ public abstract class Item {
 		this.id = id;
 		this.nome = nome;
 		this.categoria = categoria;
+		precedencia(categoria);
+	}
+	
+	private void precedencia(String categoria) {
+		if (categoria.equals("higiene pessoal")) {
+			this.precedencia = 1;
+		} else if (categoria.equals("limpeza")) {
+			this.precedencia = 2;
+		} else if (categoria.equals("alimento industrializado")) {
+			this.precedencia = 3;
+		} else if (categoria.equals("alimento nao industrializado")) {
+			this.precedencia = 4;
+		}
 	}
 
 	/**
@@ -218,4 +233,9 @@ public abstract class Item {
 		return this.nome + ", " + categoria;
 	}
 
+	public int getPrecedencia() {
+		return this.precedencia;
+	}
+	
+	
 }

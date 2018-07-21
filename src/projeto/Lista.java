@@ -2,72 +2,105 @@ package projeto;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 public class Lista {
+	private Map<Integer, Compra> compras;
+	private LocalDateTime data;
+	private String descricao;
+	private String localDaCompra;
+	private int valorFinalCompra;
 
-	private String descritor;
-	private List<Compra> compras;
-	private LocalDateTime dataHora;
-	private String LocalDeCompra;
-	private int valorFinalDaCompra;
-
-	public Lista(String descritor) {
-		this.descritor = descritor;
-		this.compras = new ArrayList<>();
-		this.dataHora = LocalDateTime.now();
+	public Lista(String descricao) {
+		this.descricao = descricao;
+		this.data = LocalDateTime.now();
+		this.compras = new HashMap<>();
 	}
 
-	// private Compra procuraCompra(Item pegaItem) {
-	// for (int i = 0; i < compras.length; i++) {
-	//
-	// }
-	// return null;
-	// }
-
-	public void adicionaCompraALista(int quantidade, Item item) {
-		compras.add(new Compra(quantidade, item));
+	public void adicionaCompraALista(int quantidade, Item item, int itemId) {
+		Compra compra = new Compra(quantidade, item);
+		this.compras.put(itemId, compra);
 	}
-
-	public Item pegaItemLista(int itemId) {
-		// Pega a compra que tem o valor assiciado a chave (passada como paramentro).
-		return null;
+	
+	public String getCompra(int itemId) {
+		return compras.get(itemId).toString();
 	}
 
 	public void atualizaCompraDeLista(int itemId, int quantidade, String operacao) {
-		// pegaCompra.get(pegaCompra).atualizaCompra();
+		this.compras.get(itemId).atualizaCompra(operacao, quantidade);
+		if (this.compras.get(itemId).getQuantidade() == 0) {
+			this.compras.remove(itemId);
+		}
 	}
-
+	
 	public void finalizarListaDeCompras(String localDeCompra, int valorFinalDaCompra) {
-
+		this.localDaCompra = localDeCompra;
+		this.valorFinalCompra = valorFinalDaCompra;
+		
 	}
-
+	
 	public void deletaCompraDeLista(int idItem) {
-		// deleta pela chave.
-
+		this.compras.put(idItem, null);
 	}
 
-	public String getDescritor() {
-		return this.descritor;
+	public String getDescricao() {
+		return this.descricao;
 	}
 
-	public String getDataHora() {
-		return this.dataHora + "";
+	public String getData() {
+		return this.data + "";
 	}
 
-	public String getCompra(int itemId) {
-		// retorna o toString da compra que esta associado a chava que foi passada como parametro.
-		return null;
+	public String getItemLista(int posicaoItem) {
+		List<Compra> listaCompras = new ArrayList<>(this.compras.values());
+		Collections.sort(listaCompras, new OrdenacaoDefault());
+		if (listaCompras.get(posicaoItem) == null) {
+			return "";
+		}
+		return listaCompras.get(posicaoItem).toString();
+	}
+	
+	public Item pegaItemLista(int itemId) {
+		return this.compras.get(itemId).getItem();
+	}
+	
+	public Compra pegaCompra(int itemId) {
+		return this.compras.get(itemId);
 	}
 
 	@Override
 	public String toString() {
-		// Data e o descritor.
-		return null;
+		return this.descricao + " - " + this.data;
 	}
 
-	public String getItemLista(int posicaoItem) {
-		// retorna o toString da compra que esta na posicao passada no parametro.
-		return null;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
+		return result;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Lista other = (Lista) obj;
+		if (descricao == null) {
+			if (other.descricao != null)
+				return false;
+		} else if (!descricao.equals(other.descricao))
+			return false;
+		return true;
+	}
+	
+	
+
 }

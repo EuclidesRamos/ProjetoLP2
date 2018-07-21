@@ -30,7 +30,6 @@ public class Compra {
 	 */
 	public Compra(int quantidade, Item item) {
 		this.valida = new Validador();
-		valida.validaCompra(quantidade, item);
 		this.quantidade = quantidade;
 		this.item = item;
 
@@ -48,14 +47,12 @@ public class Compra {
 		case "diminui":
 			this.quantidade -= quantidade;
 			break;
-		case "aumenta":
+		case "adiciona":
 			this.quantidade += quantidade;
 			break;
 		default:
 			throw new IllegalArgumentException("Erro na atualizacao de compra: operacao invalida para atualizacao.");
-
 		}
-
 	}
 
 	/**
@@ -85,5 +82,4 @@ public class Compra {
 	public String toString() {
 		return this.quantidade + " " + this.item.representacaoLista();
 	}
-
 }

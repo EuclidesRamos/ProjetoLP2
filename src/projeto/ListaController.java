@@ -40,9 +40,10 @@ public class ListaController {
 	
 	private Comparator<Lista> estrategiaDeOrdenacao;
 	
-	public ListaController() {
+	public ListaController(ItemController controllerItem) {
 		this.listas = new HashMap<>();
-		this.controllerItem = new ItemController();
+		this.controllerItem = controllerItem;
+		this.validador = new Validador();
 	}
 
 	/**
@@ -53,8 +54,7 @@ public class ListaController {
 	 */
 	public String adicionaListaDeCompras(String descritorLista) {
 		this.validador.validaListaDeCompras(descritorLista);
-		Lista lista = new Lista(descritorLista);
-		this.listas.put(descritorLista, lista);
+		this.listas.put(descritorLista, new Lista(descritorLista));
 		return descritorLista;
 	}
 
@@ -70,7 +70,7 @@ public class ListaController {
 		if (this.listas.containsKey(descritorLista)) {
 			return descritorLista;
 		}
-		return "!!!!!!!!!!!!!";
+		throw new IllegalArgumentException();
 	}
 
 	/**
@@ -84,10 +84,7 @@ public class ListaController {
 	 *            Id do item a ser adiconado na compra.
 	 */
 	public void adicionaCompraALista(String descritorLista, int quantidade, int itemId) {
-		if (itemId < 0 || this.controllerItem.pegaItem(itemId) == null) {
-			throw new IllegalArgumentException("!!!!!!!!!!!!!!");
-		}
-		this.listas.get(descritorLista).adicionaCompraALista(quantidade, this.controllerItem.pegaItem(itemId));
+		this.listas.get(descritorLista).adicionaCompraALista(quantidade, this.controllerItem.pegaItem(itemId), itemId);
 	}
 
 	/**
@@ -101,6 +98,9 @@ public class ListaController {
 	 */
 	public String pesquisaCompraEmLista(String descritorLista, int itemId) {
 		this.validador.validaPesquisaCompraEmLista(descritorLista);
+		if (this.listas.get(descritorLista).pegaCompra(itemId) == null) {
+			throw new IllegalArgumentException("Erro na pesquisa de compra: compra nao encontrada na lista.");
+		}
 		return this.listas.get(descritorLista).getCompra(itemId);
 	}
 
@@ -135,7 +135,7 @@ public class ListaController {
 	 *            Valor final da compra.
 	 */
 	public void finalizarListaDeCompras(String descritorLista, String localDeCompra, int valorFinalDaCompra) {
-		this.listas.get(localDeCompra).finalizarListaDeCompras(localDeCompra, valorFinalDaCompra);
+		this.listas.get(descritorLista).finalizarListaDeCompras(localDeCompra, valorFinalDaCompra);
 	}
 
 	/**
@@ -154,8 +154,8 @@ public class ListaController {
 	 * Metodo responsavel por realizar pesquisa em uma lista, retornando o toString da compra que esta na posicao passada como parametro.
 	 * 
 	 * @param descritor Descritor da lista que sera pesquisada.
-	 * @param posicaoItem 
-	 * @return Retorna a representação em String da lista de compras.
+	 * @param posicaoItem Posicao da compra a ser exibida.
+	 * @return Retorna a representação em String da compra que esta na posicao passada como parametro.
 	 */
 	public String getItemLista(String descritor, int posicaoItem) {
 		return this.listas.get(descritor).getItemLista(posicaoItem);
@@ -165,27 +165,27 @@ public class ListaController {
 	 * Metodo responsavel por pesquisar uma lista de compras pela sua data de criacao.
 	 * 
 	 * @param data Data de criacao a ser pesquisada
-	 * @param posicaoLista 
-	 * @return Retorna uma representacao em String de todas as listas de compras criadas na data inserida.
+	 * @param posicaoLista Posicao da lista a ser exibida.
+	 * @return Retorna uma representacao em String da lista que está na posicao informada e que foi criada na data informada.
 	 */
 	public String getItemListaPorData(String data, int posicaoLista) {
 		List<Lista> feiras = new ArrayList<>();
 		this.estrategiaDeOrdenacao = new OrdenaListaAlfabetica();
 		for (Lista lista : this.listas.values()) {
-			if (lista.getDataHora().contains(data)) {
+			if (lista.getData().contains(data)) {
 				feiras.add(lista);
 			}
 		}
 		Collections.sort(feiras, this.estrategiaDeOrdenacao);
-		return feiras.get(posicaoLista).getDescritor();
+		return feiras.get(posicaoLista).getDescricao();
 	}
 	
 	/**
 	 * Metodo responsavel por pesquisar as listas de compras que contém o item passado como parametro.
 	 * 
 	 * @param itemId Id do item.
-	 * @param posicaoLista 
-	 * @return Retorna uma representacao em String de todas as listas que contem o item inserido.
+	 * @param posicaoLista  Posicao da lista a ser exibida.
+	 * @return Retorna uma representacao em String da compra que esta na posicao em que foi passada como parametro.
 	 */
 	public String getItemListaPorItem(int itemId, int posicaoLista) {
 		List<Lista> feiras = new ArrayList<>();

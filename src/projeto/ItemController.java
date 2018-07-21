@@ -278,7 +278,7 @@ public class ItemController {
 	 * @param id Id do item a ser capturado
 	 * @return Retorna o objeto do tipo Item.
 	 */
-	public Item pegaItem(int id) {
-		return this.itens.get(id);
+	public Item pegaItem(int itemId) {
+		return this.itens.get(itemId);
 	}
 }

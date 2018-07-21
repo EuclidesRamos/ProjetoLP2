@@ -16,12 +16,12 @@ public class Facade {
 	/**
 	 * Atributo responsavel por armazenar o controlador da classe Item.
 	 */
-	private ItemController controllerItem = new ItemController();
+	public ItemController controllerItem = new ItemController();
 	
 	/**
 	 * Atributo responsavel por armazenar o controlador da classe Lista.
 	 */
-	private ListaController controllerLista = new ListaController();
+	private ListaController controllerLista = new ListaController(controllerItem);
 	
 	/**
 	 * Metodo main da Facade, responsavel por realizar os testes do EasyAccept.
@@ -29,7 +29,7 @@ public class Facade {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		args = new String[] {"projeto.Facade", "testesDeAceitacao/use_case1.txt", "testesDeAceitacao/use_case1_exception.txt", "testesDeAceitacao/use_case2.txt", "testesDeAceitacao/use_case2_exception.txt"};
+		args = new String[] {"projeto.Facade", "testesDeAceitacao/use_case1.txt", "testesDeAceitacao/use_case1_exception.txt", "testesDeAceitacao/use_case2.txt", "testesDeAceitacao/use_case2_exception.txt", "testesDeAceitacao/use_case3.txt"};
 		EasyAccept.main(args);
 	}
 	
@@ -197,5 +197,9 @@ public class Facade {
 	
 	public String getItemListaPorItem(int id, int posicaoLista) {
 		return this.controllerLista.getItemListaPorItem(id, posicaoLista);
+	}
+	
+	public ItemController getItemController() {
+		return this.controllerItem;
 	}
 }
