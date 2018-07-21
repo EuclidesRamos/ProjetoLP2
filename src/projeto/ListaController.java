@@ -48,25 +48,29 @@ public class ListaController {
 	/**
 	 * Metodo responsavel por adicionar novas listas de compras no Sistema.
 	 * 
-	 * @param descritor
+	 * @param descritorLista
 	 *            Descritor da lista de compras (ex. "feira 19/07").
 	 */
-	public void adicionaListaDeCompras(String descritor) {
-		this.validador.validaListaDeCompras(descritor);
-		Lista lista = new Lista(descritor);
-		this.listas.put(descritor, lista);
+	public String adicionaListaDeCompras(String descritorLista) {
+		this.validador.validaListaDeCompras(descritorLista);
+		Lista lista = new Lista(descritorLista);
+		this.listas.put(descritorLista, lista);
+		return descritorLista;
 	}
 
 	/**
 	 * Metodo responsavel por pesquisar uma lista de compras no Sistema. A pesquisa
 	 * e realizada atraves do descritor da lista de compras.
 	 * 
-	 * @param descritor
+	 * @param descritorLista
 	 *            Descritor da lista de compras a ser pesquisada.
 	 * @return Retorna uma representacao em String da lista de compras.
 	 */
-	public String pesquisaListaDeCompras(String descritor) {
-		return this.listas.get(descritor).toString();
+	public String pesquisaListaDeCompras(String descritorLista) {
+		if (this.listas.containsKey(descritorLista)) {
+			return descritorLista;
+		}
+		return "!!!!!!!!!!!!!";
 	}
 
 	/**
@@ -76,14 +80,14 @@ public class ListaController {
 	 *            Descritor da lista em que a compra sera adicionada.
 	 * @param quantidade
 	 *            Quantidade do item a ser comprado.
-	 * @param idItem
+	 * @param itemId
 	 *            Id do item a ser adiconado na compra.
 	 */
-	public void adicionaCompraALista(String descritorLista, int quantidade, int idItem) {
-		if (idItem < 0 || this.controllerItem.pegaItem(idItem) == null) {
-			throw new IllegalArgumentException("");
+	public void adicionaCompraALista(String descritorLista, int quantidade, int itemId) {
+		if (itemId < 0 || this.controllerItem.pegaItem(itemId) == null) {
+			throw new IllegalArgumentException("!!!!!!!!!!!!!!");
 		}
-		this.listas.get(descritorLista).adicionaCompraALista(quantidade, this.controllerItem.pegaItem(idItem));
+		this.listas.get(descritorLista).adicionaCompraALista(quantidade, this.controllerItem.pegaItem(itemId));
 	}
 
 	/**
@@ -91,13 +95,13 @@ public class ListaController {
 	 * 
 	 * @param descritorLista
 	 *            Descritor da lista em que sera realizada a pesquisa da compra.
-	 * @param idItem
+	 * @param itemId
 	 *            Id do item da compra.
 	 * @return Retorna uma representacao da compra que foi pesquisada.
 	 */
-	public String pesquisaCompraEmLista(String descritorLista, int idItem) {
+	public String pesquisaCompraEmLista(String descritorLista, int itemId) {
 		this.validador.validaPesquisaCompraEmLista(descritorLista);
-		return this.listas.get(descritorLista).pegaItemLista(this.controllerItem.pegaItem(idItem));
+		return this.listas.get(descritorLista).getCompra(itemId);
 	}
 
 	/**
@@ -105,7 +109,7 @@ public class ListaController {
 	 * 
 	 * @param descritorLista
 	 *            Descritor da lista em que a compra esta localizada.
-	 * @param idItem
+	 * @param itemId
 	 *            Id do item da compra.
 	 * @param operacao
 	 *            Operacao de atualizacao ("aumenta" ou "diminui" quantidade).
@@ -113,9 +117,9 @@ public class ListaController {
 	 *            Novo valor de quantidade a ser icrementado/decrementado na
 	 *            quantidade da compra.
 	 */
-	public void atualizaCompraDeLista(String descritorLista, int idItem, String operacao, int quantidade) {
+	public void atualizaCompraDeLista(String descritorLista, int itemId, String operacao, int quantidade) {
 		this.validador.validaAtualizaCompraDeLista(descritorLista);
-		this.listas.get(descritorLista).atualizaCompraDeLista(this.controllerItem.pegaItem(idItem), quantidade,
+		this.listas.get(descritorLista).atualizaCompraDeLista(itemId, quantidade,
 				operacao);
 	}
 
@@ -138,31 +142,34 @@ public class ListaController {
 	 * Metodo responsavel por deletar uma compra em uma lista.
 	 * 
 	 * @param descritorLista
-	 *            Descritor da lista em que serÃ¡ deletado compra dela.
+	 *            Descritor da lista em que sera deletado compra dela.
 	 * @param idItem
 	 *            Id do item da compra.
 	 */
 	public void deletaCompraDeLista(String descritorLista, int idItem) {
-		this.listas.get(descritorLista).deletaCompraDeLista(this.controllerItem.pegaItem(idItem));
+		this.listas.get(descritorLista).deletaCompraDeLista(idItem);
 	}
 
 	/**
-	 * Método responsável por pesquisar uma lista de compras pelo descritor.
-	 * @param descritor
-	 * @return A representação em String da lista de compras.
+	 * Metodo responsavel por realizar pesquisa em uma lista, retornando o toString da compra que esta na posicao passada como parametro.
+	 * 
+	 * @param descritor Descritor da lista que sera pesquisada.
+	 * @param posicaoItem 
+	 * @return Retorna a representação em String da lista de compras.
 	 */
-	public String getItemLista(String descritor) {
-		return this.listas.get(descritor).toString();
+	public String getItemLista(String descritor, int posicaoItem) {
+		return this.listas.get(descritor).getItemLista(posicaoItem);
 	}
 	
 	/**
-	 * Método responsável por pesquisar uma lista de compras pela sua data de criação.
-	 * @param data
-	 * @return Uma representação em String de todas as listas de compras criadas na Data inserida.
+	 * Metodo responsavel por pesquisar uma lista de compras pela sua data de criacao.
+	 * 
+	 * @param data Data de criacao a ser pesquisada
+	 * @param posicaoLista 
+	 * @return Retorna uma representacao em String de todas as listas de compras criadas na data inserida.
 	 */
-	public String getItemListaPorData(String data) {
+	public String getItemListaPorData(String data, int posicaoLista) {
 		List<Lista> feiras = new ArrayList<>();
-		String str = "";
 		this.estrategiaDeOrdenacao = new OrdenaListaAlfabetica();
 		for (Lista lista : this.listas.values()) {
 			if (lista.getDataHora().contains(data)) {
@@ -170,31 +177,26 @@ public class ListaController {
 			}
 		}
 		Collections.sort(feiras, this.estrategiaDeOrdenacao);
-		for (Lista lista : feiras) {
-			str += lista.getDescritor() + System.lineSeparator();
-		}
-		return str;
+		return feiras.get(posicaoLista).getDescritor();
 	}
 	
 	/**
-	 * Método responsável por pesquisar as listas de compras que contém o item a ser inserido.
-	 * @param id do item.
-	 * @return Uma representação em String de todas as listas que contem o item inserido.
+	 * Metodo responsavel por pesquisar as listas de compras que contém o item passado como parametro.
+	 * 
+	 * @param itemId Id do item.
+	 * @param posicaoLista 
+	 * @return Retorna uma representacao em String de todas as listas que contem o item inserido.
 	 */
-	public String getItemListaPorItem(int id) {
-		List<Lista> feiras2 = new ArrayList<>();
-		String str = "";
+	public String getItemListaPorItem(int itemId, int posicaoLista) {
+		List<Lista> feiras = new ArrayList<>();
 		this.estrategiaDeOrdenacao = new OrdenaListaData();
 		for (Lista lista : this.listas.values()) {
-			Item found = lista.pegaItemLista(id);
-			if (found.getId() == id) {
-				feiras2.add(lista);
+			Item item = lista.pegaItemLista(itemId);
+			if (item != null) {
+				feiras.add(lista);
+			}
 		}
+		Collections.sort(feiras, this.estrategiaDeOrdenacao);
+		return feiras.get(posicaoLista).toString();
 	}
-		Collections.sort(feiras2, this.estrategiaDeOrdenacao);
-		for (Lista lista : feiras2) {
-			str += lista.getDataHora() + " - " + lista.getDescritor() + System.lineSeparator();
-		}
-		return str;
-	}	
 }

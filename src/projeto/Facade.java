@@ -16,7 +16,12 @@ public class Facade {
 	/**
 	 * Atributo responsavel por armazenar o controlador da classe Item.
 	 */
-	private ItemController controller = new ItemController();
+	private ItemController controllerItem = new ItemController();
+	
+	/**
+	 * Atributo responsavel por armazenar o controlador da classe Lista.
+	 */
+	private ListaController controllerLista = new ListaController();
 	
 	/**
 	 * Metodo main da Facade, responsavel por realizar os testes do EasyAccept.
@@ -40,7 +45,7 @@ public class Facade {
 	 * @return Retorna o id (gerado automaticamente) do item.
 	 */
 	public int adicionaItemPorQtd(String nome, String categoria, int quantidade, String unidadeDeMedida, String localDeCompra, double preco) {
-		return this.controller.adicionaItemPorQtd(nome, categoria, quantidade, unidadeDeMedida, localDeCompra, preco);
+		return this.controllerItem.adicionaItemPorQtd(nome, categoria, quantidade, unidadeDeMedida, localDeCompra, preco);
 	}
 	
 	/**
@@ -54,7 +59,7 @@ public class Facade {
 	 * @return Retorna o id (gerado automaticamente) do item.
 	 */
 	public int adicionaItemPorQuilo(String nome, String categoria, double kg, String localDeCompra, double preco) {
-		return this.controller.adicionaItemPorQuilo(nome, categoria, kg, localDeCompra, preco);
+		return this.controllerItem.adicionaItemPorQuilo(nome, categoria, kg, localDeCompra, preco);
 	}
 	
 	/**
@@ -68,7 +73,7 @@ public class Facade {
 	 * @return Retorna o id (gerado automaticamente) do item.
 	 */
 	public int adicionaItemPorUnidade(String nome, String categoria, int unidade, String localDeCompra, double preco) {
-		return this.controller.adicionaItemPorUnidade(nome, categoria, unidade, localDeCompra, preco);
+		return this.controllerItem.adicionaItemPorUnidade(nome, categoria, unidade, localDeCompra, preco);
 	}
 	
 	/**
@@ -78,7 +83,7 @@ public class Facade {
 	 * @return Retorna o toString() do item.
 	 */
 	public String exibeItem(int id) {
-		return this.controller.exibeItem(id);
+		return this.controllerItem.exibeItem(id);
 	}
 	
 	/**
@@ -89,7 +94,7 @@ public class Facade {
 	 * @param novoValor Novo valor para o atributo informado.
 	 */
 	public void atualizaItem(int id, String atributo, String novoValor) {
-		this.controller.atualizaItem(id, atributo, novoValor);
+		this.controllerItem.atualizaItem(id, atributo, novoValor);
 	}
 	
 	/**
@@ -100,7 +105,7 @@ public class Facade {
 	 * @param preco Preco do item.
 	 */
 	public void adicionaPrecoItem(int id, String localDeCompra, double preco) {
-		this.controller.adicionaPrecoItem(id, localDeCompra, preco);
+		this.controllerItem.adicionaPrecoItem(id, localDeCompra, preco);
 	}
 	
 	/**
@@ -109,7 +114,7 @@ public class Facade {
 	 * @param id Id do item a ser deletado.
 	 */
 	public void deletaItem(int id) {
-		this.controller.deletaItem(id);
+		this.controllerItem.deletaItem(id);
 	}
 	
 	/**
@@ -119,7 +124,7 @@ public class Facade {
 	 * @return Retorna o toString() do item.
 	 */
 	public String getItem(int posicao) {
-		return this.controller.getItem(posicao);
+		return this.controllerItem.getItem(posicao);
 	}
 	
 	/**
@@ -130,7 +135,7 @@ public class Facade {
 	 * @return Retorna o toString() do item.
 	 */
 	public String getItemPorCategoria(String categoria, int posicao) {
-		return this.controller.getItemPorCategoria(categoria, posicao);
+		return this.controllerItem.getItemPorCategoria(categoria, posicao);
 	}
 	
 	/**
@@ -140,7 +145,7 @@ public class Facade {
 	 * @return Retorna o toString() do item.
 	 */
 	public String getItemPorMenorPreco(int posicao) {
-		return this.controller.getItemPorMenorPreco(posicao);
+		return this.controllerItem.getItemPorMenorPreco(posicao);
 	}
 	
 	/**
@@ -151,6 +156,46 @@ public class Facade {
 	 * @return Retorna o toString() do item.
 	 */
 	public String getItemPorPesquisa(String strPesquisa, int posicao) {
-		return this.controller.getItemPorPesquisa(strPesquisa, posicao);
+		return this.controllerItem.getItemPorPesquisa(strPesquisa, posicao);
+	}
+	
+	public String adicionaListaDeCompras(String descritorLista) {
+		return this.controllerLista.adicionaListaDeCompras(descritorLista);
+	}
+	
+	public String pesquisaListaDeCompras(String descritorLista) {
+		return this.controllerLista.pesquisaListaDeCompras(descritorLista);
+	}
+	
+	public void adicionaCompraALista(String descritorLista, int quantidade, int itemId) {
+		this.controllerLista.adicionaCompraALista(descritorLista, quantidade, itemId);
+	}
+	
+	public String pesquisaCompraEmLista(String descritorLista, int itemId) {
+		return this.controllerLista.pesquisaCompraEmLista(descritorLista, itemId);
+	}
+	
+	public void atualizaCompraDeLista(String descritorLista, int itemId, String operacao, int quantidade) {
+		this.controllerLista.atualizaCompraDeLista(descritorLista, itemId, operacao, quantidade);
+	}
+	
+	public void finalizarListaDeCompras(String descritorLista, String localDeCompra, int valorFinalDaCompra) {
+		this.controllerLista.finalizarListaDeCompras(descritorLista, localDeCompra, valorFinalDaCompra);
+	}
+	
+	public String getItemLista(String descritorLista, int posicaoItem) {
+		return this.controllerLista.getItemLista(descritorLista, posicaoItem);
+	}
+	
+	public void deletaCompraDeLista(String descritorLista, int itemId) {
+		this.controllerLista.deletaCompraDeLista(descritorLista, itemId);
+	}
+	
+	public String getItemListaPorData(String dataAtual, int posicaoLista) {
+		return this.controllerLista.getItemListaPorData(dataAtual, posicaoLista);
+	}
+	
+	public String getItemListaPorItem(int id, int posicaoLista) {
+		return this.controllerLista.getItemListaPorItem(id, posicaoLista);
 	}
 }

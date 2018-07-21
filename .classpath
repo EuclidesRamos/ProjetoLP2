@@ -8,6 +8,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="testesDeUnidade"/>
-	<classpathentry kind="lib" path="/home/eduardo/Downloads/easyaccept.jar"/>
+	<classpathentry kind="lib" path="C:/Users/eraff/Downloads/easyaccept.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

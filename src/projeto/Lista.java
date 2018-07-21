@@ -1,20 +1,20 @@
 package projeto;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Lista {
 
 	private String descritor;
-	private Set<Compra> compras;
+	private List<Compra> compras;
 	private LocalDateTime dataHora;
 	private String LocalDeCompra;
 	private int valorFinalDaCompra;
 
 	public Lista(String descritor) {
 		this.descritor = descritor;
-		this.compras = new HashSet<>();
+		this.compras = new ArrayList<>();
 		this.dataHora = LocalDateTime.now();
 	}
 
@@ -29,11 +29,12 @@ public class Lista {
 		compras.add(new Compra(quantidade, item));
 	}
 
-	public String pegaItemLista(int id) {
+	public Item pegaItemLista(int itemId) {
+		// Pega a compra que tem o valor assiciado a chave (passada como paramentro).
 		return null;
 	}
 
-	public void atualizaCompraDeLista(Item pegaItem, int quantidade, String operacao) {
+	public void atualizaCompraDeLista(int itemId, int quantidade, String operacao) {
 		// pegaCompra.get(pegaCompra).atualizaCompra();
 	}
 
@@ -41,8 +42,22 @@ public class Lista {
 
 	}
 
-	public void deletaCompraDeLista(Item pegaItem) {
+	public void deletaCompraDeLista(int idItem) {
+		// deleta pela chave.
 
+	}
+
+	public String getDescritor() {
+		return this.descritor;
+	}
+
+	public String getDataHora() {
+		return this.dataHora + "";
+	}
+
+	public String getCompra(int itemId) {
+		// retorna o toString da compra que esta associado a chava que foi passada como parametro.
+		return null;
 	}
 
 	@Override
@@ -51,12 +66,8 @@ public class Lista {
 		return null;
 	}
 
-	public String getDescritor() {
-		return descritor;
-	}
-
-	public String getDataHora() {
+	public String getItemLista(int posicaoItem) {
+		// retorna o toString da compra que esta na posicao passada no parametro.
 		return null;
 	}
-
 }
