@@ -1,69 +1,80 @@
 package projeto;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
 
 public class Lista {
+	private HashMap<Integer, Compra> compras;
+	private LocalDateTime data;
+	private String descricao;
+	private String localDaCompra;
+	private double valorFinalCompra;
 
-	private String descritor;
-	private Set<Compra> compras;
-	private LocalDateTime dataHora;
-	private String LocalDeCompra;
-	private int valorFinalDaCompra;
-	private String estado;
-	private boolean ocorreu;
-
-	public Lista(String descritor) {
-		this.descritor = descritor;
-		this.compras = new HashSet<>();
-		this.dataHora = LocalDateTime.now();
+	public Lista(String descricao) {
+		setDescricao(descricao);
+		this.data = LocalDateTime.now();
 	}
 
-	// private Compra procuraCompra(Item pegaItem) {
-	// for (int i = 0; i < compras.length; i++) {
-	//
-	// }
-	// return null;
-	// }
-
-	public void adicionaCompraALista(int quantidade, Item item) {
-		compras.add(new Compra(quantidade, item));
+	public String getLocaDaCompra() {
+		return localDaCompra;
 	}
 
-	public String pegaItemLista(int id) {
-		return null;
+	public void setLocaDaCompra(String localDaCompra) {
+		if (localDaCompra.trim().isEmpty() || localDaCompra == null) {
+			throw new IllegalArgumentException("local nao pode ser vazio ou nulo.");
+		}
+		this.localDaCompra = localDaCompra;
 	}
 
-	public void atualizaCompraDeLista(Item pegaItem, int quantidade, String operacao) {
-		// pegaCompra.get(pegaCompra).atualizaCompra();
+	public double getValorFinalCompra() {
+		return valorFinalCompra;
 	}
 
-	public void finalizarListaDeCompras(String localDeCompra, int valorFinalDaCompra) {
-		if (this.estado.startsWith("Finalizado"))
-			throw new UnsupportedOperationException("Mensagem de erro a ser dada.");
-		this.ocorreu = ocorreu;
-		if (ocorreu)
-			this.estado = "Finalizado (ocorreu)";
-		else
-			this.estado = "Finalizado (n ocorreu)";
+	public void setValorFinalCompra(double valorFinalCompra) {
+		if (valorFinalCompra <= 0) {
+			throw new IllegalArgumentException("valor final da lista invalido.");
+		}
+		this.valorFinalCompra = valorFinalCompra;
 	}
 
-	public void deletaCompraDeLista(Item pegaItem) {
+	public HashMap<Integer, Compra> getcompras() {
+		return compras;
+	}
 
+	public LocalDateTime getData() {
+		return data;
+	}
+
+	private void setDescricao(String novaDescricao) {
+		if (novaDescricao.trim().isEmpty() || novaDescricao == null) {
+			throw new IllegalArgumentException("descritor nao pode ser vazio ou nulo.");
+		}
+		this.descricao = novaDescricao;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void adicionarCompra(int quantidade, Item item) {
+		Compra compra = new Compra(quantidade, item);
+		this.compras.put(item.getId(), compra);
+	}
+
+	public String pesquisaCompra(int idNumerico) {
+		Compra compra = this.compras.get(idNumerico);
+		if (compra == null) {
+			throw new NullPointerException("compra nao encontrada na lista.");
+		}
+		return compra.toString();
+	}
+
+	public String retornaCompra(int posicaoItem) {
+		return compras.get(posicaoItem).toString();
 	}
 
 	@Override
 	public String toString() {
-		return this.descritor + dataHora;
+		return descricao + data;
 	}
-
-	public String getDescritor() {
-		return descritor;
-	}
-
-	public LocalDateTime getDataHora() {
-		return dataHora;
-	}
-
 }
