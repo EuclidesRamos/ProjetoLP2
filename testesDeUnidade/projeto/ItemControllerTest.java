@@ -19,7 +19,12 @@ public class ItemControllerTest {
 	
 	@Test
 	public void testAdicionaItemPorQtd() {
-		assertEquals(4, this.controller.adicionaItemPorQtd("Agua Sanitaria Drogon", "limpeza", 1, "l", "Supermercado Excepcional", 2.19));
+		assertEquals(4, this.controller.adicionaItemPorQtd("Agua Sanitaria", "limpeza", 1, "l", "Supermercado Excepcional", 2.19));
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testAdicionaItemPorQtdJaCadastrado() {
+		this.controller.adicionaItemPorQtd("Agua Sanitaria Drogon", "limpeza", 1, "l", "Supermercado Excepcional", 2.19);
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
@@ -79,6 +84,11 @@ public class ItemControllerTest {
 	
 	@Test
 	public void testAdicionaItemPorQuilo() {
+		assertEquals(4, this.controller.adicionaItemPorQuilo("Peito de peru Sabia", "alimento industrializado", 1.0, "Supermercado Bem Barato", 34.49));
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testAdicionaItemPorQuiloJaAdicionado() {
 		assertEquals(4, this.controller.adicionaItemPorQuilo("Peito de peru Saara", "alimento industrializado", 1.0, "Supermercado Bem Barato", 34.49));
 	}
 	
@@ -129,6 +139,11 @@ public class ItemControllerTest {
 	
 	@Test
 	public void testAdicionaItemPorUnidade() {
+		assertEquals(4, this.controller.adicionaItemPorUnidade("Creme dental Colbate", "higiene pessoal", 3, "Mercadinho Bem Barato", 3.79));
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testAdicionaItemPorUnidadeJaCadastrado() {
 		assertEquals(4, this.controller.adicionaItemPorUnidade("Creme dental Oral-C", "higiene pessoal", 3, "Mercadinho Bem Barato", 3.79));
 	}
 	
@@ -278,6 +293,13 @@ public class ItemControllerTest {
 	@Test
 	public void testGetItemPorPesquisa() {
 		assertEquals("1. Agua Sanitaria Drogon, limpeza, 1 l, Preco: <Supermercado Excepcional, R$ 2,19;>", this.controller.getItemPorPesquisa("agua", 0));
+	}
+	
+	
+	@Test
+	public void testPegaItem() {
+		Item item = new ItemQuantidadeFixa(1, "Agua Sanitaria Drogon", "limpeza", 1, "l", "Supermercado Excepcional", 2.19);
+		assertEquals(item, this.controller.pegaItem(1));
 	}
 
 }
