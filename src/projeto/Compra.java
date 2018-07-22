@@ -2,25 +2,22 @@ package projeto;
 
 /**
  * 
- * Classe responsável por representar uma Compra no sistema.
+ * Classe responsavel por representar uma Compra no sistema.
  * 
  * @author Eduardo Pereira - 117210342
  *
  */
 public class Compra {
+	
 	/**
 	 * Quantidade de itens
 	 */
 	private int quantidade;
+	
 	/**
 	 * Item adicionado a compra
 	 */
 	private Item item;
-
-	/**
-	 * Validador de entradas
-	 */
-	private Validador valida;
 
 	/**
 	 * Constroi uma compra a partir do item e a quantidade de itens.
@@ -29,10 +26,8 @@ public class Compra {
 	 * @param item       Item
 	 */
 	public Compra(int quantidade, Item item) {
-		this.valida = new Validador();
 		this.quantidade = quantidade;
 		this.item = item;
-
 	}
 
 	/**
@@ -42,7 +37,6 @@ public class Compra {
 	 * @param quantidade Quantidade a ser aumentada ou diminuida
 	 */
 	public void atualizaCompra(String operacao, int quantidade) {
-
 		switch (operacao) {
 		case "diminui":
 			this.quantidade -= quantidade;
@@ -59,7 +53,7 @@ public class Compra {
 	 * @return o Item
 	 */
 	public Item getItem() {
-		return item;
+		return this.item;
 	}
 
 	/**
@@ -68,7 +62,7 @@ public class Compra {
 	 * @return a quantidade de itens
 	 */
 	public int getQuantidade() {
-		return quantidade;
+		return this.quantidade;
 	}
 
 	/**

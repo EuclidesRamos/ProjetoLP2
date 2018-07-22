@@ -16,7 +16,6 @@ public class OrdenaAlfabetica implements Comparator<Item> {
 	/**
 	 * Compara o nome de dois itens distintos.
 	 * 
-	 * @return um inteiro
 	 */
 	@Override
 	public int compare(Item item1, Item item2) {
