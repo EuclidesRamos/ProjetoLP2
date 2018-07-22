@@ -16,7 +16,6 @@ public class OrdenaPreco implements Comparator<Item> {
 	/**
 	 * Compara o preco de dois itens distintos.
 	 * 
-	 * @return um inteiro
 	 */
 	@Override
 	public int compare(Item item1, Item item2) {

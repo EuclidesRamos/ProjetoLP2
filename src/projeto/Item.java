@@ -36,11 +36,29 @@ public abstract class Item {
 	private String categoria;
 
 	private int precedencia;
+	
 	/**
 	 * Validador de entradas.
 	 */
 	protected Validador validador;
 
+	/**
+	 * Metodo que calcula a precedencia da categoria do item.
+	 * 
+	 * @param categoria Categoria a ser verificada.
+	 */
+	private void precedencia(String categoria) {
+		if (categoria.equals("higiene pessoal")) {
+			this.precedencia = 1;
+		} else if (categoria.equals("limpeza")) {
+			this.precedencia = 2;
+		} else if (categoria.equals("alimento industrializado")) {
+			this.precedencia = 3;
+		} else if (categoria.equals("alimento nao industrializado")) {
+			this.precedencia = 4;
+		}
+	}
+	
 	/**
 	 *
 	 * Constroi um item a partir do seu id, nome, categoria, local de compra e
@@ -61,18 +79,6 @@ public abstract class Item {
 		this.nome = nome;
 		this.categoria = categoria;
 		precedencia(categoria);
-	}
-	
-	private void precedencia(String categoria) {
-		if (categoria.equals("higiene pessoal")) {
-			this.precedencia = 1;
-		} else if (categoria.equals("limpeza")) {
-			this.precedencia = 2;
-		} else if (categoria.equals("alimento industrializado")) {
-			this.precedencia = 3;
-		} else if (categoria.equals("alimento nao industrializado")) {
-			this.precedencia = 4;
-		}
 	}
 
 	/**
@@ -233,9 +239,12 @@ public abstract class Item {
 		return this.nome + ", " + categoria;
 	}
 
+	/**
+	 * Retorna a precedencia da categoria do item.
+	 * 
+	 * @return Retorna um inteiro informando a precedencia da categoria.
+	 */
 	public int getPrecedencia() {
 		return this.precedencia;
 	}
-	
-	
 }
