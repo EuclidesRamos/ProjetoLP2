@@ -25,15 +25,40 @@ public class Lista {
 		this.ordenacaoCompras = new OrdenacaoDefault();
 	}
 
+	/**
+	 * Metodo que adiciona uma compra a uma lista.
+	 * 
+	 * @param itemId
+	 *            Id do item.
+	 * @param quantidade
+	 *            Quantidade a ser passada.
+	 * @param operacao
+	 *            Operacao.
+	 */
 	public void adicionaCompraALista(int quantidade, Item item, int itemId) {
 		Compra compra = new Compra(quantidade, item);
 		this.compras.put(itemId, compra);
 	}
-	
+
+	/**
+	 * Metodo que ira armazenar as compras.
+	 * 
+	 * @return compras.
+	 */
 	public String getCompra(int itemId) {
 		return compras.get(itemId).toString();
 	}
 
+	/**
+	 * Metodo que atualiza uma compra a uma lista.
+	 * 
+	 * @param itemId
+	 *            Id do item.
+	 * @param quantidade
+	 *            Quantidade a ser passada.
+	 * @param operacao
+	 *            Operacao.
+	 */
 	public void atualizaCompraDeLista(int itemId, int quantidade, String operacao) {
 		if (!this.compras.containsKey(itemId)) {
 			throw new IllegalArgumentException("Erro na atualizacao de compra: compra nao encontrada na lista.");
@@ -43,25 +68,57 @@ public class Lista {
 			this.compras.remove(itemId);
 		}
 	}
-	
+
+	/**
+	 * Metodo que finaliza a lista.
+	 * 
+	 * @param localDeCompra
+	 *            Local de compra.
+	 * @param valorFinalDaCompra
+	 *            Valor Final.
+	 */
 	public void finalizarListaDeCompras(String localDeCompra, int valorFinalDaCompra) {
 		this.localDaCompra = localDeCompra;
 		this.valorFinalCompra = valorFinalDaCompra;
-		
+
 	}
-	
+
+	/**
+	 * Metodo onde deleta uma compra.
+	 * 
+	 * @param idItem
+	 *            do item da compra.
+	 */
 	public void deletaCompraDeLista(int idItem) {
 		this.compras.put(idItem, null);
 	}
 
+	/**
+	 * Metodo que captura uma descricao.
+	 * 
+	 * @return uma descricao.
+	 */
 	public String getDescricao() {
 		return this.descricao;
 	}
+
+	/**
+	 * Metodo que recupera a data e hora.
+	 * 
+	 * @return data atual.
+	 */
 
 	public String getData() {
 		return this.data;
 	}
 
+	/**
+	 * Metodo que captura um item da lista.
+	 * 
+	 * @param posicaoItem
+	 * 
+	 * @return a lista com a posicao do item.
+	 */
 	public String getItemLista(int posicaoItem) {
 		List<Compra> listaCompras = new ArrayList<>(this.compras.values());
 		Collections.sort(listaCompras, ordenacaoCompras);
@@ -70,18 +127,35 @@ public class Lista {
 		}
 		return listaCompras.get(posicaoItem).toString();
 	}
-	
+
+	/**
+	 * Verifica se a lista ja possue um item.
+	 * 
+	 * @param itemId
+	 *            do item da compra.
+	 * @return um boolean.
+	 */
 	public boolean verificaItemLista(int itemId) {
 		if (this.compras.get(itemId) != null) {
 			return true;
 		}
 		return false;
 	}
-	
+
+	/**
+	 * Metodo que pesquisa em uma compra
+	 * 
+	 * @param idItem
+	 *            id do item.
+	 * @return a compra pesquisada.
+	 */
 	public Compra pegaCompra(int itemId) {
 		return this.compras.get(itemId);
 	}
 
+	/**
+	 * Sobrescita do metodo toString.
+	 */
 	@Override
 	public String toString() {
 		return this.data + " - " + this.descricao;
@@ -111,7 +185,5 @@ public class Lista {
 			return false;
 		return true;
 	}
-	
-	
 
 }
