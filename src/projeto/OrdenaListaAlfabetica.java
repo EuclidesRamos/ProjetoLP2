@@ -17,5 +17,5 @@ public class OrdenaListaAlfabetica implements Comparator<Lista> {
 	 * Metodo que compara dois objetos do tipo Lista lexicograficamente.
 	 */
 	public int compare(Lista o1, Lista o2) {
-		return o1.getDescricao().compareTo(o2.getDescricao());
+		return o1.getDescricao().toLowerCase().compareTo(o2.getDescricao().toLowerCase());
 }}

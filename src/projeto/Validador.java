@@ -201,21 +201,52 @@ public class Validador {
 			throw new IllegalArgumentException("Quantidade nao pode ser menor ou igual a zero.");
 
 		}
-		if (item == null) {
-			throw new NullPointerException("Item nao pode ser nulo.");
+		this.validaObjeto(item, "");
+	}
+
+	public void validaListaDeCompras(String descritor, String mensagem) {
+		parametroInvalido(descritor, mensagem + "descritor nao pode ser vazio ou nulo.");
+	}
+
+	public void validaAtualizaCompraDeLista(String operacao) {
+		String mensagem = "Erro na atualizacao de compra: ";
+		verificaOperacaoDeAtualizacao(operacao, mensagem + "operacao invalida para atualizacao.");
+		
+	}
+
+	private void verificaOperacaoDeAtualizacao(String operacao, String mensagem) {
+		if ("adiciona".equals(operacao) || "diminui".equals(operacao)) {
+			
+		} else {
+			throw new IllegalArgumentException(mensagem);
 		}
 	}
 
-	public void validaPesquisaCompraEmLista(String descritorLista) {
-
+	public void validaFinalizarListaDeCompras(String descritorLista, String localDeCompra, int valorFinalDaCompra) {
+		String mensagem = "Erro na finalizacao de lista de compras: ";
+		parametroInvalido(descritorLista, mensagem + "descritor nao pode ser vazio ou nulo.");
+		parametroInvalido(localDeCompra, mensagem + "local nao pode ser vazio ou nulo.");
+		parametroInteiroInvalido(valorFinalDaCompra - 1, mensagem + "valor final da lista invalido.");
+		
 	}
 
-	public void validaAtualizaCompraDeLista(String descritorLista) {
-
+	public void validaObjeto(Object objeto, String mensagem) {
+		if (objeto == null) {
+			throw new NullPointerException(mensagem);
+		}
 	}
 
-	public void validaListaDeCompras(String descritor) {
-		String mensagem = "Erro na criacao de lista de compras: ";
-		parametroInvalido(descritor, mensagem + "descritor nao pode ser vazio ou nulo.");
+	public void validaData(String data) {
+		String formatoData = "^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\/|-|\\.)(?:0?[1,3-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$";
+		String mensagem = "Erro na pesquisa de compra: ";
+		if (data == null) {
+			throw new NullPointerException(mensagem + "data nao pode ser vazia ou nula.");
+		} else if ("".equals(data.trim())) {
+			throw new IllegalArgumentException(mensagem + "data nao pode ser vazia ou nula.");
+		}
+		if (!data.matches(formatoData)) {
+			throw new IllegalArgumentException(mensagem + "data em formato invalido, tente dd/MM/yyyy");
+		}
+		
 	}
 }

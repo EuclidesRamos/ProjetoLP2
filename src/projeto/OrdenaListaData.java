@@ -16,11 +16,11 @@ public class OrdenaListaData implements Comparator<Lista> {
 	/**
 	 * Metodo que compara os itens do tipo Lista pela data da compra. Se forem comprados na mesma data, compara lexicograficamente.
 	 */
-	public int compare(Lista o1, Lista o2) {
-		if (o1.getData() == o2.getData()) {
-			return o1.getDescricao().compareTo(o2.getDescricao());
+	public int compare(Lista lista1, Lista lista2) {
+		if (lista1.getData().equals(lista2.getData())) {
+			return lista1.getDescricao().toLowerCase().compareTo(lista2.getDescricao().toLowerCase());
 		}
-		return o1.getData().compareTo(o2.getData());
+		return lista1.getData().compareTo(lista2.getData());
 	}
 
 }

@@ -50,8 +50,6 @@ public class Compra {
 		case "adiciona":
 			this.quantidade += quantidade;
 			break;
-		default:
-			throw new IllegalArgumentException("Erro na atualizacao de compra: operacao invalida para atualizacao.");
 		}
 	}
 

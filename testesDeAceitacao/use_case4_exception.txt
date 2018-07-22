@@ -15,7 +15,7 @@ adicionaCompraALista descritorLista="Hiper shopping" quantidade=1 itemId=16
 
 #Descricao: Extra
 adicionaCompraALista descritorLista="Extra" quantidade=3 itemId=15
-adicionaCompraALista descritorLista="Extra" quantidade=1.5 itemId=20
+adicionaCompraALista descritorLista="Extra" quantidade=1 itemId=20
 adicionaCompraALista descritorLista="Extra" quantidade=2 itemId=21
 
 ## Finalizar Lista ##

@@ -6,6 +6,11 @@ public class OrdenacaoDefault implements Comparator<Compra> {
 
 	@Override
 	public int compare(Compra compra1, Compra compra2) {
+		if (compra1 == null) {
+			return 1;
+		} else if (compra2 == null) {
+			return -1;
+		}
 		if (compra1.getItem().getPrecedencia() == compra2.getItem().getPrecedencia()) {
 			return compra1.getItem().getNome().compareTo(compra2.getItem().getNome());
 		}

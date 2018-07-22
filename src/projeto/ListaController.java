@@ -53,7 +53,7 @@ public class ListaController {
 	 *            Descritor da lista de compras (ex. "feira 19/07").
 	 */
 	public String adicionaListaDeCompras(String descritorLista) {
-		this.validador.validaListaDeCompras(descritorLista);
+		this.validador.validaListaDeCompras(descritorLista, "Erro na criacao de lista de compras: ");
 		this.listas.put(descritorLista, new Lista(descritorLista));
 		return descritorLista;
 	}
@@ -67,10 +67,12 @@ public class ListaController {
 	 * @return Retorna uma representacao em String da lista de compras.
 	 */
 	public String pesquisaListaDeCompras(String descritorLista) {
-		if (this.listas.containsKey(descritorLista)) {
-			return descritorLista;
+		this.validador.validaListaDeCompras(descritorLista, "Erro na pesquisa de compra: ");
+		if (!this.listas.containsKey(descritorLista)) {
+			throw new IllegalArgumentException("Erro na pesquisa de compra: lista de compras nao existe.");
 		}
-		throw new IllegalArgumentException();
+		return descritorLista;
+		
 	}
 
 	/**
@@ -84,6 +86,7 @@ public class ListaController {
 	 *            Id do item a ser adiconado na compra.
 	 */
 	public void adicionaCompraALista(String descritorLista, int quantidade, int itemId) {
+		this.validador.validaObjeto(this.controllerItem.pegaItem(itemId), "Erro na compra de item: item nao existe no sistema.");
 		this.listas.get(descritorLista).adicionaCompraALista(quantidade, this.controllerItem.pegaItem(itemId), itemId);
 	}
 
@@ -97,10 +100,11 @@ public class ListaController {
 	 * @return Retorna uma representacao da compra que foi pesquisada.
 	 */
 	public String pesquisaCompraEmLista(String descritorLista, int itemId) {
-		this.validador.validaPesquisaCompraEmLista(descritorLista);
-		if (this.listas.get(descritorLista).pegaCompra(itemId) == null) {
-			throw new IllegalArgumentException("Erro na pesquisa de compra: compra nao encontrada na lista.");
+		this.validador.validaListaDeCompras(descritorLista, "Erro na pesquisa de compra: ");
+		if (itemId <= 0) {
+			throw new IllegalArgumentException("Erro na pesquisa de compra: item id invalido.");
 		}
+		this.validador.validaObjeto(this.listas.get(descritorLista).pegaCompra(itemId), "Erro na pesquisa de compra: compra nao encontrada na lista.");
 		return this.listas.get(descritorLista).getCompra(itemId);
 	}
 
@@ -118,7 +122,7 @@ public class ListaController {
 	 *            quantidade da compra.
 	 */
 	public void atualizaCompraDeLista(String descritorLista, int itemId, String operacao, int quantidade) {
-		this.validador.validaAtualizaCompraDeLista(descritorLista);
+		this.validador.validaAtualizaCompraDeLista(operacao);
 		this.listas.get(descritorLista).atualizaCompraDeLista(itemId, quantidade,
 				operacao);
 	}
@@ -135,6 +139,7 @@ public class ListaController {
 	 *            Valor final da compra.
 	 */
 	public void finalizarListaDeCompras(String descritorLista, String localDeCompra, int valorFinalDaCompra) {
+		this.validador.validaFinalizarListaDeCompras(descritorLista, localDeCompra, valorFinalDaCompra);
 		this.listas.get(descritorLista).finalizarListaDeCompras(localDeCompra, valorFinalDaCompra);
 	}
 
@@ -143,11 +148,14 @@ public class ListaController {
 	 * 
 	 * @param descritorLista
 	 *            Descritor da lista em que sera deletado compra dela.
-	 * @param idItem
+	 * @param itemId
 	 *            Id do item da compra.
 	 */
-	public void deletaCompraDeLista(String descritorLista, int idItem) {
-		this.listas.get(descritorLista).deletaCompraDeLista(idItem);
+	public void deletaCompraDeLista(String descritorLista, int itemId) {
+		this.validador.validaListaDeCompras(descritorLista, "Erro na exclusao de compra: ");
+		this.validador.validaObjeto(this.controllerItem.pegaItem(itemId), "Erro na exclusao de compra: item nao existe no sistema.");
+		this.validador.validaObjeto(this.listas.get(descritorLista).pegaCompra(itemId), "Erro na exclusao de compra: compra nao encontrada na lista.");
+		this.listas.get(descritorLista).deletaCompraDeLista(itemId);
 	}
 
 	/**
@@ -169,6 +177,7 @@ public class ListaController {
 	 * @return Retorna uma representacao em String da lista que está na posicao informada e que foi criada na data informada.
 	 */
 	public String getItemListaPorData(String data, int posicaoLista) {
+		this.validador.validaData(data);
 		List<Lista> feiras = new ArrayList<>();
 		this.estrategiaDeOrdenacao = new OrdenaListaAlfabetica();
 		for (Lista lista : this.listas.values()) {
@@ -191,12 +200,47 @@ public class ListaController {
 		List<Lista> feiras = new ArrayList<>();
 		this.estrategiaDeOrdenacao = new OrdenaListaData();
 		for (Lista lista : this.listas.values()) {
-			Item item = lista.pegaItemLista(itemId);
-			if (item != null) {
+			if (lista.verificaItemLista(itemId)) {
 				feiras.add(lista);
 			}
 		}
 		Collections.sort(feiras, this.estrategiaDeOrdenacao);
 		return feiras.get(posicaoLista).toString();
+	}
+
+	/**
+	 * Metodo responsavel por retornar a descricao das listas que foram criadas na data passada como parametro.
+	 * 
+	 * @param data data a ser pesquisada.
+	 * @return Retorna os descritores das listas que foram criadas na data informada.
+	 */
+	public String pesquisaListasDeComprasPorData(String data) {
+		this.validador.validaData(data);
+		String saida = "";
+		for (Lista lista : listas.values()) {
+			if (lista.getData().equals(data)) {
+				saida += lista.getDescricao() + System.lineSeparator();
+			}
+		}
+		return saida;
+	}
+
+	/**
+	 * Metodo responsavel por retornar a descricao das listas que possuem o item informado.
+	 * 
+	 * @param itemId Id do item a ser procurado.
+	 * @return Retorna os descritores das listas que possuem o item informado.
+	 */
+	public String pesquisaListasDeComprasPorItem(int itemId) {
+		String saida = "";
+		for (Lista lista : listas.values()) {
+			if (lista.pegaCompra(itemId) != null) {
+				saida += lista.getDescricao() + System.lineSeparator();
+			}
+		}
+		if ("".equals(saida)) {
+			throw new IllegalArgumentException("Erro na pesquisa de compra: compra nao encontrada na lista.");
+		}
+		return saida;
 	}
 }

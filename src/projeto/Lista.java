@@ -1,23 +1,28 @@
 package projeto;
 
-import java.time.LocalDateTime;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
 public class Lista {
 	private Map<Integer, Compra> compras;
-	private LocalDateTime data;
+	private String data;
 	private String descricao;
 	private String localDaCompra;
 	private int valorFinalCompra;
+	private Comparator<Compra> ordenacaoCompras;
 
 	public Lista(String descricao) {
 		this.descricao = descricao;
-		this.data = LocalDateTime.now();
+		SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
+		this.data = formatoData.format(new Date(System.currentTimeMillis()));
 		this.compras = new HashMap<>();
+		this.ordenacaoCompras = new OrdenacaoDefault();
 	}
 
 	public void adicionaCompraALista(int quantidade, Item item, int itemId) {
@@ -30,6 +35,9 @@ public class Lista {
 	}
 
 	public void atualizaCompraDeLista(int itemId, int quantidade, String operacao) {
+		if (!this.compras.containsKey(itemId)) {
+			throw new IllegalArgumentException("Erro na atualizacao de compra: compra nao encontrada na lista.");
+		}
 		this.compras.get(itemId).atualizaCompra(operacao, quantidade);
 		if (this.compras.get(itemId).getQuantidade() == 0) {
 			this.compras.remove(itemId);
@@ -51,20 +59,23 @@ public class Lista {
 	}
 
 	public String getData() {
-		return this.data + "";
+		return this.data;
 	}
 
 	public String getItemLista(int posicaoItem) {
 		List<Compra> listaCompras = new ArrayList<>(this.compras.values());
-		Collections.sort(listaCompras, new OrdenacaoDefault());
-		if (listaCompras.get(posicaoItem) == null) {
+		Collections.sort(listaCompras, ordenacaoCompras);
+		if (null == listaCompras.get(posicaoItem)) {
 			return "";
 		}
 		return listaCompras.get(posicaoItem).toString();
 	}
 	
-	public Item pegaItemLista(int itemId) {
-		return this.compras.get(itemId).getItem();
+	public boolean verificaItemLista(int itemId) {
+		if (this.compras.get(itemId) != null) {
+			return true;
+		}
+		return false;
 	}
 	
 	public Compra pegaCompra(int itemId) {
@@ -73,7 +84,7 @@ public class Lista {
 
 	@Override
 	public String toString() {
-		return this.descricao + " - " + this.data;
+		return this.data + " - " + this.descricao;
 	}
 
 	@Override

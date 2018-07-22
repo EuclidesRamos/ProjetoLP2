@@ -90,12 +90,13 @@ public class ItemController {
 	 * @return Retorna o id (gerado automaticamente) do item.
 	 */
 	public int adicionaItemPorQtd(String nome, String categoria, int quantidade, String unidadeDeMedida, String localDeCompra, double preco) {
+		this.validador.validaItemQuantidadeFixa(nome, categoria, quantidade, unidadeDeMedida, localDeCompra, preco);
 		int id = identificador();
 		this.item = new ItemQuantidadeFixa(id, nome, categoria, quantidade, unidadeDeMedida, localDeCompra, preco);
-		this.validador.validaItemQuantidadeFixa(nome, categoria, quantidade, unidadeDeMedida, localDeCompra, preco);
 		if (!verificaIgualdade(item)) {
 			this.itens.put(id, item);
 		} else {
+			this.id -= 1;
 			throw new IllegalArgumentException("Erro no cadastro de item: item ja cadastrado no sistema.");
 		}
 		return id;
@@ -112,12 +113,13 @@ public class ItemController {
 	 * @return Retorna o id (gerado automaticamente) do item.
 	 */
 	public int adicionaItemPorQuilo(String nome, String categoria, double kg, String localDeCompra, double preco) {
+		this.validador.validaItemQuilo(nome, categoria, kg, localDeCompra, preco);
 		int id = identificador();
 		this.item = new ItemQuilo(id, nome, categoria, kg, localDeCompra, preco);
-		this.validador.validaItemQuilo(nome, categoria, kg, localDeCompra, preco);
 		if (!verificaIgualdade(item)) {
 			this.itens.put(id, item);
 		} else {
+			this.id -= 1;
 			throw new IllegalArgumentException("Erro no cadastro de item: item ja cadastrado no sistema.");
 		}
 		return id;
@@ -134,12 +136,13 @@ public class ItemController {
 	 * @return Retorna o id (gerado automaticamente) do item.
 	 */
 	public int adicionaItemPorUnidade(String nome, String categoria, int unidade, String localDeCompra, double preco) {
+		this.validador.validaItemUnidade(nome, categoria, unidade, localDeCompra, preco);
 		int id = identificador();
 		this.item = new ItemUnidade(id, nome, categoria, unidade, localDeCompra, preco);
-		this.validador.validaItemUnidade(nome, categoria, unidade, localDeCompra, preco);
 		if (!verificaIgualdade(item)) {
 			this.itens.put(id, item);
 		} else {
+			this.id -= 1;
 			throw new IllegalArgumentException("Erro no cadastro de item: item ja cadastrado no sistema.");
 		}
 		return id;
