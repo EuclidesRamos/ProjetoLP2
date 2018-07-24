@@ -113,7 +113,7 @@ public class Lista {
 	public String getItemLista(int posicaoItem) {
 		List<Compra> listaCompras = new ArrayList<>(this.compras.values());
 		Collections.sort(listaCompras, ordenacaoCompras);
-		if (posicaoItem == this.compras.size() || null == listaCompras.get(posicaoItem)) {
+		if (posicaoItem >= this.compras.size() || null == listaCompras.get(posicaoItem)) {
 			return "";
 		}
 		return listaCompras.get(posicaoItem).toString();
