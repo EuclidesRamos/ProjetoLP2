@@ -1,6 +1,6 @@
-### ProjetoLP2
+# ProjetoLP2
 
-# Projeto de Laboratório de Programação 2
+### Projeto de Laboratório de Programação 2
 
 ```
 Integrantes:
