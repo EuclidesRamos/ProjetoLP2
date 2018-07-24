@@ -1,0 +1,104 @@
+#################
+# Caso de Uso 5 #
+#################
+
+# Gerando lista automatica da ultima compra e testando #
+
+dataAtual=dataAtual
+expect "Lista automatica 1 "${dataAtual} geraAutomaticaUltimaLista
+idDescritor=geraAutomaticaUltimaLista
+
+expect "3 Sabonete de aveia Dorene, higiene pessoal, 80 gramas"  getItemLista descritorLista=${idDescritor} posicaoItem=0
+expect "2 Sabao liquido Pomo, limpeza, 1 l"  getItemLista descritorLista=${idDescritor} posicaoItem=1
+expect "1 Batata doce, alimento nao industrializado"  getItemLista descritorLista=${idDescritor} posicaoItem=2
+expect ""  getItemLista descritorLista=${idDescritor} posicaoItem=3
+
+## Criar Lista de Compra ##
+
+expect "Bom Preco" adicionaListaDeCompras descritorLista="Bom Preco"
+
+#Descricao: Bom Preco
+adicionaCompraALista descritorLista="Bom Preco" quantidade=4 itemId=17
+adicionaCompraALista descritorLista="Bom Preco" quantidade=2 itemId=22
+adicionaCompraALista descritorLista="Bom Preco" quantidade=3 itemId=11
+adicionaCompraALista descritorLista="Bom Preco" quantidade=1 itemId=23
+
+
+# Gerando lista automatica da ultima compra e testando novamente #
+
+
+idDescritor=geraAutomaticaUltimaLista
+expect "4 Pasta dental DDS, higiene pessoal, 120 gramas" getItemLista descritorLista=${idDescritor} posicaoItem=0
+expect "3 Iogurte Lactivia, alimento industrializado" getItemLista descritorLista=${idDescritor} posicaoItem=1
+expect "2 Carne moida extra light, alimento nao industrializado" getItemLista descritorLista=${idDescritor} posicaoItem=2
+expect "1 Chuchu, alimento nao industrializado"  getItemLista descritorLista=${idDescritor} posicaoItem=3
+expect ""  getItemLista descritorLista=${idDescritor} posicaoItem=4
+
+
+# Gerando lista automatica pelo nome do item e testando #
+
+expect "Lista automatica 2 "${dataAtual} geraAutomaticaItem descritorItem="Queijo minas Dali"
+idDescritor=geraAutomaticaItem descritorItem="Queijo minas Dali"
+expect "3 Sabonete de aveia Dorene, higiene pessoal, 80 gramas"  getItemLista descritorLista=${idDescritor} posicaoItem=0
+expect "1 Queijo minas Dali, alimento industrializado"  getItemLista descritorLista=${idDescritor} posicaoItem=1
+expect ""  getItemLista descritorLista=${idDescritor} posicaoItem=2
+
+expect "Lista automatica 2 "${dataAtual} geraAutomaticaItem descritorItem="Creme de ricota Rocota"
+idDescritor=geraAutomaticaItem descritorItem="Creme de ricota Rocota"
+
+expect "1 Algodao Clemer, higiene pessoal, 300 gramas"  getItemLista descritorLista=${idDescritor} posicaoItem=0
+expect "2 Pasta dental DDS, higiene pessoal, 120 gramas"  getItemLista descritorLista=${idDescritor} posicaoItem=1
+expect "3 Sabonete de aveia Dorene, higiene pessoal, 80 gramas"  getItemLista descritorLista=${idDescritor} posicaoItem=2
+expect "1 Creme de ricota Rocota, alimento industrializado"  getItemLista descritorLista=${idDescritor} posicaoItem=3
+expect "1 Queijo minas Dali, alimento industrializado"  getItemLista descritorLista=${idDescritor} posicaoItem=4
+expect ""  getItemLista descritorLista=${idDescritor} posicaoItem=5
+
+expect "Lista automatica 2 "${dataAtual} geraAutomaticaItem descritorItem="Iogurte Lactivia"
+idDescritor=geraAutomaticaItem descritorItem="Iogurte Lactivia"
+
+expect "4 Pasta dental DDS, higiene pessoal, 120 gramas"  getItemLista descritorLista=${idDescritor} posicaoItem=0
+expect "3 Iogurte Lactivia, alimento industrializado"  getItemLista descritorLista=${idDescritor} posicaoItem=1
+expect "2 Carne moida extra light, alimento nao industrializado"  getItemLista descritorLista=${idDescritor} posicaoItem=2
+expect "1 Chuchu, alimento nao industrializado"  getItemLista descritorLista=${idDescritor} posicaoItem=3
+expect ""  getItemLista descritorLista=${idDescritor} posicaoItem=4
+
+# Verificando possibilidade de adicao de item em lista automatica
+adicionaCompraALista descritorLista="Lista automatica 2 "${dataAtual} quantidade=1 itemId=16
+
+# Gerando lista automatica pela existencia do item em mais de 50% das listas #
+
+expect "Lista automatica 3 "${dataAtual} geraAutomaticaItensMaisPresentes
+idDescritor=geraAutomaticaItensMaisPresentes
+
+expect "3 Pasta dental DDS, higiene pessoal, 120 gramas" getItemLista descritorLista=${idDescritor} posicaoItem=0
+expect "2 Sabonete de aveia Dorene, higiene pessoal, 80 gramas" getItemLista descritorLista=${idDescritor} posicaoItem=1
+expect "1 Queijo minas Dali, alimento industrializado"  getItemLista descritorLista=${idDescritor} posicaoItem=2
+expect "2 Carne moida extra light, alimento nao industrializado"  getItemLista descritorLista=${idDescritor} posicaoItem=3
+expect "1 Chuchu, alimento nao industrializado"  getItemLista descritorLista=${idDescritor} posicaoItem=4
+expect ""  getItemLista descritorLista=${idDescritor} posicaoItem=5
+
+# Forçando a existencia de mais um item em mais de 50% das listas de compra
+
+adicionaCompraALista descritorLista="feira semana" quantidade=5 itemId=11
+adicionaCompraALista descritorLista="outra feira" quantidade=3 itemId=11
+adicionaCompraALista descritorLista="Extra" quantidade=1 itemId=11
+adicionaCompraALista descritorLista="Hiper shopping" quantidade=4 itemId=11
+
+expect "Lista automatica 3 "${dataAtual} geraAutomaticaItensMaisPresentes
+idDescritor=geraAutomaticaItensMaisPresentes
+
+expect "3 Pasta dental DDS, higiene pessoal, 120 gramas" getItemLista descritorLista=${idDescritor} posicaoItem=0
+expect "2 Sabonete de aveia Dorene, higiene pessoal, 80 gramas"  getItemLista descritorLista=${idDescritor} posicaoItem=1
+expect "3 Iogurte Lactivia, alimento industrializado"  getItemLista descritorLista=${idDescritor} posicaoItem=2
+expect "1 Queijo minas Dali, alimento industrializado"  getItemLista descritorLista=${idDescritor} posicaoItem=3
+expect "2 Carne moida extra light, alimento nao industrializado"  getItemLista descritorLista=${idDescritor} posicaoItem=4
+expect "1 Chuchu, alimento nao industrializado"  getItemLista descritorLista=${idDescritor} posicaoItem=5
+expect ""  getItemLista descritorLista=${idDescritor} posicaoItem=6
+
+# Testando geracao de lista automatica com item que nao existe em nenhuma lista
+
+expectError "Erro na geracao de lista automatica por item: nao ha compras cadastradas com o item desejado." geraAutomaticaItem descritorItem="Limao"
+expectError "Erro na geracao de lista automatica por item: nao ha compras cadastradas com o item desejado." geraAutomaticaItem descritorItem="Coentro"
+expectError "Erro na geracao de lista automatica por item: nao ha compras cadastradas com o item desejado." geraAutomaticaItem descritorItem="Agua Sanitaria Drogon"
+expectError "Erro na geracao de lista automatica por item: nao ha compras cadastradas com o item desejado." geraAutomaticaItem descritorItem="Agua Mineral"
+

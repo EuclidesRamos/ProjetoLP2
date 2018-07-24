@@ -35,7 +35,7 @@ public class Facade {
 		args = new String[] {"projeto.Facade", "testesDeAceitacao/use_case1.txt", "testesDeAceitacao/use_case1_exception.txt", 
 				"testesDeAceitacao/use_case2.txt", "testesDeAceitacao/use_case2_exception.txt", 
 				"testesDeAceitacao/use_case3.txt", "testesDeAceitacao/use_case3_exception.txt", 
-				"testesDeAceitacao/use_case4.txt", "testesDeAceitacao/use_case4_exception.txt"};
+				"testesDeAceitacao/use_case4.txt", "testesDeAceitacao/use_case4_exception.txt","testesDeAceitacao/use_case5.txt"};
 		EasyAccept.main(args);
 	}
 	
@@ -256,7 +256,7 @@ public class Facade {
 	 * 
 	 * @param dataAtual Data em que a lista de compras foi criada.
 	 * @param posicaoLista Posicao da lista a ser exibida.
-	 * @return Retorna uma representacao em String da lista que está na posicao informada e que foi criada na data informada.
+	 * @return Retorna uma representacao em String da lista que estï¿½ na posicao informada e que foi criada na data informada.
 	 */
 	public String getItemListaPorData(String dataAtual, int posicaoLista) {
 		return this.controllerLista.getItemListaPorData(dataAtual, posicaoLista);
@@ -301,5 +301,9 @@ public class Facade {
 	 */
 	public String pesquisaListasDeComprasPorItem(int itemId) {
 		return this.controllerLista.pesquisaListasDeComprasPorItem(itemId);
+	}
+	 
+	public String geraAutomaticaUltimaLista() {
+		return this.controllerLista.geraAutomaticaUltimaLista();
 	}
 }
