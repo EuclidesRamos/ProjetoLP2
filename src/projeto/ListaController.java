@@ -34,12 +34,14 @@ public class ListaController {
 	private Validador validador;
 
 	/**
+	 * Atributo responsavel pela estrategia de ordenacao das listas no Sistema.
+	 */
+	private Comparator<Lista> estrategiaDeOrdenacao;
+	
+	/**
 	 * Contrutor responsavel por contruir o objeto do tipo ListaController, criando
 	 * tambem um HashMap e um ItemController.
 	 */
-	
-	private Comparator<Lista> estrategiaDeOrdenacao;
-	
 	public ListaController(ItemController controllerItem) {
 		this.listas = new HashMap<>();
 		this.controllerItem = controllerItem;
@@ -163,7 +165,7 @@ public class ListaController {
 	 * 
 	 * @param descritor Descritor da lista que sera pesquisada.
 	 * @param posicaoItem Posicao da compra a ser exibida.
-	 * @return Retorna a representação em String da compra que esta na posicao passada como parametro.
+	 * @return Retorna a representaï¿½ï¿½o em String da compra que esta na posicao passada como parametro.
 	 */
 	public String getItemLista(String descritor, int posicaoItem) {
 		return this.listas.get(descritor).getItemLista(posicaoItem);
@@ -174,7 +176,7 @@ public class ListaController {
 	 * 
 	 * @param data Data de criacao a ser pesquisada
 	 * @param posicaoLista Posicao da lista a ser exibida.
-	 * @return Retorna uma representacao em String da lista que está na posicao informada e que foi criada na data informada.
+	 * @return Retorna uma representacao em String da lista que estï¿½ na posicao informada e que foi criada na data informada.
 	 */
 	public String getItemListaPorData(String data, int posicaoLista) {
 		this.validador.validaData(data);
@@ -190,7 +192,7 @@ public class ListaController {
 	}
 	
 	/**
-	 * Metodo responsavel por pesquisar as listas de compras que contém o item passado como parametro.
+	 * Metodo responsavel por pesquisar as listas de compras que contï¿½m o item passado como parametro.
 	 * 
 	 * @param itemId Id do item.
 	 * @param posicaoLista  Posicao da lista a ser exibida.
