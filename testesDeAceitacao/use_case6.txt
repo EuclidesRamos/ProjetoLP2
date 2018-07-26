@@ -1,0 +1,78 @@
+#################
+# Caso de Uso 6 #
+#################
+
+##### Adicionando novos precos #####
+
+adicionaPrecoItem id=2 localDeCompra="Supermercado UauMart" preco=43.69
+adicionaPrecoItem id=2 localDeCompra="Supermercado BuyMore" preco=33.09
+adicionaPrecoItem id=6 localDeCompra="Mercadinho Bem Barato" preco=4.89
+adicionaPrecoItem id=6 localDeCompra="Supermercado UauMart" preco=4.49
+adicionaPrecoItem id=5 localDeCompra="Mercadinho Bem Barato" preco=3.69
+
+expect "2. Peito de peru Saara, alimento industrializado, Preco por quilo: <Mercadinho Bem Barato, R$ 34,49;Supermercado UauMart, R$ 43,69;Supermercado BuyMore, R$ 33,09;>" exibeItem id=2
+expect "10. Batata Tentacoes, alimento industrializado, Preco: <Supermercado UauMart, R$ 3,69;Mercadinho Bem Barato, R$ 3,99;Supermercado BuyMore, R$ 4,09;Supermercado Excepcional, R$ 3,79;>" exibeItem id=10
+expect "8. Capsula Dois Coracoes, alimento industrializado, 8 capsulas, Preco: <Mercadinho Bem Barato, R$ 11,69;Supermercado UauMart, R$ 10,89;Supermercado BuyMore, R$ 10,89;Supermercado Excepcional, R$ 9,49;>" exibeItem id=8
+expect "6. Limao, alimento nao industrializado, Preco por quilo: <Mercadinho Bem Barato, R$ 4,89;Supermercado UauMart, R$ 4,49;Supermercado Excepcional, R$ 4,19;>" exibeItem id=6
+expect "5. Esponja de Aco Assolange, limpeza, Preco: <Mercadinho Bem Barato, R$ 3,69;Supermercado BuyMore, R$ 3,50;>" exibeItem id=5
+
+### Iniciando lista de compras ###
+
+expect "feirota" adicionaListaDeCompras descritorLista="feirota"
+expect "feirota" pesquisaListaDeCompras descritorLista="feirota"
+
+adicionaCompraALista descritorLista="feirota" quantidade=1 itemId=2
+adicionaCompraALista descritorLista="feirota" quantidade=3 itemId=10
+adicionaCompraALista descritorLista="feirota" quantidade=1 itemId=8
+adicionaCompraALista descritorLista="feirota" quantidade=2 itemId=6
+adicionaCompraALista descritorLista="feirota" quantidade=1 itemId=5
+
+expect "1 Peito de peru Saara, alimento industrializado" pesquisaCompraEmLista descritorLista="feirota" itemId=2
+expect "3 Batata Tentacoes, alimento industrializado" pesquisaCompraEmLista descritorLista="feirota" itemId=10
+expect "1 Capsula Dois Coracoes, alimento industrializado, 8 capsulas" pesquisaCompraEmLista descritorLista="feirota" itemId=8
+expect "2 Limao, alimento nao industrializado" pesquisaCompraEmLista descritorLista="feirota" itemId=6
+expect "1 Esponja de Aco Assolange, limpeza" pesquisaCompraEmLista descritorLista="feirota" itemId=5
+
+## Testando os precos ###
+
+expect "Mercadinho Bem Barato: R$ 71,62" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabelecimento=0 posicaoLista=0
+expect "Supermercado UauMart: R$ 74,63" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabelecimento=1 posicaoLista=0
+expect "Supermercado BuyMore: R$ 59,75" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabelecimento=2 posicaoLista=0
+expect "Supermercado Excepcional: R$ 29,24" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabelecimento=3 posicaoLista=0
+
+### Testando os itens ###
+
+expect "- 1 Peito de peru Saara, alimento industrializado" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabelecimento=0 posicaoLista=1
+expect "- 3 Batata Tentacoes, alimento industrializado" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabelecimento=0 posicaoLista=2
+expect "- 1 Capsula Dois Coracoes, alimento industrializado, 8 capsulas" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabelecimento=0 posicaoLista=3
+expect "- 2 Limao, alimento nao industrializado" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabelecimento=0 posicaoLista=4
+expect "- 1 Esponja de Aco Assolange, limpeza" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabelecimento=0 posicaoLista=5
+
+expect "- 1 Peito de peru Saara, alimento industrializado" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabelecimento=1 posicaoLista=1
+expect "- 3 Batata Tentacoes, alimento industrializado" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabelecimento=1 posicaoLista=2
+expect "- 1 Capsula Dois Coracoes, alimento industrializado, 8 capsulas" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabelecimento=1 posicaoLista=3
+expect "- 2 Limao, alimento nao industrializado" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabelecimento=1 posicaoLista=4
+expect "" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabelecimento=1 posicaoLista=5
+
+expect "- 1 Peito de peru Saara, alimento industrializado" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabelecimento=2 posicaoLista=1
+expect "- 3 Batata Tentacoes, alimento industrializado" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabelecimento=2 posicaoLista=2
+expect "- 1 Capsula Dois Coracoes, alimento industrializado, 8 capsulas" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabelecimento=2 posicaoLista=3
+expect "- 1 Esponja de Aco Assolange, limpeza" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabelecimento=2 posicaoLista=4
+expect "" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabelecimento=2 posicaoLista=5
+
+expect "- 3 Batata Tentacoes, alimento industrializado" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabelecimento=3 posicaoLista=1
+expect "- 1 Capsula Dois Coracoes, alimento industrializado, 8 capsulas" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabelecimento=3 posicaoLista=2
+expect "- 2 Limao, alimento nao industrializado" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabelecimento=3 posicaoLista=3
+expect "" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabelecimento=3 posicaoLista=4
+expect "" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabelecimento=3 posicaoLista=5
+
+### Adicionando nova compra ao item ###
+
+adicionaPrecoItem id=5 localDeCompra="Supermercado Excepcional" preco=3.39
+
+expect "Supermercado Excepcional: R$ 32,63" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabelecimento=3 posicaoLista=0
+expect "- 3 Batata Tentacoes, alimento industrializado" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabelecimento=3 posicaoLista=1
+expect "- 1 Capsula Dois Coracoes, alimento industrializado, 8 capsulas" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabelecimento=3 posicaoLista=2
+expect "- 2 Limao, alimento nao industrializado" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabelecimento=3 posicaoLista=3
+expect "- 1 Esponja de Aco Assolange, limpeza" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabelecimento=3 posicaoLista=4
+expect "" sugereMelhorEstabelecimento descritorLista="feirota" posicaoEstabelecimento=3 posicaoLista=5

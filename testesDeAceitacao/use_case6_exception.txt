@@ -1,0 +1,21 @@
+###########################
+# Caso de Uso 6 Exception #
+###########################
+
+### Iniciando lista de compras ###
+
+expect "feiraVerde" adicionaListaDeCompras descritorLista="feiraVerde"
+expect "feiraVerde" pesquisaListaDeCompras descritorLista="feiraVerde"
+
+adicionaCompraALista descritorLista="feiraVerde" quantidade=5 itemId=7
+
+expect "5 Coentro, alimento nao industrializado" pesquisaCompraEmLista descritorLista="feiraVerde" itemId=7
+
+expect "Mercadinho Bem Barato: R$ 6,95" sugereMelhorEstabelecimento descritorLista="feiraVerde" posicaoEstabelecimento=0 posicaoLista=0
+expect "5 Coentro, alimento nao industrializado" sugereMelhorEstabelecimento descritorLista="feiraVerde" posicaoEstabelecimento=0 posicaoLista=1
+
+## Deleta item ##
+
+deletaCompraDeLista descritorLista="feiraVerde" itemId=7
+
+expectError "Faltam dados para informar sobre preços em locais de compras." descritorLista="feiraVerde" posicaoEstabelecimento=0 posicaoLista=0

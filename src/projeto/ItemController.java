@@ -284,4 +284,8 @@ public class ItemController {
 	public Item pegaItem(int itemId) {
 		return this.itens.get(itemId);
 	}
+	
+	public List<List<String>> retornaPrecosItem(int itemId) {
+		return this.itens.get(itemId).getMapaDePrecos();
+	}
 }

@@ -1,0 +1,69 @@
+#################
+# Caso de Uso 7 #
+#################
+
+# Ps:caso o arquivo ja esteja criado, e exception abaixo nao ocorrera
+
+expectError "Sistema iniciado pela primeira vez. Arquivo criado." iniciaSistema
+
+## Fecha sistema salvando todos os dados da aplicacao em um arquivo ##
+
+fechaSistema
+
+## Reinicia o sistema carregando tudo que foi salvo quando fechou sistema ## 
+
+iniciaSistema
+
+# Listando itens cadastrados # PS: itens 3 e 4 foram removidos no user_case1
+
+expect "1. Agua Sanitaria Viserion, limpeza, 500 ml, Preco: <Supermercado Excepcional, R$ 2,19;>" exibeItem id=1
+expect "2. Peito de peru Saara, alimento industrializado, Preco por quilo: <Mercadinho Bem Barato, R$ 34,49;>" exibeItem id=2
+expect "5. Esponja de Aco Assolange, limpeza, Preco: <Supermercado BuyMore, R$ 3,50;>" exibeItem id=5
+expect "6. Limao, alimento nao industrializado, Preco por quilo: <Supermercado Excepcional, R$ 4,19;>" exibeItem id=6
+expect "7. Coentro, alimento nao industrializado, Preco: <Mercadinho Bem Barato, R$ 1,39;>" exibeItem id=7
+expect "8. Capsula Dois Coracoes, alimento industrializado, 8 capsulas, Preco: <Mercadinho Bem Barato, R$ 11,69;Supermercado UauMart, R$ 10,89;Supermercado BuyMore, R$ 10,89;Supermercado Excepcional, R$ 9,49;>" exibeItem id=8
+expect "9. Costela suina Sabia, alimento industrializado, Preco por quilo: <Supermercado UauMart, R$ 23,49;>" exibeItem id=9
+expect "10. Batata Tentacoes, alimento industrializado, Preco: <Supermercado UauMart, R$ 3,69;Mercadinho Bem Barato, R$ 3,99;Supermercado BuyMore, R$ 4,09;Supermercado Excepcional, R$ 3,79;>" exibeItem id=10
+expect "11. Iogurte Lactivia, alimento industrializado, Preco: <Supermercado UauMart, R$ 5,59;>" exibeItem id=11
+expect "12. Agua Mineral, alimento nao industrializado, Preco: <Mercadinho Bem Barato, R$ 0,89;>" exibeItem id=12
+expect "13. Tomate, alimento nao industrializado, Preco por quilo: <Mercadinho Bem Barato, R$ 3,49;>" exibeItem id=13
+expect "14. Pasta Dental Coljate, higiene pessoal, Preco: <Supermercado UauMart, R$ 6,39;>" exibeItem id=14
+expect "15. Sabonete de aveia Dorene, higiene pessoal, 80 gramas, Preco: <Hiper, R$ 5,50;>" exibeItem id=15
+expect "16. Queijo minas Dali, alimento industrializado, Preco: <Hiper, R$ 15,00;>" exibeItem id=16
+expect "17. Pasta dental DDS, higiene pessoal, 120 gramas, Preco: <Hiper, R$ 2,50;>" exibeItem id=17
+expect "18. Algodao Clemer, higiene pessoal, 300 gramas, Preco: <Hiper, R$ 5,00;>" exibeItem id=18
+expect "19. Creme de ricota Rocota, alimento industrializado, Preco: <Hiper, R$ 8,30;>" exibeItem id=19
+expect "20. Batata doce, alimento nao industrializado, Preco por quilo: <Hiper, R$ 6,40;>" exibeItem id=20
+expect "21. Sabao liquido Pomo, limpeza, 1 l, Preco: <Hiper, R$ 7,50;>" exibeItem id=21
+expect "22. Carne moida extra light, alimento nao industrializado, Preco por quilo: <Hiper, R$ 25,85;>" exibeItem id=22
+expect "23. Chuchu, alimento nao industrializado, Preco por quilo: <Hiper, R$ 4,00;>" exibeItem id=23
+expect "24. Requeijao rerequeijon, alimento industrializado, Preco: <Hiper, R$ 2,99;>" exibeItem id=24
+expect "25. Caixa de Suco, alimento industrializado, 1 l, Preco: <Hiper, R$ 5,99;>" exibeItem id=25
+
+# Lista Descricao feira semana #
+
+expect "1 Algodao Clemer, higiene pessoal, 300 gramas" getItemLista descritorLista="feira semana" posicaoItem=0
+expect "2 Pasta dental DDS, higiene pessoal, 120 gramas" getItemLista descritorLista="feira semana" posicaoItem=1
+expect "1 Sabonete de aveia Dorene, higiene pessoal, 80 gramas" getItemLista descritorLista="feira semana" posicaoItem=2
+expect "2 Sabao liquido Pomo, limpeza, 1 l" getItemLista descritorLista="feira semana" posicaoItem=3
+expect "1 Creme de ricota Rocota, alimento industrializado" getItemLista descritorLista="feira semana" posicaoItem=4
+expect "5 Iogurte Lactivia, alimento industrializado" getItemLista descritorLista="feira semana" posicaoItem=5
+expect "1 Queijo minas Dali, alimento industrializado" getItemLista descritorLista="feira semana" posicaoItem=6
+expect "2 Requeijao rerequeijon, alimento industrializado" getItemLista descritorLista="feira semana" posicaoItem=7
+expect "2 Batata doce, alimento nao industrializado" getItemLista descritorLista="feira semana" posicaoItem=8
+expect "2 Carne moida extra light, alimento nao industrializado" getItemLista descritorLista="feira semana" posicaoItem=9
+expect "1 Chuchu, alimento nao industrializado" getItemLista descritorLista="feira semana" posicaoItem=10
+
+# Listas de compras #
+
+dataAtual=dataAtual
+expect "Bom Preco" getItemListaPorData data=${dataAtual} posicaoLista=0
+expect "Extra" getItemListaPorData data=${dataAtual} posicaoLista=1
+expect "Extra Catole" getItemListaPorData data=${dataAtual} posicaoLista=2
+expect "feira quinzenal" getItemListaPorData data=${dataAtual} posicaoLista=3
+expect "feira semana" getItemListaPorData data=${dataAtual} posicaoLista=4
+expect "Hiper Acude Velho" getItemListaPorData data=${dataAtual} posicaoLista=5
+expect "Hiper shopping" getItemListaPorData data=${dataAtual} posicaoLista=6
+expect "Lista automatica 1 "${dataAtual} getItemListaPorData data=${dataAtual} posicaoLista=7
+
+quit

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -38,20 +38,14 @@ public class ListaController {
 	/**
 	 * Atributo responsavel pela estrategia de ordenacao das listas no Sistema.
 	 */
-<<<<<<< HEAD
 	private Comparator<Lista> estrategiaDeOrdenacao;
-	
+
 	/**
 	 * Contrutor responsavel por contruir o objeto do tipo ListaController, criando
 	 * tambem um HashMap e um ItemController.
 	 */
-=======
-
-	private Comparator<Lista> estrategiaDeOrdenacao;
-
->>>>>>> ec187e1fecd24fb2054727150f7b598dbbc5401f
 	public ListaController(ItemController controllerItem) {
-		this.listas = new HashMap<>();
+		this.listas = new LinkedHashMap<>();
 		this.controllerItem = controllerItem;
 		this.validador = new Validador();
 	}
@@ -59,7 +53,8 @@ public class ListaController {
 	/**
 	 * Metodo responsavel por adicionar novas listas de compras no Sistema.
 	 * 
-	 * @param descritorLista Descritor da lista de compras (ex. "feira 19/07").
+	 * @param descritorLista
+	 *            Descritor da lista de compras (ex. "feira 19/07").
 	 */
 	public String adicionaListaDeCompras(String descritorLista) {
 		this.validador.validaListaDeCompras(descritorLista, "Erro na criacao de lista de compras: ");
@@ -71,7 +66,8 @@ public class ListaController {
 	 * Metodo responsavel por pesquisar uma lista de compras no Sistema. A pesquisa
 	 * e realizada atraves do descritor da lista de compras.
 	 * 
-	 * @param descritorLista Descritor da lista de compras a ser pesquisada.
+	 * @param descritorLista
+	 *            Descritor da lista de compras a ser pesquisada.
 	 * @return Retorna uma representacao em String da lista de compras.
 	 */
 	public String pesquisaListaDeCompras(String descritorLista) {
@@ -86,9 +82,12 @@ public class ListaController {
 	/**
 	 * Metodo responsavel por adicionar compras em uma lista.
 	 * 
-	 * @param descritorLista Descritor da lista em que a compra sera adicionada.
-	 * @param quantidade     Quantidade do item a ser comprado.
-	 * @param itemId         Id do item a ser adiconado na compra.
+	 * @param descritorLista
+	 *            Descritor da lista em que a compra sera adicionada.
+	 * @param quantidade
+	 *            Quantidade do item a ser comprado.
+	 * @param itemId
+	 *            Id do item a ser adiconado na compra.
 	 */
 	public void adicionaCompraALista(String descritorLista, int quantidade, int itemId) {
 		this.validador.validaObjeto(this.controllerItem.pegaItem(itemId),
@@ -99,9 +98,10 @@ public class ListaController {
 	/**
 	 * Metodo responsavel por pesquisar uma determinada compra em uma lista.
 	 * 
-	 * @param descritorLista Descritor da lista em que sera realizada a pesquisa da
-	 *                       compra.
-	 * @param itemId         Id do item da compra.
+	 * @param descritorLista
+	 *            Descritor da lista em que sera realizada a pesquisa da compra.
+	 * @param itemId
+	 *            Id do item da compra.
 	 * @return Retorna uma representacao da compra que foi pesquisada.
 	 */
 	public String pesquisaCompraEmLista(String descritorLista, int itemId) {
@@ -117,12 +117,15 @@ public class ListaController {
 	/**
 	 * Metodo responsavel por atualizar compra em uma lista de comrpas.
 	 * 
-	 * @param descritorLista Descritor da lista em que a compra esta localizada.
-	 * @param itemId         Id do item da compra.
-	 * @param operacao       Operacao de atualizacao ("aumenta" ou "diminui"
-	 *                       quantidade).
-	 * @param quantidade     Novo valor de quantidade a ser icrementado/decrementado
-	 *                       na quantidade da compra.
+	 * @param descritorLista
+	 *            Descritor da lista em que a compra esta localizada.
+	 * @param itemId
+	 *            Id do item da compra.
+	 * @param operacao
+	 *            Operacao de atualizacao ("aumenta" ou "diminui" quantidade).
+	 * @param quantidade
+	 *            Novo valor de quantidade a ser icrementado/decrementado na
+	 *            quantidade da compra.
 	 */
 	public void atualizaCompraDeLista(String descritorLista, int itemId, String operacao, int quantidade) {
 		this.validador.validaAtualizaCompraDeLista(operacao);
@@ -133,9 +136,12 @@ public class ListaController {
 	 * Metodo responsavel por finalizar uma lista de compras (quando a compra e
 	 * efetivada).
 	 * 
-	 * @param descritorLista     Descritor da lista a ser finalizada.
-	 * @param localDeCompra      Local em que a compra foi realizada.
-	 * @param valorFinalDaCompra Valor final da compra.
+	 * @param descritorLista
+	 *            Descritor da lista a ser finalizada.
+	 * @param localDeCompra
+	 *            Local em que a compra foi realizada.
+	 * @param valorFinalDaCompra
+	 *            Valor final da compra.
 	 */
 	public void finalizarListaDeCompras(String descritorLista, String localDeCompra, int valorFinalDaCompra) {
 		this.validador.validaFinalizarListaDeCompras(descritorLista, localDeCompra, valorFinalDaCompra);
@@ -145,8 +151,10 @@ public class ListaController {
 	/**
 	 * Metodo responsavel por deletar uma compra em uma lista.
 	 * 
-	 * @param descritorLista Descritor da lista em que sera deletado compra dela.
-	 * @param itemId         Id do item da compra.
+	 * @param descritorLista
+	 *            Descritor da lista em que sera deletado compra dela.
+	 * @param itemId
+	 *            Id do item da compra.
 	 */
 	public void deletaCompraDeLista(String descritorLista, int itemId) {
 		this.validador.validaListaDeCompras(descritorLista, "Erro na exclusao de compra: ");
@@ -161,14 +169,14 @@ public class ListaController {
 	 * Metodo responsavel por realizar pesquisa em uma lista, retornando o toString
 	 * da compra que esta na posicao passada como parametro.
 	 * 
-	 * @param descritor   Descritor da lista que sera pesquisada.
-	 * @param posicaoItem Posicao da compra a ser exibida.
-<<<<<<< HEAD
-	 * @return Retorna a representa��o em String da compra que esta na posicao passada como parametro.
-=======
+	 * @param descritor
+	 *            Descritor da lista que sera pesquisada.
+	 * @param posicaoItem
+	 *            Posicao da compra a ser exibida.
+	 * @return Retorna a representa��o em String da compra que esta na posicao
+	 *         passada como parametro.
 	 * @return Retorna a representacao em String da compra que esta na posicao
 	 *         passada como parametro.
->>>>>>> ec187e1fecd24fb2054727150f7b598dbbc5401f
 	 */
 	public String getItemLista(String descritor, int posicaoItem) {
 		return this.listas.get(descritor).getItemLista(posicaoItem);
@@ -178,14 +186,14 @@ public class ListaController {
 	 * Metodo responsavel por pesquisar uma lista de compras pela sua data de
 	 * criacao.
 	 * 
-	 * @param data         Data de criacao a ser pesquisada
-	 * @param posicaoLista Posicao da lista a ser exibida.
-<<<<<<< HEAD
-	 * @return Retorna uma representacao em String da lista que est� na posicao informada e que foi criada na data informada.
-=======
+	 * @param data
+	 *            Data de criacao a ser pesquisada
+	 * @param posicaoLista
+	 *            Posicao da lista a ser exibida.
+	 * @return Retorna uma representacao em String da lista que est� na posicao
+	 *         informada e que foi criada na data informada.
 	 * @return Retorna uma representacao em String da lista que esta na posicao
 	 *         informada e que foi criada na data informada.
->>>>>>> ec187e1fecd24fb2054727150f7b598dbbc5401f
 	 */
 	public String getItemListaPorData(String data, int posicaoLista) {
 		this.validador.validaData(data);
@@ -201,15 +209,14 @@ public class ListaController {
 	}
 
 	/**
-<<<<<<< HEAD
-	 * Metodo responsavel por pesquisar as listas de compras que cont�m o item passado como parametro.
-=======
-	 * Metodo responsavel por pesquisar as listas de compras que contem o item
-	 * passado como parametro.
->>>>>>> ec187e1fecd24fb2054727150f7b598dbbc5401f
+	 * Metodo responsavel por pesquisar as listas de compras que cont�m o item
+	 * passado como parametro. Metodo responsavel por pesquisar as listas de compras
+	 * que contem o item passado como parametro.
 	 * 
-	 * @param itemId       Id do item.
-	 * @param posicaoLista Posicao da lista a ser exibida.
+	 * @param itemId
+	 *            Id do item.
+	 * @param posicaoLista
+	 *            Posicao da lista a ser exibida.
 	 * @return Retorna uma representacao em String da compra que esta na posicao em
 	 *         que foi passada como parametro.
 	 */
@@ -229,7 +236,8 @@ public class ListaController {
 	 * Metodo responsavel por retornar a descricao das listas que foram criadas na
 	 * data passada como parametro.
 	 * 
-	 * @param data data a ser pesquisada.
+	 * @param data
+	 *            data a ser pesquisada.
 	 * @return Retorna os descritores das listas que foram criadas na data
 	 *         informada.
 	 */
@@ -248,7 +256,8 @@ public class ListaController {
 	 * Metodo responsavel por retornar a descricao das listas que possuem o item
 	 * informado.
 	 * 
-	 * @param itemId Id do item a ser procurado.
+	 * @param itemId
+	 *            Id do item a ser procurado.
 	 * @return Retorna os descritores das listas que possuem o item informado.
 	 */
 	public String pesquisaListasDeComprasPorItem(int itemId) {
@@ -266,6 +275,7 @@ public class ListaController {
 
 	public String geraAutomaticaUltimaLista() {
 
+		System.out.println(this.listas);
 		SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
 		String data = formatoData.format(new Date(System.currentTimeMillis()));
 		ArrayList<Lista> arrayListas = new ArrayList<>(this.listas.values());
@@ -280,6 +290,10 @@ public class ListaController {
 		listas.put(novalista.getDescricao(), novalista);
 
 		return novalista.getDescricao();
+	}
+
+	public String sugereMelhorEstabelecimento() {
+		return null;
 	}
 
 }

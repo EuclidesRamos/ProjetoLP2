@@ -1,6 +1,8 @@
 package projeto;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -33,31 +35,12 @@ public abstract class Item {
 	/**
 	 * Categoria do item
 	 */
-	private String categoria;
-
-	private int precedencia;
+	private Categoria categoria;
 	
 	/**
 	 * Validador de entradas.
 	 */
 	protected Validador validador;
-
-	/**
-	 * Metodo que calcula a precedencia da categoria do item.
-	 * 
-	 * @param categoria Categoria a ser verificada.
-	 */
-	private void precedencia(String categoria) {
-		if (categoria.equals("higiene pessoal")) {
-			this.precedencia = 1;
-		} else if (categoria.equals("limpeza")) {
-			this.precedencia = 2;
-		} else if (categoria.equals("alimento industrializado")) {
-			this.precedencia = 3;
-		} else if (categoria.equals("alimento nao industrializado")) {
-			this.precedencia = 4;
-		}
-	}
 	
 	/**
 	 *
@@ -77,8 +60,7 @@ public abstract class Item {
 		this.mapaDePrecos.put(localDeCompra, preco);
 		this.id = id;
 		this.nome = nome;
-		this.categoria = categoria;
-		precedencia(categoria);
+		this.categoria = new Categoria(categoria);
 	}
 
 	/**
@@ -105,7 +87,7 @@ public abstract class Item {
 	 * @return uma String representando a categoria do item
 	 */
 	public String getCategoria() {
-		return this.categoria;
+		return this.categoria.getCategoria();
 	}
 
 	/**
@@ -120,12 +102,10 @@ public abstract class Item {
 		if (localDeCompra == null) {
 			throw new NullPointerException("Erro no cadastro de preco: local de compra nao pode ser vazio ou nulo.");
 		}
-
 		if (localDeCompra.trim().isEmpty()) {
 			throw new IllegalArgumentException(
 					"Erro no cadastro de preco: local de compra nao pode ser vazio ou nulo.");
 		}
-
 		if (valor < 0) {
 			throw new IllegalArgumentException("Erro no cadastro de preco: preco de item invalido.");
 		}
@@ -166,7 +146,7 @@ public abstract class Item {
 	 * @return uma String
 	 */
 	public String toString() {
-		return this.id + ". " + this.nome + ", " + this.categoria + ", ";
+		return this.id + ". " + this.nome + ", " + this.categoria.getCategoria() + ", ";
 	}
 
 	/**
@@ -183,6 +163,42 @@ public abstract class Item {
 		return result;
 	}
 
+	/**
+	 * Retorna a representacao do Item na lista
+	 * 
+	 * @return Uma String
+	 */
+	public String representacaoLista() {
+		return this.nome + ", " + categoria.getCategoria();
+	}
+	
+	/**
+	 * Retorna a precedencia da categoria do item.
+	 * 
+	 * @return Retorna um inteiro informando a precedencia da categoria.
+	 */
+	public int getPrecedencia() {
+		return this.categoria.getPrecedencia();
+	}
+	
+	/**
+	 * Atualiza os atributos de um item.
+	 * 
+	 * @param atributo  Nome do atributo a ser alterado
+	 * @param novoValor Novo valor que sera atualizado
+	 */
+	public void atualizaItem(String atributo, String novoValor) {
+		
+		switch (atributo) {
+		case "nome":
+			this.nome = novoValor;
+			break;
+		case "categoria":
+			this.categoria = new Categoria(novoValor);
+			break;
+		}
+	}
+	
 	/**
 	 * Verifica de dois itens sao iguais.
 	 * 
@@ -209,42 +225,16 @@ public abstract class Item {
 			return false;
 		return true;
 	}
-
-	/**
-	 * 
-	 * Atualiza os atributos de um item.
-	 * 
-	 * @param atributo  Nome do atributo a ser alterado
-	 * @param novoValor Novo valor que sera atualizado
-	 */
-	public void atualizaItem(String atributo, String novoValor) {
-
-		switch (atributo) {
-		case "nome":
-			this.nome = novoValor;
-			break;
-		case "categoria":
-			this.categoria = novoValor;
-			break;
+	
+	public List<List<String>> getMapaDePrecos() {
+		List<List<String>> precos = new ArrayList<>();
+		for (String key : this.mapaDePrecos.keySet()) {
+			List<String> preco = new ArrayList<>();
+			preco.add(key);
+			preco.add(this.mapaDePrecos.get(key) + "");
+			precos.add(preco);
 		}
-
+		return precos;
 	}
 
-	/**
-	 * Retorna a representacao do Item na lista
-	 * 
-	 * @return Uma String
-	 */
-	public String representacaoLista() {
-		return this.nome + ", " + categoria;
-	}
-
-	/**
-	 * Retorna a precedencia da categoria do item.
-	 * 
-	 * @return Retorna um inteiro informando a precedencia da categoria.
-	 */
-	public int getPrecedencia() {
-		return this.precedencia;
-	}
 }

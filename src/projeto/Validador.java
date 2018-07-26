@@ -10,6 +10,10 @@ package projeto;
  *
  */
 public class Validador {
+	
+	private final String FORMATO_DATA = "^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\/|-|\\.)(?:0?[1,3-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$";
+	
+	
 	/**
 	 * Construtor de validador, onde nao e setado nada.
 	 */
@@ -186,14 +190,13 @@ public class Validador {
 	 * @param data Data a ser verificada.
 	 */
 	public void validaData(String data) {
-		String formatoData = "^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\/|-|\\.)(?:0?[1,3-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$";
 		String mensagem = "Erro na pesquisa de compra: ";
 		if (data == null) {
 			throw new NullPointerException(mensagem + "data nao pode ser vazia ou nula.");
 		} else if ("".equals(data.trim())) {
 			throw new IllegalArgumentException(mensagem + "data nao pode ser vazia ou nula.");
 		}
-		if (!data.matches(formatoData)) {
+		if (!data.matches(FORMATO_DATA)) {
 			throw new IllegalArgumentException(mensagem + "data em formato invalido, tente dd/MM/yyyy");
 		}
 	}

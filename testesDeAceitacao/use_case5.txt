@@ -10,7 +10,7 @@ idDescritor=geraAutomaticaUltimaLista
 
 expect "3 Sabonete de aveia Dorene, higiene pessoal, 80 gramas"  getItemLista descritorLista=${idDescritor} posicaoItem=0
 expect "2 Sabao liquido Pomo, limpeza, 1 l"  getItemLista descritorLista=${idDescritor} posicaoItem=1
-expect "1 Batata doce, alimento nao industrializado"  getItemLista descritorLista=${idDescritor} posicaoItem=2
+expect "2 Batata doce, alimento nao industrializado"  getItemLista descritorLista=${idDescritor} posicaoItem=2
 expect ""  getItemLista descritorLista=${idDescritor} posicaoItem=3
 
 ## Criar Lista de Compra ##
@@ -77,23 +77,7 @@ expect "2 Carne moida extra light, alimento nao industrializado"  getItemLista d
 expect "1 Chuchu, alimento nao industrializado"  getItemLista descritorLista=${idDescritor} posicaoItem=4
 expect ""  getItemLista descritorLista=${idDescritor} posicaoItem=5
 
-# Forçando a existencia de mais um item em mais de 50% das listas de compra
-
-adicionaCompraALista descritorLista="feira semana" quantidade=5 itemId=11
-adicionaCompraALista descritorLista="outra feira" quantidade=3 itemId=11
-adicionaCompraALista descritorLista="Extra" quantidade=1 itemId=11
-adicionaCompraALista descritorLista="Hiper shopping" quantidade=4 itemId=11
-
-expect "Lista automatica 3 "${dataAtual} geraAutomaticaItensMaisPresentes
-idDescritor=geraAutomaticaItensMaisPresentes
-
-expect "3 Pasta dental DDS, higiene pessoal, 120 gramas" getItemLista descritorLista=${idDescritor} posicaoItem=0
-expect "2 Sabonete de aveia Dorene, higiene pessoal, 80 gramas"  getItemLista descritorLista=${idDescritor} posicaoItem=1
-expect "3 Iogurte Lactivia, alimento industrializado"  getItemLista descritorLista=${idDescritor} posicaoItem=2
-expect "1 Queijo minas Dali, alimento industrializado"  getItemLista descritorLista=${idDescritor} posicaoItem=3
-expect "2 Carne moida extra light, alimento nao industrializado"  getItemLista descritorLista=${idDescritor} posicaoItem=4
-expect "1 Chuchu, alimento nao industrializado"  getItemLista descritorLista=${idDescritor} posicaoItem=5
-expect ""  getItemLista descritorLista=${idDescritor} posicaoItem=6
+#new test coming
 
 # Testando geracao de lista automatica com item que nao existe em nenhuma lista
 

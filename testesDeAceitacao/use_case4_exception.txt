@@ -4,24 +4,24 @@
 
 ## Criar Lista de Compra ##
 
-expect "Hiper shopping" adicionaListaDeCompras descritorLista="Hiper shopping"
-expect "Extra" adicionaListaDeCompras descritorLista="Extra"
+expect "Hiper Acude Velho" adicionaListaDeCompras descritorLista="Hiper Acude Velho"
+expect "Extra Catole" adicionaListaDeCompras descritorLista="Extra Catole"
 
 ## Adicionar Itens a Lista ##
 
 #Descricao: Hiper shopping
-adicionaCompraALista descritorLista="Hiper shopping" quantidade=3 itemId=15
-adicionaCompraALista descritorLista="Hiper shopping" quantidade=1 itemId=16
+adicionaCompraALista descritorLista="Hiper Acude Velho" quantidade=3 itemId=15
+adicionaCompraALista descritorLista="Hiper Acude Velho" quantidade=1 itemId=16
 
 #Descricao: Extra
-adicionaCompraALista descritorLista="Extra" quantidade=3 itemId=15
-adicionaCompraALista descritorLista="Extra" quantidade=1 itemId=20
-adicionaCompraALista descritorLista="Extra" quantidade=2 itemId=21
+adicionaCompraALista descritorLista="Extra Catole" quantidade=3 itemId=15
+adicionaCompraALista descritorLista="Extra Catole" quantidade=2 itemId=20
+adicionaCompraALista descritorLista="Extra Catole" quantidade=2 itemId=21
 
 ## Finalizar Lista ##
 
-finalizarListaDeCompras descritorLista="Hiper shopping" localDaCompra="Shopping Boulevard" valorFinalDaCompra=600
-finalizarListaDeCompras descritorLista="Extra" localDaCompra="Shopping Boulevard" valorFinalDaCompra=300
+finalizarListaDeCompras descritorLista="Hiper Acude Velho" localDaCompra="Shopping Bompreco Acude Velho" valorFinalDaCompra=600
+finalizarListaDeCompras descritorLista="Extra Catole" localDaCompra="Shopping Boulevard" valorFinalDaCompra=300
 
 ## Pesquisa de lista de compra por descricao ##
 
