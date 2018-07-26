@@ -28,12 +28,9 @@ public class Lista {
 	/**
 	 * Metodo que adiciona uma compra a uma lista.
 	 * 
-	 * @param itemId
-	 *            Id do item.
-	 * @param quantidade
-	 *            Quantidade a ser passada.
-	 * @param operacao
-	 *            Operacao.
+	 * @param itemId     Id do item.
+	 * @param quantidade Quantidade a ser passada.
+	 * @param operacao   Operacao.
 	 */
 	public void adicionaCompraALista(int quantidade, Item item, int itemId) {
 		Compra compra = new Compra(quantidade, item);
@@ -52,12 +49,9 @@ public class Lista {
 	/**
 	 * Metodo que atualiza uma compra a uma lista.
 	 * 
-	 * @param itemId
-	 *            Id do item.
-	 * @param quantidade
-	 *            Quantidade a ser passada.
-	 * @param operacao
-	 *            Operacao.
+	 * @param itemId     Id do item.
+	 * @param quantidade Quantidade a ser passada.
+	 * @param operacao   Operacao.
 	 */
 	public void atualizaCompraDeLista(int itemId, int quantidade, String operacao) {
 		if (!this.compras.containsKey(itemId)) {
@@ -72,10 +66,8 @@ public class Lista {
 	/**
 	 * Metodo que finaliza a lista.
 	 * 
-	 * @param localDeCompra
-	 *            Local de compra.
-	 * @param valorFinalDaCompra
-	 *            Valor Final.
+	 * @param localDeCompra      Local de compra.
+	 * @param valorFinalDaCompra Valor Final.
 	 */
 	public void finalizarListaDeCompras(String localDeCompra, int valorFinalDaCompra) {
 		this.localDaCompra = localDeCompra;
@@ -86,8 +78,7 @@ public class Lista {
 	/**
 	 * Metodo onde deleta uma compra.
 	 * 
-	 * @param idItem
-	 *            do item da compra.
+	 * @param idItem do item da compra.
 	 */
 	public void deletaCompraDeLista(int idItem) {
 		this.compras.put(idItem, null);
@@ -122,7 +113,7 @@ public class Lista {
 	public String getItemLista(int posicaoItem) {
 		List<Compra> listaCompras = new ArrayList<>(this.compras.values());
 		Collections.sort(listaCompras, ordenacaoCompras);
-		if (null == listaCompras.get(posicaoItem)) {
+		if (posicaoItem >= this.compras.size() || null == listaCompras.get(posicaoItem)) {
 			return "";
 		}
 		return listaCompras.get(posicaoItem).toString();
@@ -131,8 +122,7 @@ public class Lista {
 	/**
 	 * Verifica se a lista ja possue um item.
 	 * 
-	 * @param itemId
-	 *            do item da compra.
+	 * @param itemId do item da compra.
 	 * @return um boolean.
 	 */
 	public boolean verificaItemLista(int itemId) {
@@ -145,8 +135,7 @@ public class Lista {
 	/**
 	 * Metodo que pesquisa em uma compra
 	 * 
-	 * @param idItem
-	 *            id do item.
+	 * @param idItem id do item.
 	 * @return a compra pesquisada.
 	 */
 	public Compra pegaCompra(int itemId) {
@@ -184,6 +173,15 @@ public class Lista {
 		} else if (!descricao.equals(other.descricao))
 			return false;
 		return true;
+	}
+
+	public Map<Integer, Compra> getCompras() {
+		return this.compras;
+	}
+
+	public void adicionaCompraAutomatica(Compra compra) {
+		this.compras.put(compra.getItem().getId(), compra);
+
 	}
 
 }
