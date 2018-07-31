@@ -2,10 +2,6 @@
 # Caso de Uso 7 #
 #################
 
-# Ps:caso o arquivo ja esteja criado, e exception abaixo nao ocorrera
-
-expectError "Sistema iniciado pela primeira vez. Arquivo criado." iniciaSistema
-
 ## Fecha sistema salvando todos os dados da aplicacao em um arquivo ##
 
 fechaSistema
@@ -17,9 +13,9 @@ iniciaSistema
 # Listando itens cadastrados # PS: itens 3 e 4 foram removidos no user_case1
 
 expect "1. Agua Sanitaria Viserion, limpeza, 500 ml, Preco: <Supermercado Excepcional, R$ 2,19;>" exibeItem id=1
-expect "2. Peito de peru Saara, alimento industrializado, Preco por quilo: <Mercadinho Bem Barato, R$ 34,49;>" exibeItem id=2
-expect "5. Esponja de Aco Assolange, limpeza, Preco: <Supermercado BuyMore, R$ 3,50;>" exibeItem id=5
-expect "6. Limao, alimento nao industrializado, Preco por quilo: <Supermercado Excepcional, R$ 4,19;>" exibeItem id=6
+expect "2. Peito de peru Saara, alimento industrializado, Preco por quilo: <Mercadinho Bem Barato, R$ 34,49;Supermercado UauMart, R$ 43,69;Supermercado BuyMore, R$ 33,09;>" exibeItem id=2
+expect "5. Esponja de Aco Assolange, limpeza, Preco: <Mercadinho Bem Barato, R$ 3,69;Supermercado BuyMore, R$ 3,50;Supermercado Excepcional, R$ 3,39;>" exibeItem id=5
+expect "6. Limao, alimento nao industrializado, Preco por quilo: <Mercadinho Bem Barato, R$ 4,89;Supermercado UauMart, R$ 4,49;Supermercado Excepcional, R$ 4,19;>" exibeItem id=6
 expect "7. Coentro, alimento nao industrializado, Preco: <Mercadinho Bem Barato, R$ 1,39;>" exibeItem id=7
 expect "8. Capsula Dois Coracoes, alimento industrializado, 8 capsulas, Preco: <Mercadinho Bem Barato, R$ 11,69;Supermercado UauMart, R$ 10,89;Supermercado BuyMore, R$ 10,89;Supermercado Excepcional, R$ 9,49;>" exibeItem id=8
 expect "9. Costela suina Sabia, alimento industrializado, Preco por quilo: <Supermercado UauMart, R$ 23,49;>" exibeItem id=9
@@ -47,12 +43,11 @@ expect "2 Pasta dental DDS, higiene pessoal, 120 gramas" getItemLista descritorL
 expect "1 Sabonete de aveia Dorene, higiene pessoal, 80 gramas" getItemLista descritorLista="feira semana" posicaoItem=2
 expect "2 Sabao liquido Pomo, limpeza, 1 l" getItemLista descritorLista="feira semana" posicaoItem=3
 expect "1 Creme de ricota Rocota, alimento industrializado" getItemLista descritorLista="feira semana" posicaoItem=4
-expect "5 Iogurte Lactivia, alimento industrializado" getItemLista descritorLista="feira semana" posicaoItem=5
-expect "1 Queijo minas Dali, alimento industrializado" getItemLista descritorLista="feira semana" posicaoItem=6
-expect "2 Requeijao rerequeijon, alimento industrializado" getItemLista descritorLista="feira semana" posicaoItem=7
-expect "2 Batata doce, alimento nao industrializado" getItemLista descritorLista="feira semana" posicaoItem=8
-expect "2 Carne moida extra light, alimento nao industrializado" getItemLista descritorLista="feira semana" posicaoItem=9
-expect "1 Chuchu, alimento nao industrializado" getItemLista descritorLista="feira semana" posicaoItem=10
+expect "1 Queijo minas Dali, alimento industrializado" getItemLista descritorLista="feira semana" posicaoItem=5
+expect "2 Requeijao rerequeijon, alimento industrializado" getItemLista descritorLista="feira semana" posicaoItem=6
+expect "2 Batata doce, alimento nao industrializado" getItemLista descritorLista="feira semana" posicaoItem=7
+expect "2 Carne moida extra light, alimento nao industrializado" getItemLista descritorLista="feira semana" posicaoItem=8
+expect "1 Chuchu, alimento nao industrializado" getItemLista descritorLista="feira semana" posicaoItem=9
 
 # Listas de compras #
 
@@ -62,8 +57,10 @@ expect "Extra" getItemListaPorData data=${dataAtual} posicaoLista=1
 expect "Extra Catole" getItemListaPorData data=${dataAtual} posicaoLista=2
 expect "feira quinzenal" getItemListaPorData data=${dataAtual} posicaoLista=3
 expect "feira semana" getItemListaPorData data=${dataAtual} posicaoLista=4
-expect "Hiper Acude Velho" getItemListaPorData data=${dataAtual} posicaoLista=5
-expect "Hiper shopping" getItemListaPorData data=${dataAtual} posicaoLista=6
-expect "Lista automatica 1 "${dataAtual} getItemListaPorData data=${dataAtual} posicaoLista=7
+expect "feiraVerde" getItemListaPorData data=${dataAtual} posicaoLista=5
+expect "feirota" getItemListaPorData data=${dataAtual} posicaoLista=6
+expect "Hiper Acude Velho" getItemListaPorData data=${dataAtual} posicaoLista=7
+expect "Hiper shopping" getItemListaPorData data=${dataAtual} posicaoLista=8
+expect "Lista automatica 1 "${dataAtual} getItemListaPorData data=${dataAtual} posicaoLista=9
 
 quit

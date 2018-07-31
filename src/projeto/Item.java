@@ -149,16 +149,10 @@ public abstract class Item {
 		return this.id + ". " + this.nome + ", " + this.categoria.getCategoria() + ", ";
 	}
 
-	/**
-	 * Retorna um inteiro representando o item.
-	 * 
-	 * @return um inteiro
-	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((categoria == null) ? 0 : categoria.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		return result;
 	}
@@ -199,11 +193,8 @@ public abstract class Item {
 		}
 	}
 	
-	/**
-	 * Verifica de dois itens sao iguais.
-	 * 
-	 * @return um booleano true ou false
-	 */
+	
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -213,11 +204,6 @@ public abstract class Item {
 		if (getClass() != obj.getClass())
 			return false;
 		Item other = (Item) obj;
-		if (categoria == null) {
-			if (other.categoria != null)
-				return false;
-		} else if (!categoria.equals(other.categoria))
-			return false;
 		if (nome == null) {
 			if (other.nome != null)
 				return false;
@@ -225,7 +211,7 @@ public abstract class Item {
 			return false;
 		return true;
 	}
-	
+
 	public List<List<String>> getMapaDePrecos() {
 		List<List<String>> precos = new ArrayList<>();
 		for (String key : this.mapaDePrecos.keySet()) {

@@ -173,7 +173,7 @@ public class ListaController {
 	 *            Descritor da lista que sera pesquisada.
 	 * @param posicaoItem
 	 *            Posicao da compra a ser exibida.
-	 * @return Retorna a representa��o em String da compra que esta na posicao
+	 * @return Retorna a representacao em String da compra que esta na posicao
 	 *         passada como parametro.
 	 * @return Retorna a representacao em String da compra que esta na posicao
 	 *         passada como parametro.
@@ -275,12 +275,10 @@ public class ListaController {
 
 	public String geraAutomaticaUltimaLista() {
 
-		System.out.println(this.listas);
 		SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
 		String data = formatoData.format(new Date(System.currentTimeMillis()));
 		ArrayList<Lista> arrayListas = new ArrayList<>(this.listas.values());
-		Collections.sort(arrayListas, new OrdenaListaData());
-		Lista listarecente = arrayListas.get(0);
+		Lista listarecente = arrayListas.get(this.listas.size() - 1);
 		Lista novalista = new Lista("Lista automatica 1 " + data);
 
 		for (Compra compra : listarecente.getCompras().values()) {

@@ -34,8 +34,8 @@ public class Facade {
 	public static void main(String[] args) {
 		args = new String[] {"projeto.Facade", "testesDeAceitacao/use_case1.txt", "testesDeAceitacao/use_case1_exception.txt", 
 				"testesDeAceitacao/use_case2.txt", "testesDeAceitacao/use_case2_exception.txt", 
-				"testesDeAceitacao/use_case3.txt", "testesDeAceitacao/use_case3_exception.txt", 
-				"testesDeAceitacao/use_case4.txt", "testesDeAceitacao/use_case4_exception.txt","testesDeAceitacao/use_case5.txt"};
+				"testesDeAceitacao/use_case3.txt", "testesDeAceitacao/use_case3_exception.txt", "testesDeAceitacao/use_case4.txt",
+				"testesDeAceitacao/use_case4_exception.txt","testesDeAceitacao/use_case5.txt"};
 		EasyAccept.main(args);
 	}
 	
