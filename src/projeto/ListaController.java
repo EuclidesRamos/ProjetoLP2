@@ -302,9 +302,9 @@ public class ListaController {
 				}
 			}
 		}
-
 		listas.put(ultimaLista.getDescricao(), ultimaLista);
 		return ultimaLista;
+		
 	}
 
 	public String sugereMelhorEstabelecimento() {
