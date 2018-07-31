@@ -131,7 +131,7 @@ public class Lista {
 		}
 		return false;
 	}
-
+	
 	/**
 	 * Metodo que pesquisa em uma compra
 	 * 
@@ -183,5 +183,5 @@ public class Lista {
 		this.compras.put(compra.getItem().getId(), compra);
 
 	}
-
+	
 }

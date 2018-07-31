@@ -289,6 +289,23 @@ public class ListaController {
 
 		return novalista.getDescricao();
 	}
+	
+	public Lista geraAutomaticaItem(String descritorItem) {
+		SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
+		String data = formatoData.format(new Date(System.currentTimeMillis()));
+		Lista ultimaLista = new Lista ("Lista automatica 2 " + data);
+		
+		for  (Lista lista : listas.values()) {
+			for(Compra compra: lista.getCompras().values()) {
+				if (compra.getItem().getNome().equals(descritorItem)) {
+					ultimaLista = lista;
+				}
+			}
+		}
+
+		listas.put(ultimaLista.getDescricao(), ultimaLista);
+		return ultimaLista;
+	}
 
 	public String sugereMelhorEstabelecimento() {
 		return null;
