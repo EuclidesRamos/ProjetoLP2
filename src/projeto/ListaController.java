@@ -39,6 +39,11 @@ public class ListaController {
 	 * Atributo responsavel pela estrategia de ordenacao das listas no Sistema.
 	 */
 	private Comparator<Lista> estrategiaDeOrdenacao;
+	
+	private String geraData() {
+		SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
+		return formatoData.format(new Date(System.currentTimeMillis()));
+	}
 
 	/**
 	 * Contrutor responsavel por contruir o objeto do tipo ListaController, criando
@@ -274,37 +279,25 @@ public class ListaController {
 	}
 
 	public String geraAutomaticaUltimaLista() {
-
-		SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
-		String data = formatoData.format(new Date(System.currentTimeMillis()));
-		ArrayList<Lista> arrayListas = new ArrayList<>(this.listas.values());
-		Lista listarecente = arrayListas.get(this.listas.size() - 1);
-		Lista novalista = new Lista("Lista automatica 1 " + data);
-
-		for (Compra compra : listarecente.getCompras().values()) {
-			novalista.adicionaCompraAutomatica(compra);
-
-		}
-		listas.put(novalista.getDescricao(), novalista);
-
-		return novalista.getDescricao();
+		List<Lista> listas = new ArrayList<>(this.listas.values());
+		Lista novaLista = new Lista("Lista automatica 1 " + this.geraData());
+		novaLista.addAll(listas.get(this.listas.size() - 1));
+		this.listas.put(novaLista.getDescricao(), novaLista);
+		return novaLista.getDescricao();
 	}
 	
-	public Lista geraAutomaticaItem(String descritorItem) {
-		SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
-		String data = formatoData.format(new Date(System.currentTimeMillis()));
-		Lista ultimaLista = new Lista ("Lista automatica 2 " + data);
-		
-		for  (Lista lista : listas.values()) {
-			for(Compra compra: lista.getCompras().values()) {
-				if (compra.getItem().getNome().equals(descritorItem)) {
-					ultimaLista = lista;
-				}
+	public String geraAutomaticaItem(String descritorItem) {
+		List<Lista> listas = new ArrayList<>(this.listas.values());
+		Collections.reverse(listas);
+		Lista ultimaLista = new Lista ("Lista automatica 2 " + this.geraData());
+		for  (Lista lista : listas) {
+			if (lista.contains(descritorItem)) {
+				ultimaLista.addAll(lista);
+				this.listas.put(ultimaLista.getDescricao(), ultimaLista);
+				return ultimaLista.getDescricao();
 			}
 		}
-		listas.put(ultimaLista.getDescricao(), ultimaLista);
-		return ultimaLista;
-		
+		return "";
 	}
 
 	public String sugereMelhorEstabelecimento() {

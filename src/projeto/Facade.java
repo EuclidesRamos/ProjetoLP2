@@ -306,4 +306,8 @@ public class Facade {
 	public String geraAutomaticaUltimaLista() {
 		return this.controllerLista.geraAutomaticaUltimaLista();
 	}
+	
+	public String geraAutomaticaItem(String descritorItem) {
+		return this.controllerLista.geraAutomaticaItem(descritorItem);
+	}
 }

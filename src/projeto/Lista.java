@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.HashMap;
 
 public class Lista {
@@ -141,6 +142,21 @@ public class Lista {
 	public Compra pegaCompra(int itemId) {
 		return this.compras.get(itemId);
 	}
+	
+	public void addAll(Lista lista) {
+		for (Entry<Integer, Compra> entry : lista.compras.entrySet()) {
+			this.compras.put(entry.getKey(), entry.getValue());
+		}
+	}
+	
+	public boolean contains(String descritorItem) {
+		for (Compra compra : this.compras.values()) {
+			if (compra.getItem().getNome().equals(descritorItem)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	/**
 	 * Sobrescita do metodo toString.
@@ -175,13 +191,12 @@ public class Lista {
 		return true;
 	}
 
-	public Map<Integer, Compra> getCompras() {
-		return this.compras;
-	}
-
 	public void adicionaCompraAutomatica(Compra compra) {
 		this.compras.put(compra.getItem().getId(), compra);
 
 	}
 	
+	public Map<Integer, Compra> getCompras() {
+		return this.compras;
+	}
 }
