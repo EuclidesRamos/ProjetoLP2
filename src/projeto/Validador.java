@@ -114,9 +114,23 @@ public class Validador {
 		parametroDoubleInvalido(preco, mensagem + "preco de item invalido.");
 	}
 
+	/**
+	 * Metodo que faz a validacao ao listar itens por categoria.
+	 * 
+	 * @param categoria Nome da categoria
+	 */
 	public void validaGetItemPorCategoria(String categoria) {
 		String mensagem = "Erro na listagem de item: ";
 		validaCategoria(categoria, mensagem);
+	}
+
+	/**
+	 * Metodo que faz a validacao ao construir uma categoria.
+	 * 
+	 * @param categoria Nome da categoria
+	 */
+	public void validaCategoria(String categoria) {
+		validaCategoria(categoria, "");
 	}
 
 	/**

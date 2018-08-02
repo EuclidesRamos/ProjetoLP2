@@ -36,12 +36,12 @@ public abstract class Item {
 	 * Categoria do item
 	 */
 	private Categoria categoria;
-	
+
 	/**
 	 * Validador de entradas.
 	 */
 	protected Validador validador;
-	
+
 	/**
 	 *
 	 * Constroi um item a partir do seu id, nome, categoria, local de compra e
@@ -64,7 +64,7 @@ public abstract class Item {
 	}
 
 	/**
-	 * Retorna a identificacao do item.
+	 * Metodo que retorna a identificacao do item.
 	 * 
 	 * @return um inteiro que representa o id do item
 	 */
@@ -73,7 +73,7 @@ public abstract class Item {
 	}
 
 	/**
-	 * Retorna o nome do item.
+	 * Metodo que retorna o nome do item.
 	 * 
 	 * @return uma String representando o nome do item
 	 */
@@ -82,7 +82,7 @@ public abstract class Item {
 	}
 
 	/**
-	 * Retorna a categoria do item.
+	 * Metodo que retorna a categoria do item.
 	 * 
 	 * @return uma String representando a categoria do item
 	 */
@@ -91,8 +91,8 @@ public abstract class Item {
 	}
 
 	/**
-	 * Cadastra um novo preco para o item. A partir do local de compra e o valor do
-	 * item.
+	 * Metodo que cadastra um novo preco para o item. A partir do local de compra e
+	 * o valor do item.
 	 * 
 	 * @param localDeCompra Local de compra
 	 * @param valor         Valor do item
@@ -113,7 +113,8 @@ public abstract class Item {
 	}
 
 	/**
-	 * Retorna uma representacao textual dos precos cadastrados para o item.
+	 * Metodo que retorna uma representacao textual dos precos cadastrados para o
+	 * item.
 	 * 
 	 * @return uma String com os precos do item
 	 */
@@ -126,7 +127,7 @@ public abstract class Item {
 	}
 
 	/**
-	 * Retorna o menor preco cadastrado para o item
+	 * Metodo que retorna o menor preco cadastrado para o item
 	 * 
 	 * @return um double do menor preco
 	 */
@@ -141,7 +142,7 @@ public abstract class Item {
 	}
 
 	/**
-	 * Retorna uma representacao textual do item.
+	 * Metodo que retorna representacao textual do item.
 	 * 
 	 * @return uma String
 	 */
@@ -150,31 +151,31 @@ public abstract class Item {
 	}
 
 	/**
-	 * Retorna a representacao do Item na lista
+	 * Metodo que retorna a representacao do Item na lista
 	 * 
 	 * @return Uma String
 	 */
 	public String representacaoLista() {
 		return this.nome + ", " + categoria.getCategoria();
 	}
-	
+
 	/**
-	 * Retorna a precedencia da categoria do item.
+	 * Metodo que retorna a precedencia da categoria do item.
 	 * 
 	 * @return Retorna um inteiro informando a precedencia da categoria.
 	 */
 	public int getPrecedencia() {
 		return this.categoria.getPrecedencia();
 	}
-	
+
 	/**
-	 * Atualiza os atributos de um item.
+	 * Metodo que tualiza os atributos de um item.
 	 * 
 	 * @param atributo  Nome do atributo a ser alterado
 	 * @param novoValor Novo valor que sera atualizado
 	 */
 	public void atualizaItem(String atributo, String novoValor) {
-		
+
 		switch (atributo) {
 		case "nome":
 			this.nome = novoValor;
@@ -185,6 +186,11 @@ public abstract class Item {
 		}
 	}
 
+	/**
+	 * Metodo que retorna o mapa de precos de do item
+	 * 
+	 * @return uma List
+	 */
 	public List<List<String>> getMapaDePrecos() {
 		List<List<String>> precos = new ArrayList<>();
 		for (String key : this.mapaDePrecos.keySet()) {
@@ -196,6 +202,9 @@ public abstract class Item {
 		return precos;
 	}
 
+	/**
+	 * Metodo que retorna uma representacoa inteira do item.
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -205,6 +214,9 @@ public abstract class Item {
 		return result;
 	}
 
+	/**
+	 * Metodo que compara dois itens a partir de seu nome e categoria.
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -226,7 +238,5 @@ public abstract class Item {
 			return false;
 		return true;
 	}
-	
-	
 
 }

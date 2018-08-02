@@ -7,12 +7,12 @@ import org.junit.Test;
 
 public class CompraTest {
 
-	Item item1;
-	Item item2;
-	Item item3;
-	Compra compra1;
-	Compra compra2;
-	Compra compra3;
+	private Item item1;
+	private Item item2;
+	private Item item3;
+	private Compra compra1;
+	private Compra compra2;
+	private Compra compra3;
 
 	@Before
 	public void inicializaTestes() {

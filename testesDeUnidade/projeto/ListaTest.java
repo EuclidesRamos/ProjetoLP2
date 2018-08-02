@@ -9,10 +9,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class ListaTest {
-	Item item;
-	Lista lista;
-	String data;
-	Lista lista2;
+	private Item item;
+	private Lista lista;
+	private String data;
+	private Lista lista2;
 
 	@Before
 	public void incializaTeste() {

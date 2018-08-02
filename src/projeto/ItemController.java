@@ -57,7 +57,7 @@ public class ItemController {
 	 * Metodo responsavel por verificar se um item ja foi adicionado ao Sistema.
 	 * 
 	 * @param item objeto a ser verificado.
-	 * @return Retorna true, quando o item existir, ou false, quando o item n�o existir.
+	 * @return Retorna true, quando o item existir, ou false, quando o item nao existir.
 	 */
 	private boolean verificaIgualdade(Item item) {
 		for (Item itemSistema : this.itens.values()) {
@@ -81,13 +81,13 @@ public class ItemController {
 	/**
 	 * Metodo responsavel por adicionar um item com quantidade fixa no Sistema.
 	 * 
-	 * @param nome Nome do item.
-	 * @param categoria Categoria do item (alimento industrializado, alimento nao industrializado, limpeza e higiene pessoal.
-	 * @param quantidade Quantidade do item a ser adicionada.
+	 * @param nome Nome do item
+	 * @param categoria Categoria do item (alimento industrializado, alimento nao industrializado, limpeza e higiene pessoal
+	 * @param quantidade Quantidade do item a ser adicionada
 	 * @param unidadeDeMedida Unidade de medida da quantidade (l, kg, etc)
-	 * @param localDeCompra Nome do local em que o item foi comprado.
-	 * @param preco Preco do item.
-	 * @return Retorna o id (gerado automaticamente) do item.
+	 * @param localDeCompra Nome do local em que o item foi comprado
+	 * @param preco Preco do item
+	 * @return Retorna o id (gerado automaticamente) do item
 	 */
 	public int adicionaItemPorQtd(String nome, String categoria, int quantidade, String unidadeDeMedida, String localDeCompra, double preco) {
 		this.validador.validaItemQuantidadeFixa(nome, categoria, quantidade, unidadeDeMedida, localDeCompra, preco);
@@ -105,12 +105,12 @@ public class ItemController {
 	/**
 	 * Metodo responsavel por adicionar um item pela quantidade em quilos no Sistema.
 	 * 
-	 * @param nome Nome do item.
-	 * @param categoria Categoria do item (alimento industrializado, alimento nao industrializado, limpeza e higiene pessoal.
-	 * @param kg Valor, em quilos, do item.
-	 * @param localDeCompra Nome do local em que o item foi comprado.
-	 * @param preco Preco do item.
-	 * @return Retorna o id (gerado automaticamente) do item.
+	 * @param nome Nome do item
+	 * @param categoria Categoria do item (alimento industrializado, alimento nao industrializado, limpeza e higiene pessoal
+	 * @param kg Valor, em quilos, do item
+	 * @param localDeCompra Nome do local em que o item foi comprado
+	 * @param preco Preco do item
+	 * @return Retorna o id (gerado automaticamente) do item
 	 */
 	public int adicionaItemPorQuilo(String nome, String categoria, double kg, String localDeCompra, double preco) {
 		this.validador.validaItemQuilo(nome, categoria, kg, localDeCompra, preco);
@@ -126,14 +126,14 @@ public class ItemController {
 	}
 	
 	/**
-	 * Metodo responsavel por adicionar um item por unidade n Sistema.
+	 * Metodo responsavel por adicionar um item por unidade no Sistema.
 	 * 
-	 * @param nome Nome do item.
-	 * @param categoria Categoria do item (alimento industrializado, alimento nao industrializado, limpeza e higiene pessoal.
-	 * @param unidade valor da unidade a ser adicionada.
-	 * @param localDeCompra Nome do local em que o item foi comprado.
-	 * @param preco Preco do item.
-	 * @return Retorna o id (gerado automaticamente) do item.
+	 * @param nome Nome do item
+	 * @param categoria Categoria do item (alimento industrializado, alimento nao industrializado, limpeza e higiene pessoal
+	 * @param unidade valor da unidade a ser adicionada
+	 * @param localDeCompra Nome do local em que o item foi comprado
+	 * @param preco Preco do item
+	 * @return Retorna o id (gerado automaticamente) do item
 	 */
 	public int adicionaItemPorUnidade(String nome, String categoria, int unidade, String localDeCompra, double preco) {
 		this.validador.validaItemUnidade(nome, categoria, unidade, localDeCompra, preco);
@@ -149,10 +149,10 @@ public class ItemController {
 	}
 
 	/**
-	 * Metodo que captura um Item e exibe ao usuario.
+	 * Metodo que captura um Item e exibe ao usuario
 	 * 
-	 * @param id Id do item a ser exibido.
-	 * @return Retorna o toString() do item.
+	 * @param id Id do item a ser exibido
+	 * @return Retorna o toString() do item
 	 */
 	public String exibeItem(int id) {
 		if (id <= 0) {
@@ -166,9 +166,9 @@ public class ItemController {
 	/**
 	 * Metodo responsavel por atualizar algum atributo de Item.
 	 * 
-	 * @param id Id do item a ser atualizado.
-	 * @param atributo Atributo a ser atualizado.
-	 * @param novoValor Novo valor para o atributo informado.
+	 * @param id Id do item a ser atualizado
+	 * @param atributo Atributo a ser atualizado
+	 * @param novoValor Novo valor para o atributo informado
 	 */
 	public void atualizaItem(int id, String atributo, String novoValor) {
 		this.validador.validaAtualizaItem(atributo, novoValor);
@@ -182,9 +182,9 @@ public class ItemController {
 	/**
 	 * Metodo responsavel por adicionar mais precos ao Item.
 	 * 
-	 * @param id Id do Item a ser colocado mais preco.
-	 * @param localDeCompra Nome do local em que o item foi comprado.
-	 * @param preco Preco do item.
+	 * @param id Id do Item a ser colocado mais preco
+	 * @param localDeCompra Nome do local em que o item foi comprado
+	 * @param preco Preco do item
 	 */
 	public void adicionaPrecoItem(int id, String localDeCompra, double preco) {
 		if (id <= 0) {
@@ -199,7 +199,7 @@ public class ItemController {
 	/**
 	 * Metodo responsavel por deletar um Item do Sistema.
 	 * 
-	 * @param id Id do item a ser deletado.
+	 * @param id Id do item a ser deletado
 	 */
 	public void deletaItem(int id) {
 		this.itens.remove(id);
@@ -208,8 +208,8 @@ public class ItemController {
 	/**
 	 * Exibe um Item ordenado em ordem alfabetica.
 	 * 
-	 * @param posicao Id do item a ser exibido.
-	 * @return Retorna o toString() do item.
+	 * @param posicao Id do item a ser exibido
+	 * @return Retorna o toString() do item
 	 */
 	public String getItem(int posicao) {
 		List<Item> listaItens = new ArrayList<>(itens.values());
@@ -223,9 +223,9 @@ public class ItemController {
 	/**
 	 * Exibe um Item ordenado de acordo com sua categoria.
 	 * 
-	 * @param categoria Categoria a ser exibida.
-	 * @param posicao Id do item a se exibido.
-	 * @return Retorna o toString() do item.
+	 * @param categoria Categoria a ser exibida
+	 * @param posicao Id do item a se exibido
+	 * @return Retorna o toString() do item
 	 */
 	public String getItemPorCategoria(String categoria, int posicao) {
 		this.validador.validaGetItemPorCategoria(categoria);
@@ -245,8 +245,8 @@ public class ItemController {
 	/**
 	 * Exibe um Item ordenado pelo menor preco.
 	 * 
-	 * @param posicao Id do item a se exibido.
-	 * @return Retorna o toString() do item.
+	 * @param posicao Id do item a se exibido
+	 * @return Retorna o toString() do item
 	 */
 	public String getItemPorMenorPreco(int posicao) {
 		this.estrategiaDeOrdenacao = new OrdenaPreco();
@@ -256,9 +256,9 @@ public class ItemController {
 	/**
 	 * Exibe um Item a partir de uma String recebida.
 	 * 
-	 * @param strPesquisa String a ser utilizada para verificacao dos Itens.
-	 * @param posicao Id do item a se exibido.
-	 * @return Retorna o toString() do item.
+	 * @param strPesquisa String a ser utilizada para verificacao dos Itens
+	 * @param posicao Id do item a se exibido
+	 * @return Retorna o toString() do item
 	 */
 	public String getItemPorPesquisa(String strPesquisa, int posicao) {
 		this.estrategiaDeOrdenacao = new OrdenaAlfabetica();
@@ -279,16 +279,24 @@ public class ItemController {
 	 * Metodo responsavel por capturar e retornar um objeto do tipo Item no Map.
 	 * 
 	 * @param id Id do item a ser capturado
-	 * @return Retorna o objeto do tipo Item.
+	 * @return Retorna o objeto do tipo Item
 	 */
 	public Item pegaItem(int itemId) {
 		return this.itens.get(itemId);
 	}
-	
+	/**
+	 * Metodo que retorna o mapa de precos de um item.
+	 * @param itemId Id do item
+	 * @return um List
+	 */
 	public List<List<String>> retornaPrecosItem(int itemId) {
 		return this.itens.get(itemId).getMapaDePrecos();
 	}
 
+	/**
+	 * Metodo que retorna o mapa de itens.
+	 * @return um Map
+	 */
 	public Map<Integer, Item> getItens() {
 		return itens;
 	}

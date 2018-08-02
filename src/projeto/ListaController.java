@@ -160,12 +160,12 @@ public class ListaController {
 	 * Metodo responsavel por realizar pesquisa em uma lista, retornando o toString
 	 * da compra que esta na posicao passada como parametro.
 	 * 
-	 * @param descritor   Descritor da lista que sera pesquisada.
-	 * @param posicaoItem Posicao da compra a ser exibida.
+	 * @param descritor   Descritor da lista que sera pesquisada
+	 * @param posicaoItem Posicao da compra a ser exibida
 	 * @return Retorna a representacao em String da compra que esta na posicao
-	 *         passada como parametro.
+	 *         passada como parametro
 	 * @return Retorna a representacao em String da compra que esta na posicao
-	 *         passada como parametro.
+	 *         passada como parametro
 	 */
 	public String getItemLista(String descritor, int posicaoItem) {
 		return this.listas.get(descritor).getItemLista(posicaoItem);
@@ -273,7 +273,7 @@ public class ListaController {
 	 * Metodo responsavel por gerar uma nova lista a partir da ultima lista que
 	 * contem um item especifico.
 	 * 
-	 * @param descritorItem Descritor do item base.
+	 * @param descritorItem Descritor do item base
 	 * @return o descritor da nova lista
 	 */
 	public String geraAutomaticaItem(String descritorItem) {
