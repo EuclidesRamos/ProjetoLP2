@@ -10,10 +10,9 @@ package projeto;
  *
  */
 public class Validador {
-	
+
 	private final String FORMATO_DATA = "^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\/|-|\\.)(?:0?[1,3-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$";
-	
-	
+
 	/**
 	 * Construtor de validador, onde nao e setado nada.
 	 */
@@ -129,21 +128,21 @@ public class Validador {
 	public void validaCompra(int quantidade, Item item) {
 		if (quantidade <= 0) {
 			throw new IllegalArgumentException("Quantidade nao pode ser menor ou igual a zero.");
-			
+
 		}
 		this.validaObjeto(item, "");
 	}
-	
+
 	/**
 	 * Metodo que verifica se o descritor de uma lista de compra e valido.
 	 * 
 	 * @param descritor descritor da lista.
-	 * @param mensagem mensagem a ser exibida, caso seja lancando execao.
+	 * @param mensagem  mensagem a ser exibida, caso seja lancando execao.
 	 */
 	public void validaListaDeCompras(String descritor, String mensagem) {
 		parametroInvalido(descritor, mensagem + "descritor nao pode ser vazio ou nulo.");
 	}
-	
+
 	/**
 	 * Metodo que verifica se a operacao de atualizacao de item em lista e valida.
 	 * 
@@ -151,17 +150,17 @@ public class Validador {
 	 */
 	public void validaAtualizaCompraDeLista(String operacao) {
 		if ("adiciona".equals(operacao) || "diminui".equals(operacao)) {
-			
+
 		} else {
 			throw new IllegalArgumentException("Erro na atualizacao de compra: operacao invalida para atualizacao.");
 		}
 	}
-	
+
 	/**
 	 * Metodo que verifica se os atributos para finalizar a lista sao validos.
 	 * 
-	 * @param descritorLista Descricao da lista.
-	 * @param localDeCompra Local onde a compra foi efetivada.
+	 * @param descritorLista     Descricao da lista.
+	 * @param localDeCompra      Local onde a compra foi efetivada.
 	 * @param valorFinalDaCompra Valor final da compra.
 	 */
 	public void validaFinalizarListaDeCompras(String descritorLista, String localDeCompra, int valorFinalDaCompra) {
@@ -169,13 +168,13 @@ public class Validador {
 		parametroInvalido(descritorLista, mensagem + "descritor nao pode ser vazio ou nulo.");
 		parametroInvalido(localDeCompra, mensagem + "local nao pode ser vazio ou nulo.");
 		parametroInteiroInvalido(valorFinalDaCompra - 1, mensagem + "valor final da lista invalido.");
-		
+
 	}
-	
+
 	/**
 	 * Metodo responsavel por verificar se um objeto e nulo.
 	 * 
-	 * @param objeto Objeto a ser verificado.
+	 * @param objeto   Objeto a ser verificado.
 	 * @param mensagem Mensagem a ser exibida na excecao.
 	 */
 	public void validaObjeto(Object objeto, String mensagem) {
@@ -183,7 +182,7 @@ public class Validador {
 			throw new NullPointerException(mensagem);
 		}
 	}
-	
+
 	/**
 	 * Metodo que verifica se a data esta no formato adequado.
 	 * 
@@ -200,7 +199,7 @@ public class Validador {
 			throw new IllegalArgumentException(mensagem + "data em formato invalido, tente dd/MM/yyyy");
 		}
 	}
-	
+
 	/**
 	 * Metodo onde faz a validacao dos parametros, para cadastrar um novo item.
 	 * 
@@ -273,6 +272,16 @@ public class Validador {
 		if (paramentro < 0) {
 			throw new IllegalArgumentException(mensagem);
 		}
+	}
+
+	/**
+	 * Metodo onde verifica se a descricao ao construir uma lista e valida.
+	 * 
+	 * @param descricao Descricao a ser checada
+	 */
+	public void validaListaDeCompras(String descricao) {
+		parametroInvalido(descricao, "descritor nao pode ser vazio ou nulo.");
+
 	}
 
 }

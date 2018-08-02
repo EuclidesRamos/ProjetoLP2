@@ -203,4 +203,5 @@ public class ListaControllerTest {
 	public void pesquisaListasDeComprasPorItemCompraNaoEncontradaNaLista() {
 		this.controllerLista.pesquisaListasDeComprasPorItem(2);
 	}
+	
 }

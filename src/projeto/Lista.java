@@ -10,28 +10,65 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.HashMap;
 
+/**
+ * Classe responsavel por representar uma lista de compras no sistema.
+ * 
+ * @author Euclides Ramos - 117210377
+ * @author Edson Weslley - 117211348
+ * @author Eduardo Pereira - 117210342
+ * @author Joao Antonio Bandeira - 117210692
+ *
+ */
 public class Lista {
+	/**
+	 * Mapa de compras.
+	 */
 	private Map<Integer, Compra> compras;
+	/**
+	 * Data da criacao da lista.
+	 */
 	private String data;
+	/**
+	 * Descricao da lista.
+	 */
 	private String descricao;
+	/**
+	 * Local onde a lista foi finalizada.
+	 */
 	private String localDaCompra;
+	/**
+	 * Valor final da lista finalizada.
+	 */
 	private int valorFinalCompra;
+	/**
+	 * Ordenador de compras.
+	 */
 	private Comparator<Compra> ordenacaoCompras;
 
+	private Validador validador;
+
+	/**
+	 * Constroi uma lista a partir de sua descricao.
+	 * 
+	 * @param descricao Descricao da lista
+	 */
 	public Lista(String descricao) {
+		validador = new Validador();
+		this.validador.validaListaDeCompras(descricao);
 		this.descricao = descricao;
 		SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
 		this.data = formatoData.format(new Date(System.currentTimeMillis()));
 		this.compras = new HashMap<>();
 		this.ordenacaoCompras = new OrdenacaoDefault();
+
 	}
 
 	/**
 	 * Metodo que adiciona uma compra a uma lista.
 	 * 
-	 * @param itemId     Id do item.
-	 * @param quantidade Quantidade a ser passada.
-	 * @param operacao   Operacao.
+	 * @param itemId     Id do item
+	 * @param quantidade Quantidade a ser passada
+	 * @param operacao   Operacao
 	 */
 	public void adicionaCompraALista(int quantidade, Item item, int itemId) {
 		Compra compra = new Compra(quantidade, item);
@@ -39,9 +76,9 @@ public class Lista {
 	}
 
 	/**
-	 * Metodo que ira armazenar as compras.
+	 * Metodo que retorna uma compra a partir do id do item associada a essa compra.
 	 * 
-	 * @return compras.
+	 * @return a representacao textual da compra
 	 */
 	public String getCompra(int itemId) {
 		return compras.get(itemId).toString();
@@ -50,9 +87,9 @@ public class Lista {
 	/**
 	 * Metodo que atualiza uma compra a uma lista.
 	 * 
-	 * @param itemId     Id do item.
-	 * @param quantidade Quantidade a ser passada.
-	 * @param operacao   Operacao.
+	 * @param itemId     Id do item
+	 * @param quantidade Quantidade a ser passada
+	 * @param operacao   Operacao
 	 */
 	public void atualizaCompraDeLista(int itemId, int quantidade, String operacao) {
 		if (!this.compras.containsKey(itemId)) {
@@ -67,8 +104,8 @@ public class Lista {
 	/**
 	 * Metodo que finaliza a lista.
 	 * 
-	 * @param localDeCompra      Local de compra.
-	 * @param valorFinalDaCompra Valor Final.
+	 * @param localDeCompra      Local de compra
+	 * @param valorFinalDaCompra Valor Final
 	 */
 	public void finalizarListaDeCompras(String localDeCompra, int valorFinalDaCompra) {
 		this.localDaCompra = localDeCompra;
@@ -77,27 +114,47 @@ public class Lista {
 	}
 
 	/**
-	 * Metodo onde deleta uma compra.
+	 * Metodo que retorna o local da compra ao finalizar a lista.
 	 * 
-	 * @param idItem do item da compra.
+	 * @return uma String do local
+	 */
+
+	public String getLocalDaCompra() {
+		return localDaCompra;
+	}
+
+	/**
+	 * Metodo que retorna o valor final da compra ao finalizar a lista.
+	 * 
+	 * @return um inteiro com o valor
+	 */
+
+	public int getValorFinalCompra() {
+		return valorFinalCompra;
+	}
+
+	/**
+	 * Metodo que deleta uma compra da lista
+	 * 
+	 * @param idItem do item da compra
 	 */
 	public void deletaCompraDeLista(int idItem) {
 		this.compras.remove(idItem);
 	}
 
 	/**
-	 * Metodo que captura uma descricao.
+	 * Metodo que retorna a descricao da lista.
 	 * 
-	 * @return uma descricao.
+	 * @return a descricao
 	 */
 	public String getDescricao() {
 		return this.descricao;
 	}
 
 	/**
-	 * Metodo que recupera a data e hora.
+	 * Metodo que retorna a data da criacao da lista.
 	 * 
-	 * @return data atual.
+	 * @return a data
 	 */
 
 	public String getData() {
@@ -105,11 +162,12 @@ public class Lista {
 	}
 
 	/**
-	 * Metodo que captura um item da lista.
+	 * Metodo que retorna a representacao textual de um compra a partir da posicao
+	 * do item a ela associada.
 	 * 
-	 * @param posicaoItem
+	 * @param posicaoItem Posicao do item
 	 * 
-	 * @return a lista com a posicao do item.
+	 * @return uma String da compra
 	 */
 	public String getItemLista(int posicaoItem) {
 		List<Compra> listaCompras = new ArrayList<>(this.compras.values());
@@ -121,34 +179,46 @@ public class Lista {
 	}
 
 	/**
-	 * Verifica se a lista ja possue um item.
+	 * Metodo que verifica se na lista ja existe uma compra com o item passado como
+	 * parametro.
 	 * 
-	 * @param itemId do item da compra.
-	 * @return um boolean.
+	 * @param itemId do item da compra
+	 * @return um boolean
 	 */
 	public boolean verificaItemLista(int itemId) {
-		if (this.compras.get(itemId) != null) {
+		if (this.compras.containsKey(itemId)) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	/**
-	 * Metodo que pesquisa em uma compra
+	 * Metodo que retorna uma compra a partir do item a ela associado.
 	 * 
-	 * @param idItem id do item.
-	 * @return a compra pesquisada.
+	 * @param idItem id do item
+	 * @return a compra pesquisada
 	 */
 	public Compra pegaCompra(int itemId) {
 		return this.compras.get(itemId);
 	}
-	
+
+	/**
+	 * Metodo que copia todas as compras de uma lista para outra.
+	 * 
+	 * @param lista Uma lista
+	 */
 	public void addAll(Lista lista) {
 		for (Entry<Integer, Compra> entry : lista.compras.entrySet()) {
 			this.compras.put(entry.getKey(), entry.getValue());
 		}
 	}
-	
+
+	/**
+	 * Metodo que verifica se na lista existe uma compra com o item especificado
+	 * 
+	 * @param descritorItem Descritor do item
+	 * @return um boolean
+	 */
 	public boolean contains(String descritorItem) {
 		for (Compra compra : this.compras.values()) {
 			if (compra.getItem().getNome().equals(descritorItem)) {
@@ -159,13 +229,16 @@ public class Lista {
 	}
 
 	/**
-	 * Sobrescita do metodo toString.
+	 * Metodo que retorna uma representacao textual de uma lista.
 	 */
 	@Override
 	public String toString() {
 		return this.data + " - " + this.descricao;
 	}
 
+	/**
+	 * Metodo que retorna um inteiro que representa a lista.
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -174,6 +247,9 @@ public class Lista {
 		return result;
 	}
 
+	/**
+	 * Verifica de duas listas são iguais a partir de suas descricoes.
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -191,11 +267,11 @@ public class Lista {
 		return true;
 	}
 
-	public void adicionaCompraAutomatica(Compra compra) {
-		this.compras.put(compra.getItem().getId(), compra);
-
-	}
-	
+	/**
+	 * Metodo que retorna o mapa contendo todas as compras da lista.
+	 * 
+	 * @return um mapa contendo todas as compras da lista
+	 */
 	public Map<Integer, Compra> getCompras() {
 		return this.compras;
 	}

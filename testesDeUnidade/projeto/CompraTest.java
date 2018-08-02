@@ -43,7 +43,7 @@ public class CompraTest {
 
 	@Test
 	public void testAtualizaCompraAumentaQuantidade() {
-		this.compra1.atualizaCompra("aumenta", 5);
+		this.compra1.atualizaCompra("adiciona", 5);
 		assertEquals(this.compra1.getQuantidade(), 15);
 	}
 

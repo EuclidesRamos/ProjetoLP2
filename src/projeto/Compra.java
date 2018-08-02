@@ -4,20 +4,24 @@ package projeto;
  * 
  * Classe responsavel por representar uma Compra no sistema.
  * 
+ * @author Euclides Ramos - 117210377
+ * @author Edson Weslley - 117211348
  * @author Eduardo Pereira - 117210342
- *
+ * @author Joao Antonio Bandeira - 117210692
  */
 public class Compra {
-	
+
 	/**
 	 * Quantidade de itens
 	 */
 	private int quantidade;
-	
+
 	/**
 	 * Item adicionado a compra
 	 */
 	private Item item;
+
+	private Validador validador;
 
 	/**
 	 * Constroi uma compra a partir do item e a quantidade de itens.
@@ -26,17 +30,21 @@ public class Compra {
 	 * @param item       Item
 	 */
 	public Compra(int quantidade, Item item) {
+		this.validador = new Validador();
+		this.validador.validaCompra(quantidade, item);
 		this.quantidade = quantidade;
 		this.item = item;
 	}
 
 	/**
-	 * Atualiza a quantidade de itens em uma compra.
+	 * Metodo que atualiza a quantidade de itens em uma compra.
 	 * 
 	 * @param operacao   Operacao "aumenta" ou "diminui"
 	 * @param quantidade Quantidade a ser aumentada ou diminuida
 	 */
 	public void atualizaCompra(String operacao, int quantidade) {
+		this.validador.validaAtualizaCompraDeLista(operacao);
+
 		switch (operacao) {
 		case "diminui":
 			this.quantidade -= quantidade;
@@ -48,7 +56,7 @@ public class Compra {
 	}
 
 	/**
-	 * Retorna o item pertencente a compra.
+	 * Metodo que retorna o item associado a compra.
 	 * 
 	 * @return o Item
 	 */
@@ -57,7 +65,7 @@ public class Compra {
 	}
 
 	/**
-	 * Retorna a quantidade de itens da compra.
+	 * Metodo que retorna a quantidade de itens da compra.
 	 * 
 	 * @return a quantidade de itens
 	 */
@@ -66,7 +74,7 @@ public class Compra {
 	}
 
 	/**
-	 * Retorna a representacao textual da compra
+	 * Metodo que retorna a representacao textual da compra
 	 * 
 	 * @return uma String
 	 */
