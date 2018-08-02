@@ -68,7 +68,7 @@ public class Lista {
 	 * 
 	 * @param itemId     Id do item
 	 * @param quantidade Quantidade a ser passada
-	 * @param operacao   Operacao
+	 * @param item   Item associado a compra
 	 */
 	public void adicionaCompraALista(int quantidade, Item item, int itemId) {
 		Compra compra = new Compra(quantidade, item);
@@ -77,7 +77,7 @@ public class Lista {
 
 	/**
 	 * Metodo que retorna uma compra a partir do id do item associada a essa compra.
-	 * 
+	 * @param itemId Id do item
 	 * @return a representacao textual da compra
 	 */
 	public String getCompra(int itemId) {
@@ -195,7 +195,7 @@ public class Lista {
 	/**
 	 * Metodo que retorna uma compra a partir do item a ela associado.
 	 * 
-	 * @param idItem id do item
+	 * @param itemId id do item
 	 * @return a compra pesquisada
 	 */
 	public Compra pegaCompra(int itemId) {

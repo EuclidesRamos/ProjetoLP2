@@ -278,7 +278,7 @@ public class ItemController {
 	/**
 	 * Metodo responsavel por capturar e retornar um objeto do tipo Item no Map.
 	 * 
-	 * @param id Id do item a ser capturado
+	 * @param itemid Id do item a ser capturado
 	 * @return Retorna o objeto do tipo Item
 	 */
 	public Item pegaItem(int itemId) {

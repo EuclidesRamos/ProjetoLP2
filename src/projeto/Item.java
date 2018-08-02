@@ -52,7 +52,7 @@ public abstract class Item {
 	 * @param categoria     Categoria do item
 	 * @param localDeCompra Local onde foi comprado o item
 	 * @param preco         Preco do item
-	 * @param precedencia   Precedencia para ordenacao ()
+	 * 
 	 */
 	public Item(int id, String nome, String categoria, String localDeCompra, double preco) {
 		this.validador = new Validador();
