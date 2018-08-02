@@ -157,7 +157,7 @@ public class Lista {
 		}
 		return false;
 	}
-
+	
 	/**
 	 * Sobrescita do metodo toString.
 	 */
@@ -191,12 +191,4 @@ public class Lista {
 		return true;
 	}
 
-	public void adicionaCompraAutomatica(Compra compra) {
-		this.compras.put(compra.getItem().getId(), compra);
-
-	}
-	
-	public Map<Integer, Compra> getCompras() {
-		return this.compras;
-	}
 }
