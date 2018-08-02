@@ -1,6 +1,7 @@
 package projeto;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -288,4 +289,10 @@ public class ItemController {
 	public List<List<String>> retornaPrecosItem(int itemId) {
 		return this.itens.get(itemId).getMapaDePrecos();
 	}
+
+	public Map<Integer, Item> getItens() {
+		return itens;
+	}
+	
+
 }

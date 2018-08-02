@@ -82,7 +82,7 @@ public class Lista {
 	 * @param idItem do item da compra.
 	 */
 	public void deletaCompraDeLista(int idItem) {
-		this.compras.put(idItem, null);
+		this.compras.remove(idItem);
 	}
 
 	/**

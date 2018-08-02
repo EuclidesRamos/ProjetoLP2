@@ -310,4 +310,10 @@ public class Facade {
 	public String geraAutomaticaItem(String descritorItem) {
 		return this.controllerLista.geraAutomaticaItem(descritorItem);
 	}
+	
+	public String geraAutomaticaItensMaisPresentes() {
+		return this.controllerLista.geraAutomaticaItensMaisPresentes();
+	}
+	
+	
 }
