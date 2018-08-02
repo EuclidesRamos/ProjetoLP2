@@ -2,6 +2,9 @@ package projeto;
 
 import static org.junit.Assert.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.junit.Test;
 import org.junit.Before;
 
@@ -9,6 +12,8 @@ public class ListaControllerTest {
 
 	private ListaController controllerLista;
 	private ItemController controllerItem;
+	private SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
+	private String data = formatoData.format(new Date(System.currentTimeMillis()));
 
 	@Before
 	public void exemploListaController() {
@@ -67,7 +72,7 @@ public class ListaControllerTest {
 
 	@Test(expected = NullPointerException.class)
 	public void testAdicionaCompraAListaItemInvalido() {
-		this.controllerLista.adicionaCompraALista("feira semana", 3, 2);
+		this.controllerLista.adicionaCompraALista("feira semana", 3, 3);
 	}
 
 	@Test
@@ -174,7 +179,7 @@ public class ListaControllerTest {
 
 	@Test
 	public void testGetItemListaPorData() {
-		assertEquals("compras", this.controllerLista.getItemListaPorData("22/07/2018", 0));
+		assertEquals("compras", this.controllerLista.getItemListaPorData(this.data, 0));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -184,13 +189,13 @@ public class ListaControllerTest {
 
 	@Test
 	public void testGetItemListaPorItem() {
-		assertEquals("22/07/2018 - compras", this.controllerLista.getItemListaPorItem(1, 0));
+		assertEquals(this.data + " - compras", this.controllerLista.getItemListaPorItem(1, 0));
 	}
 
 	@Test
 	public void testpesquisaListasDeComprasPorData() {
-		assertEquals("compras" + System.lineSeparator() + "feira semana" + System.lineSeparator(),
-				this.controllerLista.pesquisaListasDeComprasPorData("22/07/2018"));
+		assertEquals("feira semana" + System.lineSeparator() + "compras" + System.lineSeparator(),
+				this.controllerLista.pesquisaListasDeComprasPorData(this.data));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -210,21 +215,36 @@ public class ListaControllerTest {
 
 	@Test
 	public void testGeraAutomaticaUltimaLista() {
+		this.controllerLista.geraAutomaticaUltimaLista();
+		assertEquals(
+				"feira semana" + System.lineSeparator() + "compras" + System.lineSeparator() + "Lista automatica 1 "
+						+ this.data + System.lineSeparator(),
+				this.controllerLista.pesquisaListasDeComprasPorData(this.data));
 
 	}
 
 	@Test
 	public void testGeraAutomaticaItem() {
+		this.controllerLista.geraAutomaticaItem("Agua Sanitaria Drogon");
+		assertEquals(
+				"feira semana" + System.lineSeparator() + "compras" + System.lineSeparator() + "Lista automatica 2 "
+						+ this.data + System.lineSeparator(),
+				this.controllerLista.pesquisaListasDeComprasPorData(this.data));
 
 	}
 
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public void testGeraAutomaticaItemNaoEncontradoEmListas() {
-
+		this.controllerLista.geraAutomaticaItem("Bombril");
 	}
 
 	@Test
 	public void testGeraAutomaticaItensMaisPresentes() {
+		this.controllerLista.geraAutomaticaItensMaisPresentes();
+		assertEquals(
+				"feira semana" + System.lineSeparator() + "compras" + System.lineSeparator() + "Lista automatica 3 "
+						+ this.data + System.lineSeparator(),
+				this.controllerLista.pesquisaListasDeComprasPorData(this.data));
 
 	}
 
