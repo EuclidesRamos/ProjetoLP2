@@ -18,4 +18,4 @@ expect "- 5 Coentro, alimento nao industrializado" sugereMelhorEstabelecimento d
 
 deletaCompraDeLista descritorLista="feiraVerde" itemId=7
 
-expectError "Faltam dados para informar sobre preços em locais de compras." sugereMelhorEstabelecimento descritorLista="feiraVerde" posicaoEstabelecimento=0 posicaoLista=0
+expectError "Faltam dados para informar sobre precos em locais de compras." sugereMelhorEstabelecimento descritorLista="feiraVerde" posicaoEstabelecimento=0 posicaoLista=0

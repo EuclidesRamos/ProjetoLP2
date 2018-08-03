@@ -3,7 +3,7 @@ package projeto;
 import java.util.Comparator;
 
 /**
- * Sobrescrita do Comparator de Ordem Alfabetica.
+ * Classe responsavel por comparar dois itens pelo nome.
  * 
  * @author Euclides Ramos - 117210377
  * @author Edson Weslley - 117211348

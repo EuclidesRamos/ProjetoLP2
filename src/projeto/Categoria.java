@@ -1,10 +1,40 @@
 package projeto;
 
+/**
+ * Classe responsavel por representar uma categoria no sistema.
+ * 
+ * @author Euclides Ramos - 117210377
+ * @author Edson Weslley - 117211348
+ * @author Eduardo Pereira - 117210342
+ * @author Joao Antonio Bandeira - 117210692
+ */
 public class Categoria {
-	
+
+	/**
+	 * Nome da categoria.
+	 */
 	private String nomeCategoria;
+	/**
+	 * Precedencia.
+	 */
 	private int precedencia;
-	
+	/**
+	 * Validador
+	 */
+	private Validador validador;
+
+	/**
+	 * Constroi uma categoria a partir de seu nome.
+	 * 
+	 * @param nomeCategoria Nome da categoria
+	 */
+	public Categoria(String nomeCategoria) {
+		validador = new Validador();
+		this.validador.validaCategoria(nomeCategoria);
+		this.nomeCategoria = nomeCategoria;
+		precedencia(nomeCategoria);
+	}
+
 	/**
 	 * Metodo que calcula a precedencia da categoria do item.
 	 * 
@@ -21,20 +51,29 @@ public class Categoria {
 			this.precedencia = 4;
 		}
 	}
-	
-	public Categoria(String nomeCategoria) {
-		this.nomeCategoria = nomeCategoria;
-		precedencia(nomeCategoria);
-	}
-	
+
+	/**
+	 * Metodo que retorna o nome da categoria.
+	 * 
+	 * @return uma String
+	 */
+
 	public String getCategoria() {
 		return this.nomeCategoria;
 	}
-	
+
+	/**
+	 * Metodo que retorna a precedencia de uma categoria.
+	 * 
+	 * @return um inteiro de 1 a 4
+	 */
 	public int getPrecedencia() {
 		return this.precedencia;
 	}
 
+	/**
+	 * Metodo que retorna um inteiro que representa uma categoria.
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -42,6 +81,10 @@ public class Categoria {
 		result = prime * result + ((nomeCategoria == null) ? 0 : nomeCategoria.hashCode());
 		return result;
 	}
+
+	/**
+	 * Metodo que compara duas categorias pelo seus nomes.
+	 */
 
 	@Override
 	public boolean equals(Object obj) {
