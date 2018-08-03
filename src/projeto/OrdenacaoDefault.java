@@ -1,5 +1,6 @@
 package projeto;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
 /**
@@ -11,7 +12,12 @@ import java.util.Comparator;
  * @author Joao Antonio Bandeira - 117210692
  * 
  */
-public class OrdenacaoDefault implements Comparator<Compra> {
+public class OrdenacaoDefault implements Comparator<Compra>, Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6865603154931787509L;
 
 	/**
 	 * Metodo que compara duas compras.

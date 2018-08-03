@@ -13,6 +13,11 @@ package projeto;
 public class ItemQuantidadeFixa extends Item {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7229045156139586108L;
+
+	/**
 	 * Quantidade de itens.
 	 */
 	private int quantidade;

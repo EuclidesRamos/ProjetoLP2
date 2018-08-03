@@ -1,5 +1,6 @@
 package projeto;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -38,8 +39,9 @@ public class Facade {
 				"testesDeAceitacao/use_case3.txt", "testesDeAceitacao/use_case3_exception.txt", 
 				"testesDeAceitacao/use_case4.txt", "testesDeAceitacao/use_case4_exception.txt",
 				"testesDeAceitacao/use_case5.txt",
-				"testesDeAceitacao/use_case6.txt", "testesDeAceitacao/use_case6_exception.txt"};
-		EasyAccept.main(args);
+				"testesDeAceitacao/use_case6.txt", "testesDeAceitacao/use_case6_exception.txt",
+				"testesDeAceitacao/use_case7.txt"};
+
 	}
 
 	/**
@@ -362,6 +364,28 @@ public class Facade {
 	 */
 	public String sugereMelhorEstabelecimento(String descritorLista, int posicaoEstabelecimento, int posicaoLista) {
 		return this.controllerLista.sugereMelhorEstabelecimento(descritorLista, posicaoEstabelecimento, posicaoLista);
+	}
+
+	/**
+	 * Fecha o sistema salvando todos os dados em arquivos.
+	 * 
+	 * @throws IOException
+	 */
+	public void fechaSistema() throws IOException {
+		this.controllerItem.salvaDados();
+		this.controllerLista.salvaDados();
+
+	}
+
+	/**
+	 * Inicializa o sistema recuperando todos os dados dos arquivos.
+	 * 
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 */
+	public void iniciaSistema() throws ClassNotFoundException, IOException {
+		this.controllerItem.recuperaDados();
+		this.controllerLista.recuperaDados();
 	}
 
 }

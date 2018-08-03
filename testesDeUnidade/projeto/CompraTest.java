@@ -10,9 +10,11 @@ public class CompraTest {
 	private Item item1;
 	private Item item2;
 	private Item item3;
+	private Item item4;
 	private Compra compra1;
 	private Compra compra2;
 	private Compra compra3;
+	private Compra compra4;
 
 	@Before
 	public void inicializaTestes() {
@@ -20,9 +22,11 @@ public class CompraTest {
 				5.50);
 		this.item2 = new ItemUnidade(2, "Queijo minas Dali", "alimento industrializado", 1, "Hiper", 15);
 		this.item3 = new ItemQuilo(3, "Batata doce", "alimento nao industrializado", 2, "Hiper", 12);
+		this.item4 = new ItemUnidade(4, "Sabao", "limpeza", 8, "Hiper", 8.00);
 		this.compra1 = new Compra(10, item1);
 		this.compra2 = new Compra(15, item2);
 		this.compra3 = new Compra(13, item3);
+		this.compra4 = new Compra(16, item4);
 	}
 
 	@Test(expected = NullPointerException.class)
@@ -77,6 +81,11 @@ public class CompraTest {
 	@Test
 	public void testToStringCompraItemQuilo() {
 		assertEquals(compra3.toString(), "13 Batata doce, alimento nao industrializado");
+	}
+
+	@Test
+	public void testToStringCompraItemCategoriaLimpeza() {
+		assertEquals(compra4.toString(), "16 Sabao, limpeza");
 	}
 
 }

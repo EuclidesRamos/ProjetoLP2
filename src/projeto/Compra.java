@@ -1,5 +1,7 @@
 package projeto;
 
+import java.io.Serializable;
+
 /**
  * 
  * Classe responsavel por representar uma Compra no sistema.
@@ -9,7 +11,12 @@ package projeto;
  * @author Eduardo Pereira - 117210342
  * @author Joao Antonio Bandeira - 117210692
  */
-public class Compra {
+public class Compra implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 677402145184145021L;
 
 	/**
 	 * Quantidade de itens

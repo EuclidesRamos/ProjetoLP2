@@ -1,5 +1,6 @@
 package projeto;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
 /**
@@ -11,8 +12,13 @@ import java.util.Comparator;
  * @author Joao Antonio Bandeira - 117210692
  *
  */
-public class OrdenaListaData implements Comparator<Lista> {
+public class OrdenaListaData implements Comparator<Lista>, Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6945911189131073089L;
+
 	/**
 	 * Metodo que compara os itens do tipo Lista pela data da compra. Se forem comprados na mesma data, compara lexicograficamente.
 	 */

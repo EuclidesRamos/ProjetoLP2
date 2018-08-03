@@ -1,5 +1,6 @@
 package projeto;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +16,12 @@ import java.util.Map.Entry;
  * @author Joao Antonio Bandeira - 117210692
  * 
  */
-public abstract class Item {
+public abstract class Item implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1028546538337346181L;
 
 	/**
 	 * Mapa de precos de um item.
@@ -52,7 +58,7 @@ public abstract class Item {
 	 * @param categoria     Categoria do item
 	 * @param localDeCompra Local onde foi comprado o item
 	 * @param preco         Preco do item
-	 * @param precedencia   Precedencia para ordenacao ()
+	 * 
 	 */
 	public Item(int id, String nome, String categoria, String localDeCompra, double preco) {
 		this.validador = new Validador();

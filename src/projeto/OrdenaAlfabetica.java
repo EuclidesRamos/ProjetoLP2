@@ -1,5 +1,6 @@
 package projeto;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
 /**
@@ -11,8 +12,13 @@ import java.util.Comparator;
  * @author Joao Antonio Bandeira - 117210692
  * 
  */
-public class OrdenaAlfabetica implements Comparator<Item> {
+public class OrdenaAlfabetica implements Comparator<Item>,Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7397549746579811642L;
+
 	/**
 	 * Compara o nome de dois itens distintos.
 	 * 

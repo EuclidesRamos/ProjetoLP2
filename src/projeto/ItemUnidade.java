@@ -12,6 +12,10 @@ package projeto;
 
 public class ItemUnidade extends Item {
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7241378834789492228L;
+	/**
 	 * Quantidade de unidades de um item.
 	 */
 	private int unidade;

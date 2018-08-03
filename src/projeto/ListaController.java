@@ -1,5 +1,11 @@
 package projeto;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -40,9 +46,38 @@ public class ListaController {
 	 */
 	private Comparator<Lista> estrategiaDeOrdenacao;
 
+	/**
+	 * Metodo responsavel por gerar a data atual.
+	 * 
+	 * @return Retorna a data atual em forma de String.
+	 */
 	private String geraData() {
 		SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
 		return formatoData.format(new Date(System.currentTimeMillis()));
+	}
+	
+	/**
+	 * Metodo que realiza a contagem de quantas vezes o item esta presente nas
+	 * listas.
+	 * 
+	 * @param item Item a ser contado
+	 * @return quantidade de itens da nova compra ou -1 caso o item nao apareca em
+	 *         pelo menos metade da listas
+	 */
+	private int verificacaItemNaLista(Item item) {
+		int aparece = 0;
+		int quantidade = 0;
+		for (Lista lista : this.listas.values()) {
+			if (lista.getCompras().containsKey(item.getId())) {
+				quantidade += lista.getCompras().get(item.getId()).getQuantidade();
+				aparece++;
+			}
+		}
+		if (aparece >= this.listas.size() / 2) {
+			return (int) Math.floor(quantidade / aparece);
+		} else {
+			return -1;
+		}
 	}
 
 	/**
@@ -278,7 +313,6 @@ public class ListaController {
 	 */
 	public String geraAutomaticaItem(String descritorItem) {
 		boolean temItem = false;
-
 		List<Lista> listas = new ArrayList<>(this.listas.values());
 		Collections.reverse(listas);
 		Lista ultimaLista = new Lista("Lista automatica 2 " + this.geraData());
@@ -288,15 +322,12 @@ public class ListaController {
 				ultimaLista.addAll(lista);
 				this.listas.put(ultimaLista.getDescricao(), ultimaLista);
 				return ultimaLista.getDescricao();
-
 			}
 		}
 		if (!(temItem)) {
 			throw new IllegalArgumentException(
 					"Erro na geracao de lista automatica por item: nao ha compras cadastradas com o item desejado.");
-
 		}
-
 		return "";
 	}
 
@@ -308,44 +339,16 @@ public class ListaController {
 	 */
 	public String geraAutomaticaItensMaisPresentes() {
 		Lista novaLista = new Lista("Lista automatica 3 " + this.geraData());
-
 		for (Item item : this.controllerItem.getItens()) {
 			if (verificacaItemNaLista(item) > 0) {
 				novaLista.adicionaCompraALista(verificacaItemNaLista(item), item, item.getId());
 			}
-
 		}
 		this.listas.put(novaLista.getDescricao(), novaLista);
-
 		return novaLista.getDescricao();
 	}
 
-	/**
-	 * Metodo que realiza a contagem de quantas vezes o item esta presente nas
-	 * listas.
-	 * 
-	 * @param item Item a ser contado
-	 * @return quantidade de itens da nova compra ou -1 caso o item nao apareca em
-	 *         pelo menos metade da listas
-	 */
 
-	private int verificacaItemNaLista(Item item) {
-		int aparece = 0;
-		int quantidade = 0;
-
-		for (Lista lista : this.listas.values()) {
-			if (lista.getCompras().containsKey(item.getId())) {
-				quantidade += lista.getCompras().get(item.getId()).getQuantidade();
-				aparece++;
-
-			}
-		}
-		if (aparece >= this.listas.size() / 2) {
-			return (int) Math.floor(quantidade / aparece);
-		} else {
-			return -1;
-		}
-	}
 
 	/**
 	 * Metodo responsavel por sugerir qual o melhor estabelecimento a ser compradopara uma determinada lista de compras.
@@ -384,6 +387,51 @@ public class ListaController {
 				supermercados.get(nomeSupermercado).adicionaCompra(this.listas.get(descritorLista).pegaCompra(id), this.controllerItem.getPrecosItem(id).get(nomeSupermercado));
 			}
 		}
+	}
+
+	/**
+	 * Metodo que salva o mapa de listas em um arquivo.
+	 * 
+	 * @throws IOException
+	 */
+	public void salvaDados() throws IOException {
+		ObjectOutputStream gravaObject;
+
+		try {
+			gravaObject = new ObjectOutputStream(new FileOutputStream("src" + File.separator + "listas.txt"));
+			gravaObject.writeObject(this.listas);
+			gravaObject.close();
+
+		} catch (IOException e) {
+			throw new IOException("Algo deu errado");
+
+		}
+	}
+
+	/**
+	 * Metodo que recupera o mapa de listas de um arquivo.
+	 * 
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 */
+
+	@SuppressWarnings("unchecked")
+	public void recuperaDados() throws ClassNotFoundException, IOException {
+		ObjectInputStream objeto;
+		FileInputStream file;
+
+		try {
+			file = new FileInputStream("src" + File.separator + "listas.txt");
+			objeto = new ObjectInputStream(file);
+			Object obj = objeto.readObject();
+			this.listas = (LinkedHashMap<String, Lista>) obj;
+			objeto.close();
+
+		} catch (IOException e) {
+			throw new IOException("Algo deu errado");
+
+		}
+
 	}
 
 }
