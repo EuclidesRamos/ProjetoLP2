@@ -1,5 +1,6 @@
 package projeto;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,7 +20,11 @@ import java.util.HashMap;
  * @author Joao Antonio Bandeira - 117210692
  *
  */
-public class Lista {
+public class Lista implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -83349881722171979L;
 	/**
 	 * Mapa de compras.
 	 */

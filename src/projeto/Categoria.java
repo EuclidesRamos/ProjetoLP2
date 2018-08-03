@@ -1,5 +1,7 @@
 package projeto;
 
+import java.io.Serializable;
+
 /**
  * Classe responsavel por representar uma categoria no sistema.
  * 
@@ -8,8 +10,12 @@ package projeto;
  * @author Eduardo Pereira - 117210342
  * @author Joao Antonio Bandeira - 117210692
  */
-public class Categoria {
+public class Categoria implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5011186241133421277L;
 	/**
 	 * Nome da categoria.
 	 */

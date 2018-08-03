@@ -1,5 +1,11 @@
 package projeto;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -350,6 +356,51 @@ public class ListaController {
 
 	public String sugereMelhorEstabelecimento() {
 		return null;
+	}
+
+	/**
+	 * Metodo que salva o mapa de listas em um arquivo.
+	 * 
+	 * @throws IOException
+	 */
+	public void salvaDados() throws IOException {
+		ObjectOutputStream gravaObject;
+
+		try {
+			gravaObject = new ObjectOutputStream(new FileOutputStream("src" + File.separator + "listas.txt"));
+			gravaObject.writeObject(this.listas);
+			gravaObject.close();
+
+		} catch (IOException e) {
+			throw new IOException("Algo deu errado");
+
+		}
+	}
+
+	/**
+	 * Metodo que recupera o mapa de listas de um arquivo.
+	 * 
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 */
+
+	@SuppressWarnings("unchecked")
+	public void recuperaDados() throws ClassNotFoundException, IOException {
+		ObjectInputStream objeto;
+		FileInputStream file;
+
+		try {
+			file = new FileInputStream("src" + File.separator + "listas.txt");
+			objeto = new ObjectInputStream(file);
+			Object obj = objeto.readObject();
+			this.listas = (LinkedHashMap<String, Lista>) obj;
+			objeto.close();
+
+		} catch (IOException e) {
+			throw new IOException("Algo deu errado");
+
+		}
+
 	}
 
 }

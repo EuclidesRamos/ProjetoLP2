@@ -1,5 +1,6 @@
 package projeto;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
 /**
@@ -11,8 +12,13 @@ import java.util.Comparator;
  * @author Joao Antonio Bandeira - 117210692
  *
  */
-public class OrdenaPreco implements Comparator<Item> {
+public class OrdenaPreco implements Comparator<Item>, Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6510244646388532216L;
+
 	/**
 	 * Compara o preco de dois itens distintos.
 	 * 

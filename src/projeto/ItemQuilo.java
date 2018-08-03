@@ -12,6 +12,10 @@ package projeto;
 public class ItemQuilo extends Item {
 	
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8192038426325404284L;
+	/**
 	 * Quantidade de quilos de um item.
 	 */
 	private double kg;
