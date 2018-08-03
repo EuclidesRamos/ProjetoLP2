@@ -16,14 +16,17 @@ public class Categoria implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -5011186241133421277L;
+	
 	/**
 	 * Nome da categoria.
 	 */
 	private String nomeCategoria;
+	
 	/**
 	 * Precedencia.
 	 */
 	private int precedencia;
+	
 	/**
 	 * Validador
 	 */
@@ -61,9 +64,8 @@ public class Categoria implements Serializable {
 	/**
 	 * Metodo que retorna o nome da categoria.
 	 * 
-	 * @return uma String
+	 * @return Retorna a categoria, em forma de string.
 	 */
-
 	public String getCategoria() {
 		return this.nomeCategoria;
 	}
@@ -71,14 +73,14 @@ public class Categoria implements Serializable {
 	/**
 	 * Metodo que retorna a precedencia de uma categoria.
 	 * 
-	 * @return um inteiro de 1 a 4
+	 * @return Retorna um inteiro representando a precedencia da categoria(higiene pessoa: 1, limpeza: 2, alimento industrializado: 3, alunomento nao industrializado: 4)
 	 */
 	public int getPrecedencia() {
 		return this.precedencia;
 	}
 
 	/**
-	 * Metodo que retorna um inteiro que representa uma categoria.
+	 * Metodo que sobrescreve o metodo da classe pai. Retorna uma representacao para o objeto.
 	 */
 	@Override
 	public int hashCode() {
@@ -89,9 +91,8 @@ public class Categoria implements Serializable {
 	}
 
 	/**
-	 * Metodo que compara duas categorias pelo seus nomes.
+	 * Metodo que sobrescreve o metodo da classe pai. Retorna true, para objetos iguais, ou false, para objetos diferentes.
 	 */
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -108,5 +109,4 @@ public class Categoria implements Serializable {
 			return false;
 		return true;
 	}
-
 }

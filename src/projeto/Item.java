@@ -148,15 +148,6 @@ public abstract class Item implements Serializable {
 	}
 
 	/**
-	 * Metodo que retorna representacao textual do item.
-	 * 
-	 * @return uma String
-	 */
-	public String toString() {
-		return this.id + ". " + this.nome + ", " + this.categoria.getCategoria() + ", ";
-	}
-
-	/**
 	 * Metodo que retorna a representacao do Item na lista
 	 * 
 	 * @return Uma String
@@ -181,7 +172,6 @@ public abstract class Item implements Serializable {
 	 * @param novoValor Novo valor que sera atualizado
 	 */
 	public void atualizaItem(String atributo, String novoValor) {
-
 		switch (atributo) {
 		case "nome":
 			this.nome = novoValor;
@@ -200,9 +190,17 @@ public abstract class Item implements Serializable {
 	public Map<String, Double> getMapaDePrecos() {
 		return this.mapaDePrecos;
 	}
+	
+	/**
+	 * Metodo que sobrescreve o metodo da classe pai. Retorna uma representacao em String do item.
+	 */
+	@Override
+	public String toString() {
+		return this.id + ". " + this.nome + ", " + this.categoria.getCategoria() + ", ";
+	}
 
 	/**
-	 * Metodo que retorna uma representacoa inteira do item.
+	 * Metodo que sobrescreve o metodo da classe pai. Retorna uma representacao para o objeto.
 	 */
 	@Override
 	public int hashCode() {
@@ -214,7 +212,7 @@ public abstract class Item implements Serializable {
 	}
 
 	/**
-	 * Metodo que compara dois itens a partir de seu nome e categoria.
+	 * Metodo que sobrescreve o metodo da classe pai. Retorna true, para objetos iguais, ou false, para objetos diferentes.
 	 */
 	@Override
 	public boolean equals(Object obj) {

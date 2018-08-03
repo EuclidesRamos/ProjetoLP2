@@ -9,7 +9,6 @@ package projeto;
  * @author Joao Antonio Bandeira - 117210692
  *
  */
-
 public class ItemQuantidadeFixa extends Item {
 
 	/**
@@ -45,7 +44,6 @@ public class ItemQuantidadeFixa extends Item {
 		super.validador.validaItemQuantidadeFixa(nome, categoria, quantidade, unidadeDeMedida, localDeCompra, preco);
 		this.quantidade = quantidade;
 		this.unidadeDeMedida = unidadeDeMedida;
-
 	}
 
 	/**
@@ -67,9 +65,7 @@ public class ItemQuantidadeFixa extends Item {
 	}
 
 	/**
-	 * Retorna uma representacao textual do item.
-	 * 
-	 * @return uma String representado o item
+	 * Metodo que sobrescreve o metodo da classe pai. Retorna uma representacao em String do item.
 	 */
 	@Override
 	public String toString() {
@@ -77,20 +73,21 @@ public class ItemQuantidadeFixa extends Item {
 				+ ">";
 	}
 	
+	/**
+	 * Metodo que sobrescreve o metodo da classe pai.
+	 */
 	@Override
 	public String representacaoLista() {
 		return super.representacaoLista() + ", " + this.quantidade + " " + this.unidadeDeMedida;
-		
 	}
 
 	/**
-	 * Atualiza o item a partir do nome do atrinuto e o valor a ser atualizado.
+	 * Metodo que sobrescreve o metodo da classe pai.
 	 */
 	@Override
 	public void atualizaItem(String atributo, String novoValor) {
 		super.atualizaItem(atributo, novoValor);
 		switch (atributo) {
-
 		case "quantidade":
 			int novoValorInteiro = Integer.parseInt(novoValor);
 			this.quantidade = novoValorInteiro;
@@ -98,8 +95,6 @@ public class ItemQuantidadeFixa extends Item {
 		case "unidade de medida":
 			this.unidadeDeMedida = novoValor;
 			break;
-
 		}
-
 	}
 }

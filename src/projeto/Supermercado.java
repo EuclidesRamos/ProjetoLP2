@@ -74,6 +74,9 @@ public class Supermercado {
 		return "";
 	}
 	
+	/**
+	 * Metodo que sobrescreve o metodo da classe pai. Retorna uma representacao em String do item.
+	 */
 	@Override
 	public String toString() {
 		return this.nomeEstabeleciomento + ": R$ " + String.format("%.2f", this.valorCompras);

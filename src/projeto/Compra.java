@@ -28,8 +28,11 @@ public class Compra implements Serializable{
 	 */
 	private Item item;
 
+	/**
+	 * Atributo responsavel por armazenar o validador de parametros.
+	 */
 	private Validador validador;
-
+	
 	/**
 	 * Constroi uma compra a partir do item e a quantidade de itens.
 	 * 
@@ -51,7 +54,6 @@ public class Compra implements Serializable{
 	 */
 	public void atualizaCompra(String operacao, int quantidade) {
 		this.validador.validaAtualizaCompraDeLista(operacao);
-
 		switch (operacao) {
 		case "diminui":
 			this.quantidade -= quantidade;
@@ -81,9 +83,7 @@ public class Compra implements Serializable{
 	}
 
 	/**
-	 * Metodo que retorna a representacao textual da compra
-	 * 
-	 * @return uma String
+	 * Metodo que sobrescreve o metodo da classe pai. Retorna uma representacao em String da compra.
 	 */
 	@Override
 	public String toString() {

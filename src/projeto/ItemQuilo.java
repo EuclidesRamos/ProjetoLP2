@@ -15,6 +15,7 @@ public class ItemQuilo extends Item {
 	 * 
 	 */
 	private static final long serialVersionUID = -8192038426325404284L;
+	
 	/**
 	 * Quantidade de quilos de um item.
 	 */
@@ -24,18 +25,12 @@ public class ItemQuilo extends Item {
 	 * Constroi um item por quilo a partir de seu id, nome, categoria, quantidade de
 	 * quilos, local de compra e preco.
 	 * 
-	 * @param id
-	 *            Identificacao do item
-	 * @param nome
-	 *            Nome do item
-	 * @param categoria
-	 *            Categoria do item
-	 * @param kg
-	 *            Quantidade de quilos
-	 * @param localDeCompra
-	 *            Local de compra
-	 * @param preco
-	 *            Preco do item
+	 * @param id             Identificacao do item
+	 * @param nome           Nome do item
+	 * @param categoria      Categoria do item
+	 * @param kg             Quantidade de quilos
+	 * @param localDeCompra  Local de compra
+	 * @param preco          Preco do item
 	 */
 	public ItemQuilo(int id, String nome, String categoria, double kg, String localDeCompra, double preco) {
 		super(id, nome, categoria, localDeCompra, preco);
@@ -53,9 +48,7 @@ public class ItemQuilo extends Item {
 	}
 
 	/**
-	 * Retorna uma representacao textual do item.
-	 * 
-	 * @return uma String representado o item
+	 * Metodo que sobrescreve o metodo da classe pai. Retorna uma representacao em String do item.
 	 */
 	@Override
 	public String toString() {
@@ -63,7 +56,7 @@ public class ItemQuilo extends Item {
 	}
 
 	/**
-	 * Atualiza o item a partir do nome do atrinuto e o valor a ser atualizado.
+	 * Metodo que sobrescreve o metodo da classe pai.
 	 */
 	@Override
 	public void atualizaItem(String atributo, String novoValor) {
@@ -73,9 +66,6 @@ public class ItemQuilo extends Item {
 			double novoValorDouble = Double.parseDouble(novoValor);
 			this.kg = novoValorDouble;
 			break;
-
 		}
 	}
-	
-
 }

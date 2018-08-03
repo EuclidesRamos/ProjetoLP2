@@ -89,7 +89,7 @@ public class ListaController {
 		this.controllerItem = controllerItem;
 		this.validador = new Validador();
 	}
-
+	
 	/**
 	 * Metodo responsavel por adicionar novas listas de compras no Sistema.
 	 * 
@@ -199,8 +199,6 @@ public class ListaController {
 	 * @param posicaoItem Posicao da compra a ser exibida
 	 * @return Retorna a representacao em String da compra que esta na posicao
 	 *         passada como parametro
-	 * @return Retorna a representacao em String da compra que esta na posicao
-	 *         passada como parametro
 	 */
 	public String getItemLista(String descritor, int posicaoItem) {
 		return this.listas.get(descritor).getItemLista(posicaoItem);
@@ -212,8 +210,6 @@ public class ListaController {
 	 * 
 	 * @param data         Data de criacao a ser pesquisada
 	 * @param posicaoLista Posicao da lista a ser exibida
-	 * @return Retorna uma representacao em String da lista que esta na posicao
-	 *         informada e que foi criada na data informada
 	 * @return Retorna uma representacao em String da lista que esta na posicao
 	 *         informada e que foi criada na data informada
 	 */
@@ -348,8 +344,6 @@ public class ListaController {
 		return novaLista.getDescricao();
 	}
 
-
-
 	/**
 	 * Metodo responsavel por sugerir qual o melhor estabelecimento a ser compradopara uma determinada lista de compras.
 	 * 
@@ -396,16 +390,9 @@ public class ListaController {
 	 */
 	public void salvaDados() throws IOException {
 		ObjectOutputStream gravaObject;
-
-		try {
-			gravaObject = new ObjectOutputStream(new FileOutputStream("src" + File.separator + "listas.txt"));
-			gravaObject.writeObject(this.listas);
-			gravaObject.close();
-
-		} catch (IOException e) {
-			throw new IOException("Algo deu errado");
-
-		}
+		gravaObject = new ObjectOutputStream(new FileOutputStream("src" + File.separator + "listas.txt"));
+		gravaObject.writeObject(this.listas);
+		gravaObject.close();
 	}
 
 	/**
@@ -414,24 +401,14 @@ public class ListaController {
 	 * @throws ClassNotFoundException
 	 * @throws IOException
 	 */
-
 	@SuppressWarnings("unchecked")
 	public void recuperaDados() throws ClassNotFoundException, IOException {
 		ObjectInputStream objeto;
 		FileInputStream file;
-
-		try {
-			file = new FileInputStream("src" + File.separator + "listas.txt");
-			objeto = new ObjectInputStream(file);
-			Object obj = objeto.readObject();
-			this.listas = (LinkedHashMap<String, Lista>) obj;
-			objeto.close();
-
-		} catch (IOException e) {
-			throw new IOException("Algo deu errado");
-
-		}
-
+		file = new FileInputStream("src" + File.separator + "listas.txt");
+		objeto = new ObjectInputStream(file);
+		Object obj = objeto.readObject();
+		this.listas = (LinkedHashMap<String, Lista>) obj;
+		objeto.close();
 	}
-
 }

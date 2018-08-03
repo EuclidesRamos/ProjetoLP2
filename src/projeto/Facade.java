@@ -3,7 +3,6 @@ package projeto;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import easyaccept.EasyAccept;
 
 /**
@@ -41,6 +40,7 @@ public class Facade {
 				"testesDeAceitacao/use_case5.txt",
 				"testesDeAceitacao/use_case6.txt", "testesDeAceitacao/use_case6_exception.txt",
 				"testesDeAceitacao/use_case7.txt"};
+		EasyAccept.main(args);
 
 	}
 
@@ -357,9 +357,9 @@ public class Facade {
 	/**
 	 * Metodo responsavel por sugerir qual o melhor estabelecimento a ser compradopara uma determinada lista de compras.
 	 * 
-	 * @param descritorLista Descritor da lista de compras a ser analizada.
+	 * @param descritorLista         Descritor da lista de compras a ser analizada.
 	 * @param posicaoEstabelecimento Posicao do estabelecimento a sex exibido.
-	 * @param posicaoLista Posicao da compra a ser exibida.
+	 * @param posicaoLista           Posicao da compra a ser exibida.
 	 * @return Retorna uma representacao textual do estabelecimento (com o valor das compras) ou uma representacao textual da compra.
 	 */
 	public String sugereMelhorEstabelecimento(String descritorLista, int posicaoEstabelecimento, int posicaoLista) {
@@ -374,7 +374,6 @@ public class Facade {
 	public void fechaSistema() throws IOException {
 		this.controllerItem.salvaDados();
 		this.controllerLista.salvaDados();
-
 	}
 
 	/**
@@ -387,5 +386,4 @@ public class Facade {
 		this.controllerItem.recuperaDados();
 		this.controllerLista.recuperaDados();
 	}
-
 }

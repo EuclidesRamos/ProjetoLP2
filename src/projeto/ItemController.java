@@ -190,7 +190,6 @@ public class ItemController {
 			throw new ArrayIndexOutOfBoundsException("Erro na atualizacao de item: item nao existe.");
 		}
 		this.itens.get(id).atualizaItem(atributo, novoValor);
-
 	}
 
 	/**
@@ -307,16 +306,6 @@ public class ItemController {
 	 */
 	public Map<String, Double> getPrecosItem(int itemId) {
 		return this.itens.get(itemId).getMapaDePrecos();
-	}
-	
-	public List<Item> getItensSupermercado(String nomeSupermercado) {
-		List<Item> itensSupermercado = new ArrayList<>();
-		for (Item item : this.itens.values()) {
-			if (item.getMapaDePrecos().containsKey(nomeSupermercado)) {
-				itensSupermercado.add(item);
-			}
-		}
-		return itensSupermercado;
 	}
 
 	/**

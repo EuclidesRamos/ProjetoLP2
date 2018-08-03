@@ -9,12 +9,13 @@ package projeto;
  * @author Joao Antonio Bandeira - 117210692
  *
  */
-
 public class ItemUnidade extends Item {
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -7241378834789492228L;
+	
 	/**
 	 * Quantidade de unidades de um item.
 	 */
@@ -68,14 +69,11 @@ public class ItemUnidade extends Item {
 	@Override
 	public void atualizaItem(String atributo, String novoValor) {
 		super.atualizaItem(atributo, novoValor);
-
 		switch (atributo) {
-
 		case "unidades":
 			int novoValorInteiro = Integer.parseInt(novoValor);
 			this.unidade = novoValorInteiro;
 			break;
 		}
-
 	}
 }

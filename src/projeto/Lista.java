@@ -248,11 +248,17 @@ public class Lista implements Serializable{
 		return this.compras;
 	}
 	
+	/**
+	 * Metodo que sobrescreve o metodo da classe pai. Retorna uma representacao em String do item.
+	 */
 	@Override
 	public String toString() {
 		return this.data + " - " + this.descricao;
 	}
 
+	/**
+	 * Metodo que sobrescreve o metodo da classe pai. Retorna uma representacao para o objeto.
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -261,6 +267,9 @@ public class Lista implements Serializable{
 		return result;
 	}
 
+	/**
+	 * Metodo que sobrescreve o metodo da classe pai. Retorna true, para objetos iguais, ou false, para objetos diferentes.
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
